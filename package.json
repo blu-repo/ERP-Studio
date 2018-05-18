@@ -1,0 +1,11 @@
+{
+  "name": "modelo",
+  "version": "1.0.0",
+  "description": "##Responsive Mobile & Flat Design  Own Carousel & Bootstrap Framework CSS  Font Icon Svg & Animate",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
