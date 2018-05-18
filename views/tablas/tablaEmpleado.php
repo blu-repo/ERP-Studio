@@ -35,19 +35,16 @@
          <?php echo "Desactivo"; ?>
         <?php } ?>
        </div>
-      </td> 
+      </td>
       <td class="row">
-        <!-- <form id="formEditarEmpleadoHidden" action="./editarPerfilEmpleado.php" method="post" > -->
+        <form id="formEditarEmpleadoHidden" action="./editarPerfilEmpleado.php" method="post" >
           <input type="hidden" value="<?php echo $row[0]; ?>" id="idEmpleadoEditar" name="idEmpleadoEditar">
           <input type="submit" id="buttonAlerta" value="Editar" class="btn btn-info buttonE">
           <button type="button" class="btn btn-danger buttonD">Eliminar</button>
-        <!-- </form> -->
+        </form>
       </td>
     </tr>
     <?php } ?>
   </tbody>
 </table>
 </div>
-
-
-

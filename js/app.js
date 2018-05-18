@@ -54,7 +54,7 @@ $(document).ready(function(){
         submitHandler: function(form){
             var formulario = $('#formCliente');
             console.log(formulario.serialize());
-            
+
             $.ajax({
                 url: "../controlador/clienteController.php",
                 method:'post',
@@ -68,7 +68,7 @@ $(document).ready(function(){
                         console.log(data);
                     }
                 }
-            })   
+            })
         }
     })
 
@@ -83,12 +83,12 @@ $(document).ready(function(){
         $('#tipoCliente').val('')
     }
 
- 
+
     $('#formProducto').validate({
         rules:{
             nombreproducto : {
                 required:true
-            
+
             },
             codigoproducto : {
                 required:true , number:true
@@ -143,10 +143,10 @@ $(document).ready(function(){
             tallaProductoM: 'Digite la talla del producto'
         },
         submitHandler : function(form){
-            
+
             var formulario = $('#formProducto');
             console.log('llegamos a registrar');
-            
+
             $.ajax({
                 url: "../controlador/productoController.php",
                 method:'post',
@@ -156,7 +156,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data=="true"){
                         successModal('Registro Exitoso','El producto se Registro correctamente!');
-                        limpiarProducto();  
+                        limpiarProducto();
                     }
                     else{
                         errorModal('Error','Se presento un Error al momento de registrar')
@@ -165,19 +165,19 @@ $(document).ready(function(){
             });
         }
 	});
-		
+
 		function limpiarProducto() {
-				$('#nombreproducto').val('')	
-				$('#codigoproducto').val('')	
-				$('#colorIDproducto').val('')	
-				$('#telaIDproducto').val('')	
-				$('#proveedorIDProducto').val('')	
-				$('#productoID').val('')	
-				$('#categoriaIDproducto').val('')	
-				$('#tallaproducto').val('')	
-				$('#cantidadProductoM').val('')	
-				$('#precioProductoM').val('')	
-				$('#tallaProductoM').val('')	
+				$('#nombreproducto').val('')
+				$('#codigoproducto').val('')
+				$('#colorIDproducto').val('')
+				$('#telaIDproducto').val('')
+				$('#proveedorIDProducto').val('')
+				$('#productoID').val('')
+				$('#categoriaIDproducto').val('')
+				$('#tallaproducto').val('')
+				$('#cantidadProductoM').val('')
+				$('#precioProductoM').val('')
+				$('#tallaProductoM').val('')
 		}
 
 
@@ -188,16 +188,16 @@ $(document).ready(function(){
             },
             descripcioncategoriaM:{
                 required:true
-            }    
+            }
         },
         messages:{
             nombrecategoriaM: 'Digite un nombre de categoria',
-            descripcioncategoriaM : 'Digite la descripcion de la categoria' 
+            descripcioncategoriaM : 'Digite la descripcion de la categoria'
         },
         submitHandler :function(form){
 						var formulario = $('#formCategoria');
-						
-						
+
+
             $.ajax({
                 url: "../controlador/categoriaController.php",
                 method:'post',
@@ -287,12 +287,12 @@ $(document).ready(function(){
 												if(data=="ya se encuentra registrado el articulo"){
 													$('#ajax_articulo').addClass('alert alert-warning');
 												  $('#ajax_articulo').html('El nombre del articulo ya se encuentra registrado');
-												
+
 													setTimeout(function() {
 													$("#ajax_articulo").fadeOut(1500);
 													},3000);
 												}
-												else{ 
+												else{
 													$('#ajax_articulo').html('No se pudo registrar correctamente el articulo');
 												}
                     }
@@ -334,7 +334,7 @@ $(document).ready(function(){
                         if(data=="El elemento ya se encuentra registrado"){
                             $('#ajax_material').addClass('alert alert-warning');
                             $('#ajax_material').html('El nombre del material ya se encuentra registrado');
-                            
+
                                 setTimeout(function() {
                                 $("#ajax_material").fadeOut(1500);
                                 },3000);
@@ -346,17 +346,17 @@ $(document).ready(function(){
                 }
                 });
             }
-        
+
 
     })
 
     $('#formProveedor').validate({
-        rules:{ 
+        rules:{
             nombreEmpresaProveedor:{
                 required:true
             },
             nitProveedor:{
-                required:true 
+                required:true
             },
             telefonoproveedor:{
                 required:true,
@@ -369,8 +369,8 @@ $(document).ready(function(){
             direccionEmpresa:{
                 required:true
             }
-        },   
-        messages:{ 
+        },
+        messages:{
             nombreEmpresaProveedor:'Digite nombre de la empresa',
             nitProveedor:'Digite un NIT correspondiente',
             telefonoproveedor:'Digite el telefono del proveedor',
@@ -378,7 +378,7 @@ $(document).ready(function(){
             telefonocontacto:'Digite el telefono de contacto (Personal)',
             direccionEmpresa:'Digite la direccion de la empresa'
             },
-            
+
             submitHandler: function(form){
 
             var formulario = $('#formProveedor');
@@ -387,7 +387,7 @@ $(document).ready(function(){
                 method:'post',
                 data:formulario.serialize(),
                 success : function(data){
-                    if(data=="true"){	
+                    if(data=="true"){
                         successModal('Registro Exitoso!','Se registro Correctamente el proveedor <br> Debes Asignar un contacto para el proveedor')
                         limpiarProveedor()
                     }
@@ -395,10 +395,10 @@ $(document).ready(function(){
                         errorProveedor(data);
                     }
                 }
-            })		
+            })
             }
     })
-    
+
 
     $('#formEmpleado').validate({
         rules:{
@@ -466,7 +466,7 @@ $(document).ready(function(){
                 data:formulario.serialize(),
                 success : function(data){
                     debugger
-                    if(data=="true"){	
+                    if(data=="true"){
                         successModal('Registro Exitoso!','Se registro correctamente el empleado!')
                         limpiarEmpleado()
                         console.log(data);
@@ -481,7 +481,7 @@ $(document).ready(function(){
                         else if(data=="no se pudo registrar el usuario"){
                             errorModal('Registro Errado','No se pudo registrar correctamente <br> Rectifica tus datos')
                         }
-                       
+
                     }
                 }
             })
@@ -511,7 +511,7 @@ $(document).ready(function(){
 
         function successMaterial() {
             $('#ajax_material').addClass('alert alert-info');
-            
+
             $('#ajax_material').html('Se registro correctamente el material');
 
             setTimeout(function() {
@@ -533,8 +533,8 @@ $(document).ready(function(){
                 $('#telefonoproveedor').val('')
                 $('#direccionEmpresa').val('')
                 $('#emailempresa').val('')
-        }   
-        
+        }
+
 		function successModal(titulo,cuerpo) {
 				$('#modalSuccessTitulo').html(titulo);
 				$('#modalSuccessBody').html(cuerpo);
@@ -552,11 +552,11 @@ $(document).ready(function(){
 			$('#modalError').modal('hide');
 			},3900);
         }
-        
+
 
         $('#editarCliente').on('show.bs.modal', function (e) {
-            var button = $(e.relatedTarget); 
-            var id = button.data('id'); 
+            var button = $(e.relatedTarget);
+            var id = button.data('id');
             var pnombres=button.data('pnombre')
             var apellidos=button.data('apellidos')
             var documento=button.data('documento')
@@ -565,21 +565,21 @@ $(document).ready(function(){
             var email=button.data('email')
 
             var modal = $('#editarCliente');
-            
+
             modal.find('#idCliente').val(id);
             modal.find('#primerNombreClienteED').val(pnombres);
             modal.find('#apellidosClienteED').val(apellidos);
             modal.find('#documentoClienteED').val(documento);
             modal.find('#telefonoClienteED').val(telefono);
             modal.find('#emailClienteED').val(email);
-            
+
         })
 
 
         $('#editarEmpleado').on('show.bs.modal',function(e){
-						
+
             var button = $(e.relatedTarget)
-            var id = button.data('id') 
+            var id = button.data('id')
             var pnombres=button.data('nombres')
             var apellidos=button.data('apellidos')
             var documento=button.data('documento')
@@ -588,7 +588,7 @@ $(document).ready(function(){
             var email=button.data('email')
             var fecha=button.data('fecha')
 
-            
+
             var modal = $('#editarEmpleado');
 
             modal.find('#idEmpleado').val(id);
@@ -602,7 +602,7 @@ $(document).ready(function(){
 
         })
 
-        
+
 				// Falta Terminar eliminar cliente - Modo cascada
         $('#eliminarCliente').on('show.bs.modal', function(event){
             var button = $(event.relatedTarget)
@@ -616,14 +616,14 @@ $(document).ready(function(){
 
         // Ediciones de la base de datos
 
-        
+
         $('#formEditarCliente').validate({
             rules:{
                 primerNombreClienteED:{
                     required:true
-                },        
+                },
                 apellidosClienteED:{
-                    required:true   
+                    required:true
                 },
                 documentoClienteED:{
                     required:true,
@@ -636,7 +636,7 @@ $(document).ready(function(){
                 emailClienteED:{
                     required:true,
                     email:true
-                }    
+                }
             },
             messages:{
                 primerNombreClienteED:'Digite el nombre del cliente',
@@ -672,16 +672,16 @@ $(document).ready(function(){
                                 successAjaxDiv('#ajax_editarClienteError','Error al conectar con la base de datos','#editarCliente','alert alert-danger','false')
                             }
                         }
-                        
+
                     }
                 })
             }
 		})
-				
+
 				// Falta terminar Eliminar cliente
         $('#formEliminarCliente').submit(function(event){
             event.preventDefault();
-            
+
             var id = document.getElementById("idClienteElimina").value;
             var editar = 2;
             $.ajax({
@@ -689,20 +689,20 @@ $(document).ready(function(){
                 method: 'POST',
                 data: {editar:editar , id:id},
                 success : function(form){
-                    
+
                 }
             })
         })
-	
+
         function successAjaxDiv(div,contenido,modal,clase,data) {
         	$(div).addClass(clase);
         	$(div).html(contenido);
-          if(data=="true"){ 
+          if(data=="true"){
 
                 setTimeout(function() {
                 $(div).fadeOut(1500);
                 },3000);
-                
+
                 setTimeout(function() {
                 $(modal).fadeOut(1500);
                 $(modal).modal('hide');
@@ -712,16 +712,45 @@ $(document).ready(function(){
                 setTimeout(function() {
                 $(div).fadeOut(1500);
                 },3000);
-                    
-            }   
-                
+
+            }
+
         	$(div).css('display','block');
         }
 
-        $('.buttonE .buttonD').on('click',function(event){
-            event.preventDefault();
-            alert('Modulo en construccion')
-        })
-        
+      $('#formEstudiosEmpleado').validate({
+        rules:{
+          Instituto:{
+            required:true
+          },
+          Titulo:{
+            required:true
+          },
+          aniosalida:{
+            required:true
+          }
+        },
+        messages:{
+          Instituto:'Digite el nombre del Instituto',
+          Titulo:'Digite el nombre del titulo obtenido',
+          aniosalida:'Seleccione la fecha de terminacion'
+        },
+        submitHandler: function(form){
+          var form = $('#formEstudiosEmpleado')
+
+          var id = $('#idEmpleadoeEstudios').val()
+          console.log(id);
+
+          $.ajax({
+              url: "../archivos/AjaxController.php",
+              method: 'POST',
+              data: {},
+              success : function(form){
+                console.log(id);
+              }
+          })
+        }
+      })
+
 
 })

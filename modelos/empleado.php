@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once('../DB/db.php');
 
@@ -23,7 +23,7 @@ class Empleado {
 
 
       public function __CONSTRUCT(){
-      }  
+      }
 
 
       public function insertarEmpleado($nombres, $apellidos, $lugarNacimiento, $tipoDocumento, $expDocumento, $nacionalidad, $direccion, $correo,$nacimiento,$documentoEmpleado,$rol)
@@ -42,17 +42,17 @@ class Empleado {
 					$this->correo = $correo;
 					$this->rol=$rol;
 
-					if($this->validarEmail($this->conexion, $this->correo)==false){ 
-						
+					if($this->validarEmail($this->conexion, $this->correo)==false){
+
 						$usuario =$this->registrarUsuario($this->conexion,$this->rol,$this->correo,$this->documento);
 						if($usuario!=0 || $usuario!=null){
-	
+
 							$sql = "INSERT INTO empleado (nombres,apellidos,lugarnacimiento,fechanacimiento,
-							tipodocumento,documento,expediciondocumento,nacionalidad,direccion,correo,usuario,fecharegistro,estado) 
-							values ('$this->nombres','$this->apellidos','$this->lugarNacimiento','$this->fechaNacimiento','$this->tipoDocumento','$this->documento','$this->expDocumento','$this->nacionalidad','$this->direccion','$this->correo','$usuario',NOW(),0)";  
-		
+							tipodocumento,documento,expediciondocumento,nacionalidad,direccion,correo,usuario,fecharegistro,estado)
+							values ('$this->nombres','$this->apellidos','$this->lugarNacimiento','$this->fechaNacimiento','$this->tipoDocumento','$this->documento','$this->expDocumento','$this->nacionalidad','$this->direccion','$this->correo','$usuario',NOW(),0)";
+
 							$query = mysqli_query($this->conexion , $sql);
-		
+
 							if($query==true){
 								echo "true";
 							}
@@ -106,7 +106,7 @@ class Empleado {
 				public function getEmpleados()
 				{
 						$this->conexion = Conectar::conectarBD();
-						$empleados = array();	
+						$empleados = array();
 						$sql = "SELECT * from empleado";
 
 						$query = mysqli_query($this->conexion,$sql);
@@ -121,6 +121,27 @@ class Empleado {
 						}
 				}
 
-        
+        #Metodo que permite obtener un empleado para editarlo
+
+        public function getEmpleadoById($ID='')
+        {
+           $this->conexion = Conectar::conectarBD();
+           $empleado = array();
+
+           $sql = "SELECT * from empleado where empleado.ID='$ID'";
+
+           $query = mysqli_query($this->conexion , $sql);
+
+           if($query==true){
+             if(mysqli_num_rows($query) == 1){
+               return $query;
+             }
+           }
+           else{
+             return "null";
+           }
+        }
+
+
 
 }

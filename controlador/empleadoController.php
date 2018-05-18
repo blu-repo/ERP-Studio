@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 require_once('../modelos/empleado.php');
@@ -9,7 +9,7 @@ class empleadoController {
 
 
     private $empleado;
-    
+
 
     public function __CONSTRUCT()
     {
@@ -38,6 +38,13 @@ class empleadoController {
         $this->empleado = new Empleado();
 
         return $this->empleado->getEmpleados();
+    }
+
+
+    public function getEmpleadoById($ID)
+    {
+      $this->empleado = new Empleado();
+      $this->empleado->getEmpleadoById($ID);
     }
 
 }
