@@ -20,7 +20,7 @@ if(isset($_POST) && $_POST['editar']==2){
   {
     $cliente = new clienteController();
     $cliente->eliminarClienteController($_POST['id']);
-  }
+  } 
 
 
 
