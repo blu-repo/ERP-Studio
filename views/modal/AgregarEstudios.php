@@ -13,6 +13,7 @@
         </button>
       </div>
       <div id="ajax_editarEmpleadoEstudios"></div>
+      <div id="ajax_errorEmpleadoEstudios"></div>
       <form id="formEstudiosEmpleado">
       <div class="modal-body">
           <input type="hidden" name="idEmpleadoeEstudios" id="idEmpleadoeEstudios" value="<?php echo $_POST['idEmpleadoEditar']; ?>">

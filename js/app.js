@@ -756,14 +756,70 @@ $(document).ready(function(){
                     $('#aniosalida').val('')     
                 }
                 else{
-                    successAjaxDiv('#ajax_editarEmpleadoEstudios','No se realizo el registro con Exito','#agregar_estudios','alert alert-warning','false')
+                    successAjaxDiv('#ajax_errorEmpleadoEstudios','No se realizo el registro con Exito','#agregar_estudios','alert alert-warning','false')
                 }  
               }
           })
         }
       })
 
-      
 
+
+      $('#formExamenEmpleado').validate({
+        rules:{
+          entidadmedica:{
+            required:true
+          },
+          dictamen:{
+            required:true
+          },
+          fecharealizacionExamen:{
+            required:true
+          },
+          observacionExamen:{
+              required:true
+          },
+          telefonoEntidad:{
+              required:true,
+              number:true
+          },
+          direccionEntidad:{
+              required:true
+          }
+        },
+        messages:{
+          entidadmedica:'Digite el nombre de la entidad',
+          dictamen:'Digite el dictamen del diagnostico',
+          fecharealizacionExamen:'Seleccione la fecha de realizacion del examen',
+          observacionExamen:'Digite alguna observacion',
+          telefonoEntidad:'Digite el telefono donde se practico el examen',
+          direccionEntidad:'Digite la direccion de la entidad'
+        },
+        submitHandler: function(form){
+
+          var id = document.getElementById("idEmpleadoExamenes").value;
+          var entidadmedica = document.getElementById("entidadmedica").value;
+          var dictamen = document.getElementById("dictamen").value;
+          var fecharealizacionExamen = document.getElementById("fecharealizacionExamen").value;
+          var telefonoEntidad = document.getElementById("telefonoEntidad").value;
+          var observacionExamen = document.getElementById("observacionExamen").value;
+          var direccionEntidad = document.getElementById("direccionEntidad").value;
+          var editar = 4;
+
+          $.ajax({
+              url: "../archivos/AjaxController.php",
+              method: 'POST',
+              data: {id:id,editar:editar,entidadmedica:entidadmedica,dictamen:dictamen,fecharealizacionExamen:fecharealizacionExamen,telefonoEntidad:telefonoEntidad,direccionEntidad:direccionEntidad,observacionExamen:observacionExamen},
+              success : function(data){
+                if(data=="true"){
+                    successAjaxDiv('#ajax_examenEmpleado','Se registro correctamente el examen','#agregar_examen','alert alert-info',data)     
+                }
+                else{
+                    successAjaxDiv('#ajax_errorExamenEmpleado','No se realizo el registro con Exito','#agregar_examen','alert alert-warning','false')
+                }  
+              }
+            })
+          }
+      })
 
 })

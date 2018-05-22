@@ -11,16 +11,19 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <div id="ajax_examenEmpleado"></div>
+      <div id="ajax_errorExamenEmpleado"></div>
+      <form id="formExamenEmpleado">
       <div class="modal-body">
-
+          <input type="hidden" id="idEmpleadoExamenes" name="idEmpleadoExamenes" value="<?php echo $_POST['idEmpleadoEditar']; ?>">
           <div class="form-group col-md-12">
             <label for="nombre1">Entidad Medica</label>
-            <input type="text" class="form-control" id="entidadmedica" placeholder="Nombre de la entidad medica">
+            <input type="text" class="form-control" id="entidadmedica" name="entidadmedica" placeholder="Nombre de la entidad medica">
           </div>
 
           <div class="form-group col-md-6">
             <label for="nombre2">Dictamen</label>
-            <input type="text" class="form-control" id="dictamen" placeholder="Dictamen">
+            <input type="text" class="form-control" id="dictamen" name="dictamen" placeholder="Dictamen">
           </div>
 
           <div class="form-group col-md-6">
@@ -44,13 +47,12 @@
           </div>
           <div class="form-group col-md-8">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
-            <button type="button" class="btn btn-primary">Guardar</button>
+            <input type="submit" class="btn btn-primary" value="Guardar"></input>
           </div>
       </div>
-
-          <div class="modal-footer">
-          </div>
-
+        <div class="modal-footer">
+        </div>
+      </form>
     </div>
   </div>
 </div>

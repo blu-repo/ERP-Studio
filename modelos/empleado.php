@@ -185,6 +185,24 @@ class Empleado {
 					}
 				}
 
+				public function editarEmpleadoExamenes($id,$entidad,$dictamen,$fecha,$telefono,$direccion,$observacionExamen)
+				{
+					 $this->conexion = Conectar::conectarBD();
+					 $sql = "INSERT into examenes 
+					 (entidadmedica,dictamen,fecharealizacion,observacion,telefono,direccion,empleado,fecharegistro)
+					 values
+					 ('$entidad','$dictamen','$fecha','$observacionExamen','$telefono','$direccion','$id', NOW())";
+
+					 $query = mysqli_query($this->conexion,$sql);
+
+					 if($query==true){
+						 echo "true";
+					 }
+					 else{
+						 mysqli_error($this->conexion);
+					 }
+				}
+
 
 
 }

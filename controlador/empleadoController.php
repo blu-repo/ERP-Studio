@@ -60,6 +60,12 @@ class empleadoController {
         return $this->empleado->getRolEmpleado($ID);
     }
 
+    public function editarEmpleadoExamenes($id,$entidad,$dictamen,$fecha,$telefono,$direccion,$observacionExamen)
+    {
+        $this->empleado = new Empleado();   
+        $this->empleado->editarEmpleadoExamenes($id,$entidad,$dictamen,$fecha,$telefono,$direccion,$observacionExamen);
+    }
+
 }
 
 $controller = new empleadoController();
