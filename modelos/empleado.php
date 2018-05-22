@@ -121,26 +121,69 @@ class Empleado {
 						}
 				}
 
-        #Metodo que permite obtener un empleado para editarlo
+        #Metodo que permite obtener un empleado para editarlo segun su identificador
 
-        public function getEmpleadoById($ID='')
+        public function getEmpleadoById($ID)
         {
            $this->conexion = Conectar::conectarBD();
            $empleado = array();
 
-           $sql = "SELECT * from empleado where empleado.ID='$ID'";
+           $sql = "SELECT * from empleado where id='$ID'";
 
            $query = mysqli_query($this->conexion , $sql);
 
            if($query==true){
-             if(mysqli_num_rows($query) == 1){
-               return $query;
-             }
-           }
-           else{
+						 if(mysqli_num_rows($query)==1){
+								return mysqli_fetch_array($query);
+						 }
+						}
+						else{
              return "null";
-           }
-        }
+            }
+				}
+
+				/**
+				 * Metodo que permite obtener el rol de un empleado atravez de su ID
+				 */
+				public function getRolEmpleado($ID)
+				{
+					echo $ID;
+					$this->conexion = Conectar::conectarBD();
+					$sql = "SELECT usuario.rol from usuario inner join empleado on empleado.usuario=usuario.id where empleado.id='$ID'";
+
+					$query = mysqli_query($this->conexion,$sql);
+
+					if($query==true){
+						// if(mysqli_num_rows($query) >=1 ){
+							$var = mysqli_fetch_array($query);
+							return $var[0];
+						// }
+					}
+					else{	
+						return 'null';
+					}
+				}
+				
+				/**
+				 * Metodo que permite editar y agregar el estudio para un cliente
+				 */
+
+				public function editarEmpleadoEstudios($id,$instituto,$titulo,$fecha)
+				{		
+					$this->conexion = Conectar::conectarBD();
+					$sql = "INSERT into estudios (instituto,titulo,aniosalida,empleado,fecharegistro) 
+					values ('$instituto','$titulo','$fecha','$id', NOW())";
+
+					$query = mysqli_query($this->conexion,$sql);
+
+					if($query==true){
+						echo "true";
+					}
+					else{
+						echo mysqli_error($this->conexion);
+						// mysqli_close($this->conexion);
+					}
+				}
 
 
 

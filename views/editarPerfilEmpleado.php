@@ -120,10 +120,10 @@
  <?php require_once('modalEditar/modalEditarEmpleado.php'); ?>
  <?php require_once('modalEliminar/modalEliminarCliente.php'); ?>
  <?php require_once('../controlador/empleadoController.php'); ?>
-<?php $empleado = new empleadoController(); ?>
      <div id="admin" class="container">
 
        <div class="row">
+         <?php $empleado = new empleadoController(); ?>
          <?php require_once('formularios/edicionEmpleado.php'); ?>
        </div><!-- /.row -->
 

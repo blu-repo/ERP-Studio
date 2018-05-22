@@ -1,85 +1,80 @@
 
-<?php $empleado->getEmpleadoById($_POST['idEmpleadoEditar']); ?>
+<?php $valor = $empleado->getEmpleadoByIdController($_POST['idEmpleadoEditar']); ?>
+<?php
+$td;
+if($valor[5]==1){
+ $td =  'C.C';
+}
+else{
+  $td = 'NIT';
+}
+
+$rol = $empleado->getRolEmpleadoController($_POST['idEmpleadoEditar']);
+
+
+?>
 
 <div class="container" id="regEmpleadoEdicion">
 <form id="formEmpleadoEdicion">
 
   <div class="form-group row">
-    <div class="form-group col-md-4">
+
+    <div class="form-group col-md-6">
       <label for="nombre1_empleado">Primer nombre</label>
-      <input type="text" class="form-control" id="primernombreEmpleado" name="primernombreEmpleado" placeholder="Primer nombre">
+      <input type="text" class="form-control" id="nombresEmpleadoEditar" name="nombresEmpleadoEditar" value="<?php echo $valor[1]; ?>" placeholder="Primer nombre">
     </div>
-    <div class="form-group col-md-4">
-      <label for="nombre2_empleado">Segundo nombre</label>
-      <input type="text" class="form-control" id="segundonombreEmpleado" name="segundonombreEmpleado" placeholder="Segundo nombre">
-    </div>
-    <div class="form-group col-md-4">
+    
+    <div class="form-group col-md-6">
       <label for="apellidosEmpleado">Apellidos</label>
-      <input type="text" class="form-control" id="apellidosEmpleado" name="apellidosEmpleado" placeholder="Apellidos">
+      <input type="text" class="form-control" id="apellidosEmpleado" name="apellidosEmpleado" value="<?php echo $valor[2]; ?>" placeholder="Apellidos">
     </div>
+
   </div>
 
    <div class="form-group row">
        <div class="form-group col-md-4">
            <label for="documentoEmp">Tipo de documento</label>
-           <select id="TipoDocumentoEmpleado" name="TipoDocumentoEmpleado" class="form-control">
-                <option value="1">C.C</option>
-                <option value="2">NIT</option>
-                <option selected>...</option>
-           </select>
+           <input id="TipoDocumentoEmpleadoEdicion" name="TipoDocumentoEmpleadoEdicion" value="<?php echo $td; ?>" class="form-control" disabled />
         </div>
         <div class="form-group col-md-4">
           <label for="documento">Documento</label>
-          <input type="text" class="form-control" id="documentoEmpleado" name="documentoEmpleado" placeholder="Documento">
+          <input type="text" class="form-control" id="documentoEmpleadoEdicion" name="documentoEmpleadoEdicion" value="<?php echo $valor['documento']; ?>" placeholder="Documento">
         </div>
         <div class="form-group col-md-4">
            <label for="nacionalidad">Nacionalidad</label>
-           <select id="nacionalidadEmpleado" name="nacionalidadEmpleado" class="form-control">
-                <option value="colombiana">Colombiana</option>
-                <option value="venezolana">Venezolana</option>
-                <option value="rusa">Rusa</option>
-                <option value="mexicana">Mexicana</option>
-                <option selected>...</option>
-           </select>
+           <input id="nacionalidadEmpleadoEdicion" name="nacionalidadEmpleadoEdicion" value="<?php echo $valor['nacionalidad']; ?>" class="form-control"/>
         </div>
     </div>
 
   <div class="form-group row">
     <div class="form-group col-md-4">
       <label for="nacimientoEmpleado">Fecha de nacimiento</label>
-      <input type="date" class="form-control" id="nacimientoEmpleado" name="nacimientoEmpleado" placeholder="Fecha de nacimiento">
+      <input type="date" class="form-control" id="nacimientoEmpleado" name="nacimientoEmpleado" value="<?php echo $valor['fechanacimiento']; ?>" placeholder="Fecha de nacimiento">
     </div>
     <div class="form-group col-md-4">
       <label for="direccionEmpleado">Direccion</label>
-      <input type="text" id="direccionEmpleado" name="direccionEmpleado" class="form-control" placeholder="Direccion">
+      <input type="text" id="direccionEmpleado" name="direccionEmpleado" class="form-control" value="<?php echo $valor['direccion']; ?>" placeholder="Direccion">
     </div>
     <div class="form-group col-md-4">
       <label for="tipocontrato">Lugar de nacimiento</label>
-      <input type="text" id="lugarnacimientoEmpleado" name="lugarnacimientoEmpleado" class="form-control" placeholder="Lugar de nacimiento">
+      <input type="text" id="lugarnacimientoEmpleado" name="lugarnacimientoEmpleado" class="form-control" value="<?php echo $valor['lugarnacimiento']; ?>" placeholder="Lugar de nacimiento">
     </div>
   </div>
 
   <div class="form-group row">
     <div class="form-group col-md-4">
       <label for="expedicion_doc_empleado">Expedicion de documento</label>
-      <input type="text" class="form-control" id="expedocEmpleado" name="expedocEmpleado" placeholder="Expedicion de documento">
+      <input type="text" class="form-control" id="expedocEmpleado" name="expedocEmpleado" value="<?php echo $valor['expediciondocumento']; ?>" placeholder="Expedicion de documento">
     </div>
     <div class="form-group col-md-4">
       <label for="aux_empleado">Correo electronico</label>
-      <input type="text" class="form-control" id="emailempleado" name="emailempleado" placeholder="Email">
+      <input type="text" class="form-control" id="emailempleado" name="emailempleado" value="<?php echo $valor['correo']; ?>"  placeholder="Email">
     </div>
     <div class="form-group col-md-4">
-    <label for="empleadoRol">Seleccione un Rol</label>
-     <select name="rolEmpleado" id="rolEmpleado" class="form-control">
-      <option value="bodega">Bodega</option>
-      <option value="contador">Contador</option>
-      <option value="vendedor">Vendedor</option>
-      <option value="Contratista">Contratista</option>
-      <option selected>...</option>
-     </select>
+    <label for="empleadoRol">Rol del Empleado</label>
+     <input name="rolEmpleado" id="rolEmpleado" class="form-control" value="<?php echo $rol; ?>"/>
     </div>
   </div>
-  <input type="hidden" value="11" id="registroEmpleadoH" name="registroEmpleadoH">
 
    <div class="form-group row">
     <div class="form-group col-md-4">
@@ -96,7 +91,7 @@
     </div>
   </div>
 
-  <input type="submit" class="btn btn-primary" value="Registrar Empleado"></input>
+  <input type="submit" class="btn btn-primary" value="Editar Empleado"></input>
 </form>
 </div>
 <?php include('modal/AgregarEstudios.php');  ?>

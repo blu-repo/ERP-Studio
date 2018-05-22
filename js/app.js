@@ -736,21 +736,34 @@ $(document).ready(function(){
           aniosalida:'Seleccione la fecha de terminacion'
         },
         submitHandler: function(form){
-          var form = $('#formEstudiosEmpleado')
 
-          var id = $('#idEmpleadoeEstudios').val()
-          console.log(id);
+          var id = document.getElementById("idEmpleadoeEstudios").value;
+          var Instituto = document.getElementById("Instituto").value;
+          var titulo = document.getElementById("Titulo").value;
+          var salid = document.getElementById("aniosalida").value;
+          var editar = 3;
+          console.log(salid);
 
           $.ajax({
               url: "../archivos/AjaxController.php",
               method: 'POST',
-              data: {},
-              success : function(form){
-                console.log(id);
+              data: {id:id,editar:editar,Instituto:Instituto,titulo:titulo,salid:salid},
+              success : function(data){
+                if(data=="true"){
+                    successAjaxDiv('#ajax_editarEmpleadoEstudios','Se registro correctamente los estudios','#agregar_estudios','alert alert-info',data)
+                    $('#Instituto').val('')
+                    $('#Titulo').val('')
+                    $('#aniosalida').val('')     
+                }
+                else{
+                    successAjaxDiv('#ajax_editarEmpleadoEstudios','No se realizo el registro con Exito','#agregar_estudios','alert alert-warning','false')
+                }  
               }
           })
         }
       })
+
+      
 
 
 })

@@ -10,9 +10,9 @@
         <h5 class="modal-title" id="exampleModalLabel">Agregar Estudios de Empleado</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-          <div id="ajax_editarEmpleadoEstudios"></div>
         </button>
       </div>
+      <div id="ajax_editarEmpleadoEstudios"></div>
       <form id="formEstudiosEmpleado">
       <div class="modal-body">
           <input type="hidden" name="idEmpleadoeEstudios" id="idEmpleadoeEstudios" value="<?php echo $_POST['idEmpleadoEditar']; ?>">

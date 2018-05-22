@@ -41,10 +41,23 @@ class empleadoController {
     }
 
 
-    public function getEmpleadoById($ID)
+    public function getEmpleadoByIdController($ID)
     {
       $this->empleado = new Empleado();
-      $this->empleado->getEmpleadoById($ID);
+
+      return $this->empleado->getEmpleadoById($ID);
+    }
+
+    public function editarEmpleadoEstudiosController($id,$instituto,$titulo,$fecha)
+    {
+        $this->empleado = new Empleado();
+        $this->empleado->editarEmpleadoEstudios($id,$instituto,$titulo,$fecha);
+    }
+
+    public function getRolEmpleadoController($ID)
+    {
+        $this->empleado = new Empleado();
+        return $this->empleado->getRolEmpleado($ID);
     }
 
 }
