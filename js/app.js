@@ -822,4 +822,122 @@ $(document).ready(function(){
           }
       })
 
+
+      $('#formPensionEmpleado').validate({
+        rules:{
+          empresaPensionEmpleado:{
+            required:true,
+            valueNotEquals:'...'
+          }
+        },
+        messages:{
+          empresaPensionEmpleado:'Seleccione una entidad de pension valida'
+        },
+        submitHandler: function(form){
+
+          var id = document.getElementById("empresaPensionEmpleado").value;
+          var id_empleado = document.getElementById("idEmpleadoPension").value;
+          var editar = 5;
+          
+
+          $.ajax({
+              url: "../archivos/AjaxController.php",
+              method: 'POST',
+              data: {id:id,id_empleado:id_empleado,editar:editar},
+              success : function(data){
+                  if(data=="true"){
+                      successAjaxDiv('#ajax_pensionempleado','Se agrego correctamente la pension','#agregar_pension','alert alert-info',data)
+                  }else{
+                    successAjaxDiv('#ajax_errorpensionempleado','No se registro correctamente la pension','#agregar_pension','alert alert-warning','false')
+                  }
+              }
+            })
+          }
+      })
+
+
+      $('#formEmpleadoEdicion').validate({
+        rules:{
+            nombresEmpleadoEditar:{
+                required:true
+            },
+            apellidosEmpleadoEditar:{
+                required:true
+            },
+            documentoEmpleadoEdicion:{
+                required:true
+            },
+            nacimientoEmpleadoEditar:{
+                required:true,
+                date:true
+            },
+            direccionEmpleadoEditar:{
+                required:true
+            },
+            lugarnacimientoEmpleadoEditar:{
+                required:true
+            },
+            emailempleado:{
+                required:true,
+                email:true
+            }
+        },
+        messages:{
+            nombresEmpleadoEditar:'Digite los nombres del empleado',
+            apellidosEmpleadoEditar:'Digite los apellidos de los empleados',
+            documentoEmpleadoEdicion:'Digite el documento del empleado',
+            nacimientoEmpleadoEditar:'Seleccione la fecha del empleado',
+            direccionEmpleadoEditar:'Digite la direccion del empleado',
+            lugarnacimientoEmpleadoEditar:'Digite el lugar de nacimiento del empleado',
+            emailempleado:'Digite el email del empleado de forma correcta'
+        },
+        submitHandler: function(form){
+            var id = document.getElementById("idEmpleadogeneral").value;
+            var nombresEmpleadoEditar = document.getElementById("nombresEmpleadoEditar").value;
+            var apellidosEmpleadoEditar = document.getElementById("apellidosEmpleadoEditar").value;
+            var documentoEmpleadoEdicion = document.getElementById("documentoEmpleadoEdicion").value;
+            var direccionEmpleadoEditar = document.getElementById("direccionEmpleadoEditar").value;
+            var lugarnacimientoEmpleadoEditar = document.getElementById("lugarnacimientoEmpleadoEditar").value;
+            var emailempleadoEditar = document.getElementById("emailempleadoEditar").value;
+            var nacimientoEmpleadoEditar = document.getElementById("nacimientoEmpleadoEditar").value;
+
+
+            console.log(nombresEmpleadoEditar);
+            console.log(apellidosEmpleadoEditar);
+            console.log(documentoEmpleadoEdicion);
+            console.log(direccionEmpleadoEditar);
+            console.log(lugarnacimientoEmpleadoEditar);
+            console.log(emailempleadoEditar);
+            console.log(nacimientoEmpleadoEditar);
+            
+            
+            var editar = 6;
+            $.ajax({
+              url: "../archivos/AjaxController.php",
+              method: 'POST',
+              data: {id:id,nombresEmpleadoEditar:nombresEmpleadoEditar,
+                    editar:editar,apellidosEmpleadoEditar:apellidosEmpleadoEditar,
+                    documentoEmpleadoEdicion:documentoEmpleadoEdicion,
+                    direccionEmpleadoEditar:direccionEmpleadoEditar,
+                    lugarnacimientoEmpleadoEditar:lugarnacimientoEmpleadoEditar,
+                    emailempleadoEditar:emailempleadoEditar,
+                    nacimientoEmpleadoEditar:nacimientoEmpleadoEditar},
+              success : function(data){
+                  if(data=="true"){
+                    successModal('Datos actualizados','Se actualizaron correctamente los datos')
+                  }else{
+                      if(data=='emailNO'){
+                        errorModal('Error','El email del empleado se encuentra registrado')
+                      }
+                      else{
+                        errorModal('Error','No se actualizaron de manera correcta los datos')
+                     }
+                     console.log(data);
+                     
+                  }
+              }
+            })
+        }
+      })
+
 })

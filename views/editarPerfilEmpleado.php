@@ -120,6 +120,8 @@
  <?php require_once('modalEditar/modalEditarEmpleado.php'); ?>
  <?php require_once('modalEliminar/modalEliminarCliente.php'); ?>
  <?php require_once('../controlador/empleadoController.php'); ?>
+ <?php require_once('modal/modal_success.php'); ?>
+ <?php require_once('modal/modal_error.php'); ?>
      <div id="admin" class="container">
 
        <div class="row">

@@ -185,6 +185,10 @@ class Empleado {
 					}
 				}
 
+				/**
+				 * PErmite agregar los examenes a un empleado para asi validar las condiciones fisicas dentro de la empresa
+				 */
+
 				public function editarEmpleadoExamenes($id,$entidad,$dictamen,$fecha,$telefono,$direccion,$observacionExamen)
 				{
 					 $this->conexion = Conectar::conectarBD();
@@ -203,6 +207,75 @@ class Empleado {
 					 }
 				}
 
+				/**
+				 * Permite obtener todas las empresas en las cuales se estan pagando pension
+				 */
+
+				public function getPension()
+				{
+					$this->conexion = Conectar::conectarBD();
+
+					$sql = "SELECT * from pension";
+					$query = mysqli_query($this->conexion,$sql);
+
+					if($query==true){
+						return $query;
+					}
+					else{
+						return null;
+					}
+				}
+
+				/**
+				 * Meotod que permite actualizar la empresa en la que el empleado paga su pension
+				 */
+				public function actualizarPension($id_empleado , $id_empresa)
+				{
+					$this->conexion = Conectar::conectarBD();
+
+					$sql  = "UPDATE empleado 
+					set pension='$id_empresa'
+					where empleado.id='$id_empleado'";
+
+					$query = mysqli_query($this->conexion,$sql);
+
+					if($query==true){
+						echo "true";
+					}
+					else{
+						echo mysqli_error($this->conexion);
+					}
+				}
+
+
+				/**
+				 * Permite editar los datos principales de un empleado apartir de su ID
+				 */
+				public function editarEmpleado($id,$nombres,$apellidos,$documento,$direccion,$lugarnacimiento,$email,$nacimientoEmpleado)
+				{
+					$this->conexion = Conectar::conectarBD();
+					if($this->validarEmail($this->conexion,$email)==false){ 
+						
+						$sql = "UPDATE empleado
+						set nombres='$nombres',apellidos='$apellidos',lugarnacimiento='$lugarnacimiento',direccion='$direccion',correo='$email',fechanacimiento='$nacimientoEmpleado'
+						where empleado.id='$id'";
+
+						$query = mysqli_query($this->conexion,$sql);
+
+						if($query==true){
+							echo 'true';
+						}
+						else{
+							echo mysqli_error($this->conexion);
+						}	
+					}
+					else{
+						echo 'emailNO';
+					}
+				}
+
+
+				
 
 
 }

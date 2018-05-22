@@ -66,6 +66,24 @@ class empleadoController {
         $this->empleado->editarEmpleadoExamenes($id,$entidad,$dictamen,$fecha,$telefono,$direccion,$observacionExamen);
     }
 
+    public function getPensionController()
+    {
+        $this->empleado = new Empleado();
+        return $this->empleado->getPension();
+    }
+
+    public function actualizarPensionController($id_empleado , $id_empresa)
+    {
+        $this->empleado = new Empleado();
+        $this->empleado->actualizarPension($id_empleado,$id_empresa);
+    }
+
+    public function editarEmpleadoController($id,$nombres,$apellidos,$documento,$direccion,$lugarnacimiento,$email,$nacimientoEmpleado)
+    {
+        $this->empleado = new Empleado();
+        $this->empleado->editarEmpleado($id,$nombres,$apellidos,$documento,$direccion,$lugarnacimiento,$email,$nacimientoEmpleado);
+    }
+
 }
 
 $controller = new empleadoController();

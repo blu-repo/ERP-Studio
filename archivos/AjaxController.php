@@ -19,6 +19,12 @@ if(isset($_POST) && $_POST['editar']==3){
 if(isset($_POST) && $_POST['editar']==4){
   editarEmpleadoExamenes();
 }
+if(isset($_POST) && $_POST['editar']==5){
+  actualizarPensionController($_POST['id_empleado'],$_POST['id']);
+}
+if(isset($_POST) && $_POST['editar']==6){
+  editarEmpleadoDatos();
+}
 
   function editarClienteBD()
   {
@@ -42,6 +48,25 @@ if(isset($_POST) && $_POST['editar']==4){
   {
     $empleado = new empleadoController();
     $empleado->editarEmpleadoExamenes($_POST['id'],$_POST['entidadmedica'],$_POST['dictamen'],$_POST['fecharealizacionExamen'],$_POST['telefonoEntidad'],$_POST['direccionEntidad'],$_POST['observacionExamen']);
+  }
+
+  function actualizarPensionController($id_empleado , $id_empresa)
+  {
+    $empleado = new empleadoController();
+    $empleado->actualizarPensionController($id_empleado,$id_empresa);
+  }
+
+  function editarEmpleadoDatos()
+  {
+    $empleado = new empleadoController();
+    $empleado->editarEmpleadoController($_POST['id'],
+    $_POST['nombresEmpleadoEditar'],
+    $_POST['apellidosEmpleadoEditar'],
+    $_POST['documentoEmpleadoEdicion'],
+    $_POST['direccionEmpleadoEditar'],
+    $_POST['lugarnacimientoEmpleadoEditar'],
+    $_POST['emailempleadoEditar'],
+    $_POST['nacimientoEmpleadoEditar']);
   }
 
 

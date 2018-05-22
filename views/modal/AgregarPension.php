@@ -1,5 +1,5 @@
 
-
+<?php $empresa = $empleado->getPensionController(); ?>
 
 
 <div class="modal fade" id="agregar_pension" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -11,36 +11,30 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <div id="ajax_pensionempleado"></div>
+      <div id="ajax_errorpensionempleado"></div>
+      <form id="formPensionEmpleado">
+      <input type="hidden" id="idEmpleadoPension" name="idEmpleadoPension" value="<?php echo $_POST['idEmpleadoEditar'] ?>">
         <div class="modal-body">
-          <div class="form-group col-md-12">
-            <label for="nombre1">Nombre</label>
-            <input type="text" class="form-control" id="nombrepension" placeholder="Nombre de Empresa de Pension">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="form-group col-md-9">
+                <label for="nacionalidad">Empresa de Pension</label>
+                <select id="empresaPensionEmpleado" name="empresaPensionEmpleado" class="form-control">
+                  <?php while ($row = mysqli_fetch_row($empresa)) {?>
+                   <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
+                  <?php } ?>
+                  <option selected>...</option> 
+                </select>
+              </div>
+            </div> 
           </div>
-
-          <div class="form-group col-md-6">
-            <label for="nombre2">Direccion</label>
-            <input type="text" class="form-control" id="direccionpension" placeholder="Direccion">
-          </div>
-
-          <div class="form-group col-md-6">
-            <label for="apellidos">Estado</label>
-            <input type="text" class="form-control" id="estadopension" placeholder="Estado Pension">
-          </div>
-
-          <div class="form-group col-md-6">
-            <label for="apellidos">Fecha Registro</label>
-            <input type="text" class="form-control" value="<?php echo date('Y-m-d'); ?>" id="fecharegistroPension" readonly="readonly" placeholder="Fecha de Registro">
-          </div>
-          <div class="form-group col-md-8">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
-            <button type="button" class="btn btn-primary">Guardad</button>
-          </div>
-
         </div>
-
         <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+          <input type="submit" class="btn btn-primary" value="Guardar"></input>
         </div>
-
+      </form>
     </div>
   </div>
 </div>

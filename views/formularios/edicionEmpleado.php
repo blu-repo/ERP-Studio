@@ -16,7 +16,7 @@ $rol = $empleado->getRolEmpleadoController($_POST['idEmpleadoEditar']);
 
 <div class="container" id="regEmpleadoEdicion">
 <form id="formEmpleadoEdicion">
-
+  <input type="hidden" id="idEmpleadogeneral" name="idEmpleadogeneral" value="<?php echo $_POST['idEmpleadoEditar']; ?>">
   <div class="form-group row">
 
     <div class="form-group col-md-6">
@@ -26,7 +26,7 @@ $rol = $empleado->getRolEmpleadoController($_POST['idEmpleadoEditar']);
     
     <div class="form-group col-md-6">
       <label for="apellidosEmpleado">Apellidos</label>
-      <input type="text" class="form-control" id="apellidosEmpleado" name="apellidosEmpleado" value="<?php echo $valor[2]; ?>" placeholder="Apellidos">
+      <input type="text" class="form-control" id="apellidosEmpleadoEditar" name="apellidosEmpleadoEditar" value="<?php echo $valor[2]; ?>" placeholder="Apellidos">
     </div>
 
   </div>
@@ -42,37 +42,37 @@ $rol = $empleado->getRolEmpleadoController($_POST['idEmpleadoEditar']);
         </div>
         <div class="form-group col-md-4">
            <label for="nacionalidad">Nacionalidad</label>
-           <input id="nacionalidadEmpleadoEdicion" name="nacionalidadEmpleadoEdicion" value="<?php echo $valor['nacionalidad']; ?>" class="form-control"/>
+           <input id="nacionalidadEmpleadoEdicion" name="nacionalidadEmpleadoEdicion" value="<?php echo $valor['nacionalidad']; ?>" class="form-control" disabled/>
         </div>
     </div>
 
   <div class="form-group row">
     <div class="form-group col-md-4">
       <label for="nacimientoEmpleado">Fecha de nacimiento</label>
-      <input type="date" class="form-control" id="nacimientoEmpleado" name="nacimientoEmpleado" value="<?php echo $valor['fechanacimiento']; ?>" placeholder="Fecha de nacimiento">
+      <input type="date" class="form-control" id="nacimientoEmpleadoEditar" name="nacimientoEmpleadoEditar" value="<?php echo $valor['fechanacimiento']; ?>" placeholder="Fecha de nacimiento">
     </div>
     <div class="form-group col-md-4">
       <label for="direccionEmpleado">Direccion</label>
-      <input type="text" id="direccionEmpleado" name="direccionEmpleado" class="form-control" value="<?php echo $valor['direccion']; ?>" placeholder="Direccion">
+      <input type="text" id="direccionEmpleadoEditar" name="direccionEmpleadoEditar" class="form-control" value="<?php echo $valor['direccion']; ?>" placeholder="Direccion">
     </div>
     <div class="form-group col-md-4">
       <label for="tipocontrato">Lugar de nacimiento</label>
-      <input type="text" id="lugarnacimientoEmpleado" name="lugarnacimientoEmpleado" class="form-control" value="<?php echo $valor['lugarnacimiento']; ?>" placeholder="Lugar de nacimiento">
+      <input type="text" id="lugarnacimientoEmpleadoEditar" name="lugarnacimientoEmpleadoEditar" class="form-control" value="<?php echo $valor['lugarnacimiento']; ?>" placeholder="Lugar de nacimiento">
     </div>
   </div>
 
   <div class="form-group row">
     <div class="form-group col-md-4">
       <label for="expedicion_doc_empleado">Expedicion de documento</label>
-      <input type="text" class="form-control" id="expedocEmpleado" name="expedocEmpleado" value="<?php echo $valor['expediciondocumento']; ?>" placeholder="Expedicion de documento">
+      <input type="text" class="form-control" id="expedocEmpleado" name="expedocEmpleado" value="<?php echo $valor['expediciondocumento']; ?>" placeholder="Expedicion de documento" disabled>
     </div>
     <div class="form-group col-md-4">
       <label for="aux_empleado">Correo electronico</label>
-      <input type="text" class="form-control" id="emailempleado" name="emailempleado" value="<?php echo $valor['correo']; ?>"  placeholder="Email">
+      <input type="text" class="form-control" id="emailempleadoEditar" name="emailempleadoEditar" value="<?php echo $valor['correo']; ?>"  placeholder="Email">
     </div>
     <div class="form-group col-md-4">
     <label for="empleadoRol">Rol del Empleado</label>
-     <input name="rolEmpleado" id="rolEmpleado" class="form-control" value="<?php echo $rol; ?>"/>
+     <input name="rolEmpleado" id="rolEmpleado" class="form-control" value="<?php echo $rol; ?>" disabled/>
     </div>
   </div>
 
