@@ -33,9 +33,16 @@ class productoController {
     }
 
 
-    public function getProductos()
+    public function getProductosController()
     {
-        return 0;
+        $this->producto = new producto();
+        return $this->producto->getProductos();
+    }
+
+    public function getCategoriaController($ID)
+    {
+       $this->producto = new producto();
+       return $this->producto->getCategoria($ID);
     }
 
 

@@ -4,14 +4,13 @@
 <!-- Tabla de productos -->
 <?php require_once('../controlador/productoController.php'); ?>
 <?php $productos = new productoController(); ?>
-<?php $proc = $productos->getProductos(); ?>
-<?php ?>
+<?php $proc = $productos->getProductosController(); ?>
+<?php $categoria; ?>
 
-<div class="table-responsive" id="tablaProducto">
-<table class="table table-hover">
+<div class="table-responsive container" id="tablaProducto">
+<table class="table table-hover ">
   <thead>
     <tr>
-      <th scope="col">Codigo</th>
       <th scope="col">Nombres</th>
       <th scope="col">Referencia</th>
       <th scope="col">Color</th>
@@ -23,26 +22,30 @@
     </tr>
   </thead>
   <tbody>
+  <?php while($row = mysqli_fetch_row($proc)){  ?>
+  <?php $categoria = $productos->getCategoriaController($row[0]); ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Blue jean</td>
-      <td>Pantalon</td>
-      <td>Azul</td>
-      <td>12/12/15</td>
-      <td>Pantalon hombre</td>
-      <td>10.000</td>
-      <td>28 - 36</td>
+      <td scope="row"> <?php echo $row[1]; ?> </td>
+      <td><?php echo $row[2]; ?></td>
+      <td><?php echo $row[3];  ?></td>
+      <td><?php echo $row[4]; ?></td>
+      <td><?php echo $categoria[0]; ?></td>
+      <td><?php echo $row[9]; ?></td>
+      <td><?php echo $row[10]; ?> </td>
       <td>
-        <button type="button" class="btn btn-info">Editar</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
+        <button type="button"
+        data-id="<?php echo $row[0]; ?>"
+        data-nombre="<?php echo $row[1]; ?>"
+        data-referencia="<?php echo $row[2]; ?>"
+        data-precio="<?php echo $row[9]; ?>"
+        data-talla="<?php echo $row[10]; ?>"
+        data-toggle="modal"
+        data-target="#editarProducto"
+        class="btn btn-info">Editar</button>
+        <button type="button" class="btn btn-danger">Cerrar</button>
       </td>
     </tr>
-    <tr>
-      
-    </tr>
-    <tr>
-      
-    </tr>
+    <?php } ?>
   </tbody>
 </table>
 </div>

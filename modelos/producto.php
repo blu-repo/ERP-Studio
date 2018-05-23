@@ -51,5 +51,47 @@ class producto {
          }
     }
 
+    /**
+     * Permite obtener todos los productos dentro de la base de datos
+     */
+    public function getProductos()
+    {
+        $this->conectar = Conectar::conectarBD();
+
+        $sql = "SELECT * from producto";
+
+        $query = mysqli_query($this->conectar,$sql);
+
+        if($query==true){
+                return $query;
+            
+        }
+        else{
+            return "null";
+        }
+    }
+
+    /**
+     * Permite obtener el nombre de una categoria segun el ID del producto
+     */
+    public function getCategoria($ID)
+    {
+       $this->conexion = Conectar::conectarBD();
+        $sql = "SELECT categoria.nombre , categoria.id from categoria inner join 
+        producto on categoria.id=producto.categoria where producto.id='$ID'";
+        
+        $query = mysqli_query($this->conexion,$sql);
+
+        if($query==true){
+            return mysqli_fetch_array($query);
+        }
+        else{
+            return "null";
+        }
+    }
+
+
+
+
 
 }

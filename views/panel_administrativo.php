@@ -118,6 +118,7 @@
 	<?php require_once('tablas/tablaProducto.php'); ?>
 	<?php require_once('modalEditar/modalEditarCliente.php'); ?>
 	<?php require_once('modalEditar/modalEditarEmpleado.php'); ?>
+	<?php require_once('modalEditar/modalEditarProducto.php'); ?>
 	<?php require_once('modalEliminar/modalEliminarCliente.php'); ?>
 			
 			<div id="admin" class="container">

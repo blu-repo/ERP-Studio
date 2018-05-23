@@ -932,12 +932,62 @@ $(document).ready(function(){
                       else{
                         errorModal('Error','No se actualizaron de manera correcta los datos')
                      }
-                     console.log(data);
+                    //  console.log(data);
                      
                   }
               }
             })
         }
       })
+
+
+    $('#editarProducto').on('show.bs.modal', function (e) {
+        var button = $(e.relatedTarget);
+
+        var id = button.data('id');
+        var nombre=button.data('nombre')
+        var referencia=button.data('referencia')
+        var precio=button.data('precio')
+        var talla=button.data('talla')
+        
+        var modal = $('#editarProducto');
+
+        modal.find('#idProducto').val(id);
+        modal.find('#nombreProductoEditar').val(nombre);
+        modal.find('#referenciaProductoEditar').val(rferencia);
+        modal.find('#precioProductoEditar').val(precio);
+        modal.find('#tallaProductoEditar').val(talla);
+
+    })
+
+
+    $('#formEditarProducto').validate({
+        rules:{
+            nombreProductoEditar:{
+                required:true
+            },
+            referenciaProductoEditar:{
+                required:true,
+                number:true
+            },
+            precioProductoEditar:{
+                required:true,
+                number:true
+            },
+            tallaProductoEditar:{
+                required:true,
+                maxlength: 3
+            }
+        },
+        messages:{
+            nombreProductoEditar:'Digite el nombre del producto',
+            referenciaProductoEditar:'Digite la referencia del producto',
+            precioProductoEditar:'Digite el precio del producto (Unidad)',
+            tallaProductoEditar:'Digite la Talla del producto'
+        },
+        submitHandler: function(form){
+        
+        }
+    })
 
 })
