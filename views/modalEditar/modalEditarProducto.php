@@ -11,7 +11,7 @@
          <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> 
        </div>
        <div id="ajax_editarProducto"></div>
-       <div id="ajax_editarProducto"></div>
+       <div id="ajax_editarProductoError"></div>
       <form  id="formEditarProducto">
       <input type="hidden" id="idProducto">
        <div class="modal-body">

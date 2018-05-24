@@ -900,15 +900,6 @@ $(document).ready(function(){
             var lugarnacimientoEmpleadoEditar = document.getElementById("lugarnacimientoEmpleadoEditar").value;
             var emailempleadoEditar = document.getElementById("emailempleadoEditar").value;
             var nacimientoEmpleadoEditar = document.getElementById("nacimientoEmpleadoEditar").value;
-
-
-            console.log(nombresEmpleadoEditar);
-            console.log(apellidosEmpleadoEditar);
-            console.log(documentoEmpleadoEdicion);
-            console.log(direccionEmpleadoEditar);
-            console.log(lugarnacimientoEmpleadoEditar);
-            console.log(emailempleadoEditar);
-            console.log(nacimientoEmpleadoEditar);
             
             
             var editar = 6;
@@ -954,7 +945,7 @@ $(document).ready(function(){
 
         modal.find('#idProducto').val(id);
         modal.find('#nombreProductoEditar').val(nombre);
-        modal.find('#referenciaProductoEditar').val(rferencia);
+        modal.find('#referenciaProductoEditar').val(referencia);
         modal.find('#precioProductoEditar').val(precio);
         modal.find('#tallaProductoEditar').val(talla);
 
@@ -986,7 +977,35 @@ $(document).ready(function(){
             tallaProductoEditar:'Digite la Talla del producto'
         },
         submitHandler: function(form){
-        
+              
+            var id = document.getElementById("idProducto").value;
+            var nombreProductoEditar = document.getElementById("nombreProductoEditar").value;
+            var referenciaProductoEditar = document.getElementById("referenciaProductoEditar").value;
+            var precioProductoEditar = document.getElementById("precioProductoEditar").value;
+            var tallaProductoEditar = document.getElementById("tallaProductoEditar").value;
+            
+            $.ajax({
+                url: "../archivos/AjaxController.php",
+                method: 'POST',
+                data:{id:id,
+                    nombreProductoEditar:nombreProductoEditar,
+                    referenciaProductoEditar:referenciaProductoEditar,
+                    precioProductoEditar:precioProductoEditar,
+                    tallaProductoEditar:tallaProductoEditar,
+                    editar:7
+                },
+                success : function(data){
+                    if(data=="true")
+                    {
+                        successAjaxDiv('#ajax_editarProducto','Se actualizaron correctamente los datos','#editarProducto','alert alert-info',data)
+                    }
+                    else{
+                        console.log(data);
+                        
+                        // successAjaxDiv('#ajax_editarProductoError','No se actualizaron los datos del producto','#editarProducto','alert alert-warning','false')
+                    }
+                }
+            })
         }
     })
 

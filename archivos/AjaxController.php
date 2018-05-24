@@ -3,6 +3,7 @@
 
 require_once('../controlador/clienteController.php');
 require_once('../controlador/empleadoController.php');
+require_once('../controlador/productoController.php');
 
 if(isset($_POST) && $_POST['editar']==1){
   editarClienteBD();  
@@ -24,6 +25,9 @@ if(isset($_POST) && $_POST['editar']==5){
 }
 if(isset($_POST) && $_POST['editar']==6){
   editarEmpleadoDatos();
+}
+if(isset($_POST) && $_POST['editar']==7){
+  editarProducto();
 }
 
   function editarClienteBD()
@@ -67,6 +71,16 @@ if(isset($_POST) && $_POST['editar']==6){
     $_POST['lugarnacimientoEmpleadoEditar'],
     $_POST['emailempleadoEditar'],
     $_POST['nacimientoEmpleadoEditar']);
+  }
+
+  function editarProducto()
+  {
+    $producto = new productoController();
+    $producto->editarProductoController($_POST['id'],
+    $_POST['nombreProductoEditar'],
+    $_POST['referenciaProductoEditar'],
+    $_POST['precioProductoEditar'],
+    $_POST['tallaProductoEditar']);
   }
 
 

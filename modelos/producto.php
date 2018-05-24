@@ -91,6 +91,25 @@ class producto {
     }
 
 
+    public function editarProducto($id,$nombre,$referencia,$precio,$talla)
+    {
+       $this->conexion = Conectar::conectarBD();
+
+        $sql = "UPDATE producto 
+        set nombre='$nombre',referencia='$referencia',precio='$precio',talla='$talla'
+        where producto.id='$id'";    
+
+       $query = mysqli_query($this->conexion,$sql);
+
+       if($query==true){
+           echo "true";
+       }
+       else{
+           echo mysqli_error($this->conexion);
+       }
+    }
+
+
 
 
 

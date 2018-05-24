@@ -42,7 +42,7 @@
         data-toggle="modal"
         data-target="#editarProducto"
         class="btn btn-info">Editar</button>
-        <button type="button" class="btn btn-danger">Cerrar</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
       </td>
     </tr>
     <?php } ?>
