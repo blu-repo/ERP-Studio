@@ -84,6 +84,51 @@ class empleadoController {
         $this->empleado->editarEmpleado($id,$nombres,$apellidos,$documento,$direccion,$lugarnacimiento,$email,$nacimientoEmpleado);
     }
 
+
+    public function loginEmpleadoController($email , $pass)
+    {
+       $this->empleado = new Empleado();
+       $datos = $this->empleado->loginEmpleado($email,$pass);
+
+       if($datos=='null'){
+           echo "noregistrado";
+       }
+       else {
+           $usuario = mysqli_fetch_array($datos);
+           $rol = $usuario[0];
+           $ID = $usuario[3];
+           $email = $usuario[2]; 
+           
+           if($rol=='admin'){
+                $this->loginSession($ID,$rol,$email);
+                echo 'admin';
+           }
+           else if($rol=='vendedor'){
+                $this->loginSession($ID,$rol,$email);
+                echo 'vendedor';
+           }
+           else if($rol=='contador'){
+                $this->loginSession($ID,$rol,$email);
+                echo 'contador';
+           }
+           else {
+               echo "novalido";
+           }
+       }
+
+    }
+
+
+    private function loginSession($ID,$rol,$email)
+    {
+        session_start();
+        $_SESSION['id'] = $ID;
+        $_SESSION['rol'] = $rol;
+        $_SESSION['email'] = $email;
+    }
+
+    
+
 }
 
 $controller = new empleadoController();

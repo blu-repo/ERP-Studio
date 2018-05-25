@@ -29,6 +29,15 @@ if(isset($_POST) && $_POST['editar']==6){
 if(isset($_POST) && $_POST['editar']==7){
   editarProducto();
 }
+if(isset($_POST) && $_POST['editar']==8){
+  loginEmpleado();
+}
+
+  function loginEmpleado()
+  {
+    $empleado = new empleadoController();
+    $empleado->loginEmpleadoController($_POST['email'],$_POST['pass']);
+  }
 
   function editarClienteBD()
   {

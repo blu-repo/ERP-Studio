@@ -1009,4 +1009,36 @@ $(document).ready(function(){
         }
     })
 
+
+    $('#loginForm').validate({
+        rules:{
+            InputEmail:{
+                required:true
+            },
+            InputPassword:{
+                required:true
+            }
+        },
+        messages:{
+            InputEmail:'Digite su correo o su usuario',
+            InputPassword:'Digite alguna contraseña'
+        },
+        submitHandler : function(form){
+            var email = document.getElementById('InputEmail').value;
+            var pass = document.getElementById('InputPassword').value;
+            
+            $.ajax({
+                url: "archivos/AjaxController.php",
+                method: 'POST',
+                data: {email:email,pass:pass,editar:8},
+                success : function(data){
+                    console.log(data);
+                    
+                }
+            })
+        }
+    })
+
+
+
 })

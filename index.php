@@ -62,7 +62,7 @@
 			<h1 class="h1_home wow fadeIn" data-wow-delay="0.4s">Studio Princes</h1>
 			<h3 class="h3_home wow fadeIn" data-wow-delay="0.6s">Moda & Confort</h3>
 			<ul class="list-inline intro-social-buttons">
-				<li><a href="" class="btn  btn-lg mybutton_cyano wow fadeIn" data-wow-delay="0.8s"  data-toggle="modal" data-target="#exampleModal"><span class="network-name">Iniciar Sesion</span></a>
+				<li><a href="" class="btn  btn-lg mybutton_cyano wow fadeIn" data-wow-delay="0.8s"  data-toggle="modal" data-target="#modal_login"><span class="network-name">Iniciar Sesion</span></a>
 				</li><br><br>
 				<li id="download" ><a href="#downloadlink" class="btn  btn-lg mybutton_standard wow swing wow fadeIn" data-toggle="modal" data-target="#recuperarContraseña" data-wow-delay="1.2s"><span class="network-name">Olvide la contraseña</span></a>
 				</li>
@@ -444,7 +444,7 @@
 					<div class="form-group">
 						<label for="InputEmail">Tu Email</label>
 						<div class="input-group">
-							<input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Correo electronico" required  >
+							<input type="email" class="form-control" id="InputEmailForm" name="InputEmailForm" placeholder="Correo electronico" required  >
 							<span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>
 						</div>
 					</div>
