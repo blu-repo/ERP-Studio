@@ -1032,13 +1032,70 @@ $(document).ready(function(){
                 method: 'POST',
                 data: {email:email,pass:pass,editar:8},
                 success : function(data){
-                    console.log(data);
-                    
+                    if(data=='admin'){
+                        window.location.href="../ERP-Studio/views/panel_administrativo.php";
+                    }
+                    else if(data=='vendedor'){
+                        window.location.href = "../ERP-Studio/views/panel_empleado.php"
+                        limpiarLogin()
+                    }
+                    else if(data=='contador'){
+                        window.location.href ="";
+                        limpiarLogin()
+                    }
+                    else if(data=='noregistrado'){
+                        successAjaxDiv('#ajax_error','No se encuentra registrado','#modal_login','alert alert-warning','false')
+                        limpiarLogin()
+                    }
+                    else if(data=='novalido'){
+                        successAjaxDiv('#ajax_error','No puedes ingresar con tu rol','#modal_login','alert alert-warning','false')
+                        limpiarLogin()
+                    }
+                    else{
+                        console.log(data);
+                        
+                    }
                 }
             })
         }
     })
 
+    function limpiarLogin() {
+         $('#InputEmail').val('')
+         $('#InputPassword').val('')
+    }    
 
+
+    $('#formValidar').validate({
+        rules:{
+            clienteCC:{
+                required:true
+            }
+        },
+        messages:{
+            clienteCC:'Digite el documento del cliente'
+        },
+        submitHandler:function(form){
+            
+            var cc = document.getElementById('clienteCC').value;
+            
+            $.ajax({
+                url:'../archivos/AjaxController.php',
+                method:'post',
+                data:{cc:cc,editar:9},
+                success : function(data){
+                    if(data=='valido'){
+                      successAjaxDiv('#ajax_successValidar','El cliente se encuentra registrado','#modal_validarCC','alert alert-info','true')
+                      $('#clienteCC').val('')
+                    }else if (data=='novalido') {
+                      successAjaxDiv('#ajax_errorValidar','El cliente no se encuentra registrado','#modal_validarCC','alert alert-warning','false')
+                      $('#clienteCC').val('')
+                    }
+                } 
+            })
+        }
+    })
+
+    
 
 })

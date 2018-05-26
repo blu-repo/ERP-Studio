@@ -15,6 +15,8 @@
 				<span aria-hidden="true">&times;</span>
 			  </button>
 			</div>
+			<div id="ajax_error"></div>
+			<div id="ajax_success"></div>
 			<div class="modal-body">
 				<form id="loginForm">
 					<div class="form-group">

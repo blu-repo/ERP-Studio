@@ -32,6 +32,15 @@ if(isset($_POST) && $_POST['editar']==7){
 if(isset($_POST) && $_POST['editar']==8){
   loginEmpleado();
 }
+if(isset($_POST) && $_POST['editar']==9){
+  validarDocumentoCliente();
+}
+
+  function validarDocumentoCliente()
+  { 
+     $cliente = new clienteController();
+     $cliente->validarDocumentoClienteController($_POST['cc']);
+  }
 
   function loginEmpleado()
   {

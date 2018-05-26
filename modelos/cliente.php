@@ -120,7 +120,27 @@ class cliente{
     public function eliminarCliente($id)
     {
         $this->conectar = Conectar::conectarBD();
-            
+    }
+
+
+    /**
+     * Permit validar el documento de un cliente al momento de realizar una venta
+     */
+    public function validarDocumento($cc)
+    {
+        $this->conectar = Conectar::conectarBD();
+
+        $sql = "SELECT * from cliente where cliente.documento='$cc'";
+
+        $query = mysqli_query($this->conectar,$sql);
+
+        if($query==true){
+            if(mysqli_num_rows($query) >= 1){
+                return  "valido";
+            }
+        }
+        
+        return "novalido";
     }
 
 }

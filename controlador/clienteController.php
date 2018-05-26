@@ -55,6 +55,18 @@ class clienteController{
         $this->cliente->eliminarCliente();
     }
 
+    public function validarDocumentoClienteController($cc)
+    {
+       $this->cliente= new cliente();
+       $var = $this->cliente->validarDocumento($cc);
+
+       if($var=='valido'){
+           echo 'valido';
+       }
+       else{
+           echo 'novalido';
+       }
+    }    
     
  
     
