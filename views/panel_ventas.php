@@ -1,4 +1,4 @@
- <?php 
+<?php 
   // if(!isset($_SESSION)){
   //     header('location:../index.php');
   // }else{
@@ -132,36 +132,10 @@
 			
 			<div id="admin" class="container">
 
-			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>De que trata?</h2>
-				<p class="lead" style="margin-top:0">Studio Princes Boutique</p>
-				
-			</div>
+			
 			
 			<div class="row">
-			
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="../img/icon/tweet.svg" alt="Generic placeholder image">
-				  <h3>Sigueme</h3>
-				  <p class="lead">Sigueme en mis redes sociales donde publicamos contenido acerca de nuestros productos. </p>
-
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/picture.svg" alt="Generic placeholder image">
-				   <h3>Galeria</h3>
-				   <p class="lead">Dentro de nuestra boutique encontraras todo tipo de prendas </p>
-				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/retina.svg" alt="Generic placeholder image">
-				   <h3>Ventas</h3>
-					<p class="lead">Contamos con todo tipo de ventas en nuestras sucursales donde podras elegir como llevar tus productos. </p>
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
+        <?php require_once('formularios/formVentas.php'); ?>
 			</div><!-- /.row -->
 				
 			<div class="row tworow">

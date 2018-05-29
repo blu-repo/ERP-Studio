@@ -26,10 +26,14 @@ class productoController {
         $precioProductoM = $_POST['precioProductoM'];
         $tallaProductoM = $_POST['tallaProductoM'];
 
+        if(empty($cantidadProductoM) || $cantidadProductoM=='' || empty($tallaProductoM) || $tallaProductoM=='' || empty($precioProductoM) || $precioProductoM==''){
+            echo "nodetalles";
+            return;
+        }else{
+            $this->producto = new producto();
+            $this->producto->insertarProducto($nombre,$codigo,$colorIDproducto,$telaIDproducto,$proveedorIDProducto,$telaIDproducto,$categoriaIDproducto,$tallaproducto,$cantidadProductoM,$precioProductoM);
+        }
         
-        
-        $this->producto = new producto();
-        $this->producto->insertarProducto($nombre,$codigo,$colorIDproducto,$telaIDproducto,$proveedorIDProducto,$telaIDproducto,$categoriaIDproducto,$tallaproducto,$cantidadProductoM,$precioProductoM);
     }
 
 
@@ -45,7 +49,7 @@ class productoController {
        return $this->producto->getCategoria($ID);
     }
 
-
+    
     public function editarProductoController($id,$nombre,$referencia,$precio,$talla)
     {
         $this->producto = new Producto();

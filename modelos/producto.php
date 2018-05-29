@@ -44,7 +44,21 @@ class producto {
          $query_producto = mysqli_query($this->conectar,$sql_producto);
 
          if($query_producto==true){
-             echo "true";
+            $sql2 = "SELECT producto.id from producto where producto.referencia='$this->referencia'";
+            $query_ref = mysqli_query($this->conectar,$sql2);
+            if($query_ref==true){
+                $vector = mysqli_fetch_array($query_ref);
+                $ID = $vector[0];
+
+                $sql_detalles = "INSERT INTO detalle 
+                                (cantidad,precio,fecharegistro,talla,producto_id)
+                                value ('$this->cantidad','$this->precio',NOW(),'$this->talla','$ID')";
+                                
+                $query_detalles = mysqli_query($this->conectar,$sql_detalles);
+                if($query_detalles==true){
+                    echo 'true';
+                }                 
+            }
          }   
          else{
             echo mysqli_error($this->conectar);
@@ -90,7 +104,9 @@ class producto {
         }
     }
 
-
+    /**
+     * Permite editar un producto en sus datos basicos
+     */
     public function editarProducto($id,$nombre,$referencia,$precio,$talla)
     {
        $this->conexion = Conectar::conectarBD();

@@ -124,7 +124,7 @@ class empleadoController {
         session_start();
         $_SESSION['id'] = $ID;
         $_SESSION['rol'] = $rol;
-        $_SESSION['email'] = $email;
+        $_SESSION['email'] = $email;    
     }
 
     

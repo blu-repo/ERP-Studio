@@ -158,6 +158,9 @@ $(document).ready(function(){
                         successModal('Registro Exitoso','El producto se Registro correctamente!');
                         limpiarProducto();
                     }
+                    else if(data=='nodetalles'){
+                        errorModal('Error','Debes registrar los detalles del producto')
+                    }
                     else{
                         errorModal('Error','Se presento un Error al momento de registrar')
                     }
