@@ -4,6 +4,8 @@
 require_once('../controlador/clienteController.php');
 require_once('../controlador/empleadoController.php');
 require_once('../controlador/productoController.php');
+require_once('../controlador/ventaController.php');
+
 
 if(isset($_POST) && $_POST['editar']==1){
   editarClienteBD();  
@@ -32,9 +34,23 @@ if(isset($_POST) && $_POST['editar']==7){
 if(isset($_POST) && $_POST['editar']==8){
   loginEmpleado();
 }
+
 if(isset($_POST) && $_POST['editar']==9){
   validarDocumentoCliente();
 }
+
+if(isset($_POST) && $_POST['editar']==10){
+  registrarVenta();
+}
+
+  function registrarVenta()
+  {
+     $venta = new ventasController();
+     $venta->registraVentaController($_POST['id_emp'],
+     $_post['referenciaProductoCompra'],
+     $_POST['documentoEmpleadoVenta'],
+     $_POST['modopago']);
+  }
 
   function validarDocumentoCliente()
   { 
@@ -93,8 +109,8 @@ if(isset($_POST) && $_POST['editar']==9){
 
   function editarProducto()
   {
-    $producto = new productoController();
-    $producto->editarProductoController($_POST['id'],
+    $producto = new ventaController();
+    $producto->editarventaController($_POST['id'],
     $_POST['nombreProductoEditar'],
     $_POST['referenciaProductoEditar'],
     $_POST['precioProductoEditar'],

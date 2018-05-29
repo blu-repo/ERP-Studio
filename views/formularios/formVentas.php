@@ -24,12 +24,12 @@
     </div>
    
     <div class="form-group col-md-6">
-      <label for="documentoEmp">Tipo de documento</label>
-      <input id="documentoEmpleado" name="documentoEmpleado" placeholder="Documento del empleado" class="form-control" />
+      <label for="documentoEmp">Documento</label>
+      <input id="documentoEmpleado" name="documentoEmpleadoVenta" placeholder="Documento del empleado" class="form-control" />
     </div>  
   </div>
 
-   <div class="form-group row">
+    <div class="form-group row">
          
       <div class="form-group col-md-4">
         <label for="apellidosEmpleado">Fecha</label>
@@ -46,17 +46,17 @@
         </select>
       </div>
 
-      <div class="form-group col-md-4">
-        <label for="nacionalidad">Nacionalidad</label>
-        <input id="nacionalidadEmpleadoEdicion" name="nacionalidadEmpleadoEdicion"  class="form-control" disabled/>
-      </div>
-
+      
     </div>
 
   <!-- <div class="form-group row">
     <div class="form-group col-md-4">
       <label for="nacimientoEmpleado">Fecha de nacimiento</label>
       <input type="date" class="form-control" id="nacimientoEmpleadoEditar" name="nacimientoEmpleadoEditar"  placeholder="Fecha de nacimiento">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="nacionalidad">Nacionalidad</label>
+      <input id="nacionalidadEmpleadoEdicion" name="nacionalidadEmpleadoEdicion"  class="form-control" disabled/>
     </div>
     <div class="form-group col-md-4">
       <label for="direccionEmpleado">Direccion</label>

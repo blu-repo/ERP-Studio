@@ -12,7 +12,7 @@
     <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
     <meta name="author" content="">
 
-    <title>Studio Princess		</title>
+    <title>Studio Princess</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

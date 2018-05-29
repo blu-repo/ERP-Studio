@@ -1099,6 +1099,32 @@ $(document).ready(function(){
         }
     })
 
-    
+    $('#formVentaEmpleado').validate({
+        rules:{
+
+        },messages:{
+
+        },
+        submitHandler : function (form){
+             var id_emp  = document.getElementById('idEmpleadogeneral').value;
+             var referenciaProductoCompra  = document.getElementById('referenciaProductoCompra').value;
+             var documentoEmpleadoVenta  = document.getElementById('documentoEmpleadoVenta').value;
+             var modopago  = document.getElementById('modopago').value;
+            
+            $.ajax({
+                url:'../archivos/AjaxController.php',
+                method:'POST',
+                data:{id_emp:id_emp,
+                    referenciaProductoCompra:referenciaProductoCompra,
+                    documentoEmpleadoVenta:documentoEmpleadoVenta,
+                    modopago:modopago,
+                    editar:10},
+                success : function(data){
+                    console.log(data);
+                    
+                }
+            })
+        }
+    })
 
 })
