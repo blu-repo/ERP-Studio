@@ -5,8 +5,12 @@
         <h5 class="modal-title" id="modalSuccessTitulo"></h5>
       </div>
       <div class="modal-body">
-        <div class="form-group col-md-9" id="modalSuccessBody">
+        <div class="form-group col-md-9">
+          <div class="container-fluid">
+            <div class="row" id="modalSuccessBody">
 
+            </div>
+          </div>
         </div>
         <div class=" form-group col-md-3">
           <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>

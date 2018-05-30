@@ -4,7 +4,7 @@
 require_once('../controlador/clienteController.php');
 require_once('../controlador/empleadoController.php');
 require_once('../controlador/productoController.php');
-require_once('../controlador/ventaController.php');
+require_once('../controlador/ventasController.php');
 
 
 if(isset($_POST) && $_POST['editar']==1){
@@ -46,8 +46,8 @@ if(isset($_POST) && $_POST['editar']==10){
   function registrarVenta()
   {
      $venta = new ventasController();
-     $venta->registraVentaController($_POST['id_emp'],
-     $_post['referenciaProductoCompra'],
+     $venta->registraVentaController($_POST['idEmpleadoVenta'],
+     $_POST['referenciaProductoCompra'],
      $_POST['documentoEmpleadoVenta'],
      $_POST['modopago']);
   }

@@ -80,7 +80,7 @@
  						<ul id="menuRegistro" style="display:none;">
  							<li id="regClientelink"><a href="">Registro Cliente</a> </li>
 							<li id=""><a href="panel_ventas.php">Registro Venta</a> </li>
-							<li id=""><a href="mis_ventas.php">Mis ventas</a> </li>
+							<li id=""><a href="mi_venta.php">Mis ventas</a> </li>
 							<li><a href="" data-toggle="modal" data-target="#modal_validarCC">Validar Cedula</a> </li>
 						</ul>	
 					</li>
@@ -131,11 +131,9 @@
   <?php require_once('modal/validarCC.php'); ?>
 			
 			<div id="admin" class="container">
-
-			
 			
 			<div class="row">
-        <?php require_once('formularios/formVentas.php'); ?>
+        <?php require_once('tablas/ventas_empleado.php'); ?>
 			</div><!-- /.row -->
 				
 			<div class="row tworow">

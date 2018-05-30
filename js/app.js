@@ -53,7 +53,6 @@ $(document).ready(function(){
         },
         submitHandler: function(form){
             var formulario = $('#formCliente');
-            console.log(formulario.serialize());
 
             $.ajax({
                 url: "../controlador/clienteController.php",
@@ -1101,26 +1100,48 @@ $(document).ready(function(){
 
     $('#formVentaEmpleado').validate({
         rules:{
-
-        },messages:{
-
+            referenciaProductoCompra:{
+                required:true
+            },
+            documentoEmpleadoVenta:{
+                required:true,
+                number:true
+            },
+            modopago:{
+                required:true,
+                valueNotEquals:'...'
+            }
         },
-        submitHandler : function (form){
-             var id_emp  = document.getElementById('idEmpleadogeneral').value;
+        messages:{
+            referenciaProductoCompra:'Digite la referencia del producto',
+            documentoEmpleadoVenta:'Digite el empleado del Cliente',
+            modopago:'Seleccione un modo de pago'
+        },
+        submitHandler:function(form){
+             
              var referenciaProductoCompra  = document.getElementById('referenciaProductoCompra').value;
              var documentoEmpleadoVenta  = document.getElementById('documentoEmpleadoVenta').value;
              var modopago  = document.getElementById('modopago').value;
+             var idEmpleadoVenta  = document.getElementById('idEmpleadoVenta').value;
             
             $.ajax({
                 url:'../archivos/AjaxController.php',
                 method:'POST',
-                data:{id_emp:id_emp,
+                data:{idEmpleadoVenta:idEmpleadoVenta,
                     referenciaProductoCompra:referenciaProductoCompra,
                     documentoEmpleadoVenta:documentoEmpleadoVenta,
                     modopago:modopago,
                     editar:10},
-                success : function(data){
+                success:function(data){
                     console.log(data);
+                    if(data=="exitoso"){
+                        successModal('Registro Exitoso','Se registro correctamente la venta')
+                    }else if(data=="empleadonoregistrado"){
+                        errorModal('Error de venta','El cliente no se encuentra registrado')
+                    }
+                    else{
+                        errorModal('Error','No se concreto la venta de manera correcta')
+                    }
                     
                 }
             })
