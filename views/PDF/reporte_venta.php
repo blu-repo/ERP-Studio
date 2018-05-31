@@ -41,9 +41,18 @@ class PDF extends FPDF{
   }
 
   
-  function get_content($txt,$all)
+  function get_content($datos,$ID)
   {  
-    
+    $this->SetFont('Arial','',12);  
+
+    $this->Cell(40,5,'Codigo de venta :  '.$ID,0,1,'L');
+
+    # Falta agregar los detalles de la venta
+    while ($row = mysqli_fetch_row($datos)) {
+      for ($i=0; $i <count($row) ; $i++) { 
+        $this->MultiCell(0,5,$row[$i]);
+      }
+    }
   }
 
 }
@@ -52,17 +61,24 @@ $conectar = Conectar::conectarBD();
 
 $ID = $_GET['ventaID'];
 
-$sql="SELECT detalle.precio, cliente.nombres, compra.fecharegistro 
+$sql="SELECT detalle.precio, cliente.nombres, compra.fecharegistro , empleado.nombres, producto.nombre , producto.referencia , categoria.descripcion
       from empleado inner join compra on empleado.id=compra.empleado 
       inner join cliente on cliente.id=compra.cliente
       inner join detalle on detalle.id=compra.detalle
       inner join producto on detalle.producto_id=producto.id
+      inner join categoria on producto.categoria=categoria.id
       where compra.id='$ID'";
 
+$query = mysqli_query($conectar,$sql);
 
-$PDF = new PDF();
-$PDF->AddPage('P','Letter');  
-$PDF->Cell(40,20,'Reporte General',0, 1 , ' L ');
-// $PDF->get_content($conectar,$sql);
-$PDF->Output();
+if($query==true){
+  
+  $PDF = new PDF();
+  $PDF->AddPage('P','Letter');  
+  $PDF->Cell(40,20,'Reporte General',0, 1 , ' L ');
+  $PDF->setTitle('Reporte de venta # ' . $ID);
+  $PDF->get_content($query,$ID);
+  $PDF->Output();
+
+}
 
