@@ -1,9 +1,8 @@
  <?php 
-  // if(!isset($_SESSION)){
-  //     header('location:../index.php');
-  // }else{
-    // }  
-       session_start();
+			 session_start();
+			 if(!isset($_SESSION)){
+				 header('location:../index.php');
+			 }
     ?>
  <!DOCTYPE html>
  <html> 

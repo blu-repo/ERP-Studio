@@ -27,9 +27,10 @@
       <td><?php echo $row[2];  ?></td>
       <td><?php echo $row[3]; ?></td>
       <td>
-        <button type="button"
-        class="btn btn-info">Editar</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
+        <form action="PDF/reporte_venta.php" method="GET" target="_blank">
+          <input type="hidden" value="<?php echo $row[0]; ?>" id="ventaID" name="ventaID"> 
+          <input type="submit" class="btn btn-info" value="Reportar"></input>
+        </form>
       </td>
     </tr>
     <?php } ?>

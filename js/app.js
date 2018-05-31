@@ -1133,7 +1133,7 @@ $(document).ready(function(){
                     modopago:modopago,
                     editar:10},
                 success:function(data){
-                    console.log(data);
+                    
                     if(data=="exitoso"){
                         successModal('Registro Exitoso','Se registro correctamente la venta')
                     }else if(data=="empleadonoregistrado"){
@@ -1142,7 +1142,6 @@ $(document).ready(function(){
                     else{
                         errorModal('Error','No se concreto la venta de manera correcta')
                     }
-                    
                 }
             })
         }
