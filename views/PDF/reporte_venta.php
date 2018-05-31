@@ -16,8 +16,8 @@ class PDF extends FPDF{
     {
         $this->SetY(-40);
         $this->SetFont('Arial','I',8);
-        // $this->Cell(0,10,'Universidad Francisco de Paula Santander','T',0,'L',$this->Image('../images/ufps.png',150,242,50));
-        $this->ln(3);
+        $this->Cell(0,10,'','T',0,'L',$this->Image('../../img/footer.jpg',170,245,30,25));
+        $this->ln(4);
         $this->Cell(0,10,'Norte de Santander',0,'L');
         $this->ln(3);
         $this->Cell(0,10,'San Jose De Cucuta',0,'L');
@@ -32,9 +32,8 @@ class PDF extends FPDF{
   {
       $this->SetFont('Arial','B',15);
       $this->Line(10,10,206,10);
-      $this->Line(10,35.5,206,35.5);
       $this->Cell(30,25,'',0,0,'C');//,$this->Image('', 152,12,19));
-      // $this->Cell(55,25,' Reporte General - Constructora',0,0,'R',$this->Image('../images/log.png',170,11,19));
+      $this->Cell(50,25,' Reporte General - Venta Nro. ' . $_GET['ventaID'],0,0,'R');#,$this->Image('',170,11,19));
       //$this->Cell(40,25,'',0,0,'C',$this->Image('images/logoDerecha.png', 175, 12, 19));
       //Se da un salto de línea de 25
       $this->Ln(25);
@@ -44,15 +43,17 @@ class PDF extends FPDF{
   function get_content($datos,$ID)
   {  
     $this->SetFont('Arial','',12);  
+    $this->Cell(0,10,'','T',0,'L',$this->Image('../../img/slide/m1.jpg',150,70,50));
 
-    $this->Cell(40,5,'Codigo de venta :  '.$ID,0,1,'L');
-
+    // $this->Cell(40,5,'Codigo de venta :  '.$ID,0,1,'L'); 
+    $this->ln(5);
     # Falta agregar los detalles de la venta
-    while ($row = mysqli_fetch_row($datos)) {
-      for ($i=0; $i <count($row) ; $i++) { 
-        $this->MultiCell(0,5,$row[$i]);
-      }
+    $var = mysqli_fetch_assoc($datos);
+    foreach ($var as $key => $value) {
+      $this->MultiCell(0,5,$key .' : ' . $value);
+      $this->ln(3);
     }
+     
   }
 
 }
@@ -72,13 +73,10 @@ $sql="SELECT detalle.precio, cliente.nombres, compra.fecharegistro , empleado.no
 $query = mysqli_query($conectar,$sql);
 
 if($query==true){
-  
   $PDF = new PDF();
   $PDF->AddPage('P','Letter');  
-  $PDF->Cell(40,20,'Reporte General',0, 1 , ' L ');
   $PDF->setTitle('Reporte de venta # ' . $ID);
   $PDF->get_content($query,$ID);
   $PDF->Output();
-
 }
 

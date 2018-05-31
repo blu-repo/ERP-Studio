@@ -79,7 +79,7 @@
  						<ul id="menuRegistro" style="display:none;">
  							<li id="regClientelink"><a href="">Registro Cliente</a> </li>
 							<li id=""><a href="panel_ventas.php">Registro Venta</a> </li>
-							<li id="regProveedorlink"><a href="">Mis ventas</a> </li>
+							<li id=""><a href="mis_ventas.php">Mis ventas</a> </li>
 							<li><a href="" data-toggle="modal" data-target="#modal_validarCC">Validar Cedula</a> </li>
 						</ul>	
 					</li>
