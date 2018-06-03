@@ -300,6 +300,69 @@ if($query==true){
 		session_start();
 		session_regenerate_id(true);
 	}
+
+	/**
+	 * Permite obtener los datos de un empleado dependiendo de su ID
+	 */
+	public function getDatosEmpleado($ID)
+	{
+
+		$this->conexion = Conectar::conectarBD();
+
+		$sql = "SELECT empleado.nombres , empleado.apellido, empleado.documento, empleado.nacionalidad, empleado.correo , empleado.fecharegistro,
+						experiencia.empresa , experiencia.cargoocupado,
+						estudios.titulo , estudios.instituto,
+						experiencia.dictamen , experiencia.observacion , experiencia.entidadmedica,
+						usuario.rol
+						from empleado 
+						inner join experiencia on empleado.id=experiencia.empleado
+						inner join estudios on estudios.empleado=empleado.id
+						inner join examenes on examenes=empleado=empleado.id
+						inner join usuario on usuario.id=empleado.usuario
+						where empleado=?";
+
+		$exe = $this->conexion->prepare($sql);
+		$exe->bind_param('s',$ID);
+		$exe->execute();
+		$resultado = $exe->get_result();
+		
+		if($resultado->num_rows===0)
+			exit('null');
+
+		$var = $resultado->fetch_assoc(MYSQLI_ASSOC);
+		$exe->close();
+		return $var;
+		
+	}
+
+
+	/**
+	 * Permite obtener el rol de un empleado apartir de su ID
+	 */
 		 
+	 public function getRol($ID)
+	 {
+		 try{
+
+			 $this->conexion = Conectar::conectarBD();
+			 
+			 $sql = "SELECT rol from usuario where usuario.id=?";
+			 $stam = $this->conexion->prepare($sql);
+			 
+			 $stam->bind_param('s',$ID);
+			 $stam->execute();
+			 $resultado = $stam->get_result();
+			 
+			 if($resultado->num_rows===0)
+			  exit('null');
+			 
+			 $vector = $resultado->fetch_assoc();	
+			 $stam->close();
+			 return $vector;
+		}catch(Exception $e){
+			 return "null";	
+		}	
+
+	 }
 
 }

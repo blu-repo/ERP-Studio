@@ -111,7 +111,7 @@
               <li id="email"><?php echo $_SESSION['email'];  ?></li>
               <form action="" method="post">
                 <input type="hidden" id="idEmpleadoLogin" name="idEmpleadoLogin" value="<?php echo $_SESSION['id']; ?>">
-                <li id="perfil"><a href="">Mi perfil</a></li>
+                <li id=""><a href="miperfil.php">Mi perfil</a></li>
               </form>
               <li id="">Salir</li>
             </ul>

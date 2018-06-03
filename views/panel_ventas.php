@@ -85,20 +85,6 @@
 						</ul>	
 					</li>
 
-					<!-- <li class="menuItem"><a href="#useit">Clientes</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaClienteLink"><a href="">Listar clientes</a> </li>
-							<li id="regEmpleadolink"><a href="">Registrar clientes</a> </li>	
-						</ul>
-					</li> -->
-
-					<!-- <li class="menuItem"><a href="#useit">Empleados</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaEmpleadoLink"><a href="">Listar empleados</a> </li>
-							<li id="regEmpleadolink"><a href="">Registrar empleados</a> </li>	
-						</ul>
-					</li> -->
-
 					<li class="menuItem"><a href="#screen">Producto</a>
 						<ul id="menuRegistro" style="display:none;">
  							<li id="tablaProductolink"><a href="">Reportar Producto</a> </li>
@@ -111,7 +97,7 @@
               <li id="email"><?php echo $_SESSION['email'];  ?></li>
               <form action="" method="post">
                 <input type="hidden" id="idEmpleadoLogin" name="idEmpleadoLogin" value="<?php echo $_SESSION['id']; ?>">
-                <li id="perfil"><a href="">Mi perfil</a></li>
+                <li id="perfil"><a href="miperfil.php">Mi perfil</a></li>
               </form>
               <li id="">Salir</li>
             </ul>
@@ -139,8 +125,6 @@
 			</div><!-- /.row -->
 				
 			<div class="row tworow">
-			
-				
 			</div><!-- /.row -->
 		</div>
 	</div>

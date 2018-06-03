@@ -118,7 +118,9 @@ class empleadoController {
 
     }
 
-
+    /**
+     * Permite crear la sesion a un empleado s
+     */
     private function loginSession($ID,$rol,$email)
     {
         session_start();
@@ -127,7 +129,23 @@ class empleadoController {
         $_SESSION['email'] = $email;    
     }
 
-    
+
+    /**
+     * Permite obtener todos los datos de un empleado 
+     */
+
+     public function getDatosEmpleadoController($ID)
+     {
+        $this->empleado = new Empleado();
+        return $this->empleado->getDatosEmpleado($ID);
+     }
+
+    public function getRolController($ID)
+    {
+        $empleado = new Empleado();
+        return $empleado->getRol($ID);
+    }
+
 
 }
 

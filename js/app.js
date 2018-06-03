@@ -1147,4 +1147,30 @@ $(document).ready(function(){
         }
     })
 
+    /**
+     * Subir imagen de perfil para el usuario
+     */
+    $('#formSubir').submit(function(event){
+        
+       event.preventDefault();
+       var fileInput = document.getElementById('imagen'); 
+       var file = fileInput.files[0];
+       var envio = new FormData();
+        envio.append('imagen',file);
+        envio.append('editar',11);
+
+       $.ajax({
+           url:'../archivos/AjaxController.php',
+           method:'post',
+           contentType: false,
+           data:envio,
+           processData: false,
+           cache: false,
+           success : function(data){
+            console.log(data);
+           }        
+       })
+ 
+    })  
+    
 })

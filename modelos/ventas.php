@@ -163,9 +163,7 @@ class Venta{
       $query = mysqli_query($this->conectar,$sql);
       
       if($query==true){
-        if(mysqli_fetch_row($query)>=1){
-          return $query;
-        }
+        return $query;
       }
   }
 
