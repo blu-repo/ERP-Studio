@@ -146,6 +146,18 @@ class empleadoController {
         return $empleado->getRol($ID);
     }
 
+    public function uploadImagenPerfilEmpleadoController($ID)
+    {
+        $empleado = new Empleado();
+       return $empleado->uploadImagenEmpleado($ID);
+    }
+
+    public function getImagenEmpleadoController($ID)
+    {
+       $empleado = new Empleado();
+       return $empleado->getImagenEmpleado($ID);
+    }
+
 
 }
 

@@ -101,9 +101,12 @@
     <?php require_once('formularios/formularios.php'); ?>
     <?php require_once('tablas/tablaProducto.php'); ?>
     <?php require_once('modal/validarCC.php'); ?>
+    <?php require_once('modal/modal_success.php'); ?>
+    <?php require_once('modal/modal_error.php'); ?>
     <?php require_once('../controlador/empleadoController.php'); ?>
     <?php $controller = new empleadoController(); ?>
     <?php $perfil = $controller->getEmpleadoByIdController($_SESSION['id']); ?>
+    <?php $img = $controller->getImagenEmpleadoController($_SESSION['id']); ?>
 	<!-- What is -->
 	<div id="whatis" class="content-section-b">
 			<div id="admin" class="container">
@@ -112,10 +115,11 @@
 				<?php if($perfil!=='null'){ 
 					#var_dump($perfil); ?>
 					<?php $rol = $controller->getRolController($perfil['usuario']); ?>
-			 <div class="col-sm-4 pull-right wow fadeInRightBig">
+				<?php if(empty($img) || strcmp($img,'null')==0){  ?>		
+			 	<div class="col-sm-4 pull-right wow fadeInRightBig">
           <img class="img-responsive " src="../img/ipad.png" alt="">
         </div>
-				
+				<?php } ?>
 				<div class="col-sm-6 wow fadeInLeftBig"  data-animation-delay="200">   
           <h3 class="section-heading"><?php echo $perfil["nombres"] ." ". $perfil['apellidos']; ?></h3>
         	<div class="sub-title lead3"><?php echo $perfil['lugarnacimiento'] . " ". $perfil['nacionalidad']; ?><br>  </div>
@@ -130,12 +134,13 @@
 							Fecha de nacimiento: <?php echo $perfil['fechanacimiento']; ?><br>
           	</p>
 
-						<form action="" enctype="multipart/form-data" method="post" id="formSubir">
+						<form enctype="multipart/form-data" method="post" id="formSubir">
   						<label for="imagen">Imagen:</label>
   						<input id="imagen" name="imagen" size="30" type="file"/>
+							<input type="hidden" name="id_emp" id="id_emp" value="<?php echo $_SESSION['id'];?>"/>
   						<input type="submit" class="btn btn-info"value="Cargar imagen de Perfil"/>
 						</form>
-        </div> 
+					</div> 
 			</div>
 			<!-- /.row -->
 		<?php }else{

@@ -1154,10 +1154,12 @@ $(document).ready(function(){
         
        event.preventDefault();
        var fileInput = document.getElementById('imagen'); 
+       var id = document.getElementById('id_emp').value; 
        var file = fileInput.files[0];
        var envio = new FormData();
         envio.append('imagen',file);
         envio.append('editar',11);
+        envio.append('id',id)
 
        $.ajax({
            url:'../archivos/AjaxController.php',
@@ -1167,10 +1169,19 @@ $(document).ready(function(){
            processData: false,
            cache: false,
            success : function(data){
-            console.log(data);
+            if(data=="insertada"){
+                successModal('Se inserto correctamente la Imagen','Se inserto correctamente la imagen de perfil');
+            }
+            else if(data=="actualizada"){
+                successModal('Se actualizo correctamente la Imagen','Se actualizo correctamente la imagen de perfil');
+            }
+            else if(data=="imagengrande"){
+                errorModal('Error','La imagen es muy grande o no cumple con un formato valido');
+            }
            }        
        })
- 
-    })  
+    })
+    
+    
     
 })

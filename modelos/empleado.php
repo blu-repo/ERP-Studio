@@ -365,4 +365,145 @@ if($query==true){
 
 	 }
 
+	 /**
+		* Permite obtener la imagen de perfil de un empleado
+	  */
+	 public function getImagenEmpleado($ID)
+	 {
+		 try{
+				$this->conexion = Conectar::conectarBD();
+				$sql = "SELECT meta_empleado.src from meta_empleado where meta_empleado.empleado_id=?";
+
+				$stam = $this->conexion->prepare($sql);
+				$stam->bind_param('s',$ID);
+			 	$stam->execute();
+			 	$resultado = $stam->get_result();
+				 
+			 	if($resultado->num_rows===0)
+					return "null";
+			 
+				$imagen = $resultado->fetch_all(MYSQLI_ASSOC);	
+
+				
+				// var_dump($imagen);
+				$stam->close();
+			 	return $imagen;
+
+		 }catch(Exception $e){
+				return "null";
+		 }
+	 }
+
+	 /**
+		* Permite saber si el usuario tiene una imagen de perfil ya definida
+	  */
+
+	 private function getImagenEmpleadoExiste($ID)
+	 {
+			$this->conexion = Conectar::conectarBD();
+			$sql = "SELECT count(meta_empleado.src) as dato from meta_empleado where meta_empleado.empleado_id='$ID'";
+
+			$query = mysqli_query($this->conexion,$sql);
+			$restore;
+
+			if($query==true){
+				$vec = mysqli_fetch_assoc($query);
+				if(!empty($vec)){
+					$dato = (int)$vec['dato'];
+					if($dato==0){
+						$restore = true;
+					}
+					else{
+						$restore = false;
+					}
+				}
+			}
+
+			return $restore;
+	 }
+
+	 /**
+		* Permite insertar la direccion del SRC de una imagen dentro de la BD
+	  */
+
+	 public function uploadImagenEmpleado($ID)
+	 {
+		 try{
+				$this->conexion=Conectar::conectarBD();
+				$ID = $ID;
+				$imagen = $this->getImagenEmpleadoExiste($ID);
+				$sql;
+				$src = $this->uploadImagenServer();
+
+				if($imagen==true){
+					if(strcmp($src,'null')==0 || strcmp($src,'imgegrande')==0){
+						return "imagengrande";
+					}
+					$sql = "INSERT into meta_empleado 
+					(src,empleado_id)
+					values
+					(?,?)";
+					$stm = $this->conexion->prepare($sql);
+					$stm->bind_param('si',$src,$ID);
+					$stm->execute();
+					$stm->close();
+					return "insertada";
+
+				}
+				else{
+					if(strcmp($src,'null')==0 || strcmp($src,'imgegrande')==0){
+						return "imagengrande";
+					}
+					$sql = "UPDATE meta_empleado set src=? where empleado_id=?";
+					$stm  = $this->conexion->prepare($sql);
+					$stm->bind_param('si',$src,$ID);
+					$stm->execute();
+					$stm->close();
+					return "actualizada";
+				}
+
+		 }catch(Exception $e){
+				return "null";
+		 }
+	 }
+
+
+	 /**
+		* Permite subir una imagen de un empleado a el server
+	  */
+	 private function uploadImagenServer()
+	 {
+			$nombre_img = $_FILES['imagen']['name'];
+			$tipo = $_FILES['imagen']['type'];
+			$tamano = $_FILES['imagen']['size'];
+				
+			//Si existe imagen y tiene un tamaño correcto
+				if (($nombre_img == !NULL) && ($_FILES['imagen']['size'] <= 200000)) 
+				{
+					//indicamos los formatos que permitimos subir a nuestro servidor
+					if (($_FILES["imagen"]["type"] == "image/gif")
+					|| ($_FILES["imagen"]["type"] == "image/jpeg")
+					|| ($_FILES["imagen"]["type"] == "image/jpg")
+					|| ($_FILES["imagen"]["type"] == "image/png"))
+					{
+						// Ruta donde se guardarán las imágenes que subamos
+						$directorio = $_SERVER['DOCUMENT_ROOT'].'/modelo/ERP-Studio/img/upload/';
+						// Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
+						move_uploaded_file($_FILES['imagen']['tmp_name'],$directorio.$nombre_img);
+						return $directorio.$nombre_img;
+						// header('location:../views/miperfil.php');
+					} 
+					else 
+					{
+							//si no cumple con el formato
+							return "null";
+					}
+				} 
+				else 
+				{
+						//si existe la variable pero se pasa del tamaño permitido
+						if($nombre_img == !NULL) return "imgegrande"; 
+				}
+		}
+
 }
