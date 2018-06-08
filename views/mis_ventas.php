@@ -1,10 +1,14 @@
 <?php 
-  // if(!isset($_SESSION)){
-  //     header('location:../index.php');
-  // }else{
-    // }  
-       session_start();
-    ?>
+	session_start();
+	error_reporting(0);
+
+	$ID = $_SESSION['id'];
+	if($ID==null || $ID=''){	
+		
+		header('location:../404.php');
+		die();
+	}
+?>
  <!DOCTYPE html>
  <html> 
 <head>
@@ -80,7 +84,7 @@
  						<ul id="menuRegistro" style="display:none;">
  							<li id="regClientelink"><a href="">Registro Cliente</a> </li>
 							<li id=""><a href="panel_ventas.php">Registro Venta</a> </li>
-							<li id=""><a href="mi_venta.php">Mis ventas</a> </li>
+							<li id=""><a href="mis_ventas.php">Mis ventas</a> </li>
 							<li><a href="" data-toggle="modal" data-target="#modal_validarCC">Validar Cedula</a> </li>
 						</ul>	
 					</li>

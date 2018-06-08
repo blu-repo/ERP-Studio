@@ -1,4 +1,13 @@
- 
+<?php 
+			 session_start();
+			 error_reporting(0);
+
+			 $ID = $_SESSION['id'];
+			 if($ID==null || $ID=''){
+				 header('location:../404.php');
+				 die();
+			 }
+?>
  <!DOCTYPE html>
  <html> 
 <head>
@@ -101,6 +110,14 @@
 					</li>
 					
 					<li class="menuItem"><a href="#contact">Usuario!</a>
+						<ul id="menuUsuario" style="display:none;">
+              <li id="email"><?php echo $_SESSION['email'];  ?></li>
+              <form action="" method="post">
+                <input type="hidden" id="" name="" value="<?php echo $ID; ?>">
+                <li id="perfil"><a href="miperfil.php">Mi perfil</a></li>
+              </form>
+              <li id="">Salir</li>
+            </ul>
 					</li>
 				</ul>
 			</div>

@@ -6,7 +6,7 @@ require_once('../DB/db.php');
 class Venta{
 
   private $conectar;  
-
+  
 
   /**
    * 

@@ -1,10 +1,13 @@
 <?php 
-  // if(!isset($_SESSION)){
-  //     header('location:../index.php');
-  // }else{
-    // }  
-       session_start();
-    ?>
+	session_start();
+	error_reporting(0);
+
+	$ID = $_SESSION['id'];
+	if($ID==null || $ID=''){	
+		header('location:../404.php');
+		die();
+	}
+?>
  <!DOCTYPE html>
  <html> 
 <head>

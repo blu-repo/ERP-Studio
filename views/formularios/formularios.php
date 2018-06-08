@@ -5,6 +5,7 @@
 <!-- Formulario para el registro del cliente para la botique -->
 <?php $tipoCliente  = $tablas->getTiposCliente();  ?>
 <div class="container" id="regCliente">
+<h4>Registro de Clientes</h4>
 <form id="formCliente">
 
   <div class="form-group row">
@@ -77,6 +78,7 @@
 
 
 <div class="container" id="regProducto">
+<h4>Registro de Producto</h4>
  <form id="formProducto">
 
   <div class="form-group row">
@@ -207,6 +209,7 @@
 <!-- Formulario que permite registrar un empleado por parte del administrador -->
 
 <div class="container" id="regEmpleado">
+<h4>Registro de Empleado</h4>
 <form id="formEmpleado">
 
   <div class="form-group row">
@@ -320,6 +323,7 @@
 
 
 <div class="container" id="regProveedor">
+<h4>Registro de Proveedores</h4>
 <form id="formProveedor">
 
   <div class="form-group row">

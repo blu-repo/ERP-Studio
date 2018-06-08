@@ -1,9 +1,14 @@
  <?php 
 			 session_start();
-			 if(!isset($_SESSION)){
-				 header('location:../index.php');
+			 error_reporting(0);
+
+			 $ID = $_SESSION['id'];
+			 if($ID==null || $ID=''){	
+				 header('location:../404.php');
+				 die();
 			 }
-    ?>
+
+	?>
  <!DOCTYPE html>
  <html> 
 <head>
@@ -109,7 +114,7 @@
             <ul id="menuUsuario" style="display:none;">
               <li id="email"><?php echo $_SESSION['email'];  ?></li>
               <form action="" method="post">
-                <input type="hidden" id="idEmpleadoLogin" name="idEmpleadoLogin" value="<?php echo $_SESSION['id']; ?>">
+                <input type="hidden" id="idEmpleadoLogin" name="idEmpleadoLogin" value="<?php echo $ID; ?>">
                 <li id="perfil"><a href="miperfil.php">Mi perfil</a></li>
               </form>
               <li id="">Salir</li>

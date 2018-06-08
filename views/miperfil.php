@@ -1,9 +1,13 @@
 <?php 
-			 session_start();
-			 if(!isset($_SESSION)){
-				 header('location:../index.php');
-			 }
-    ?>
+	session_start();
+	error_reporting(0);
+
+	$ID = $_SESSION['id'];
+	if($ID==null || $ID=''){	
+		header('location:../404.php');
+		die();
+	}			 
+?>
  <!DOCTYPE html>
  <html> 
 <head>
@@ -115,11 +119,11 @@
 				<?php if($perfil!=='null'){ 
 					#var_dump($perfil); ?>
 					<?php $rol = $controller->getRolController($perfil['usuario']); ?>
-				<?php if(empty($img) || strcmp($img,'null')==0){  ?>		
+				
 			 	<div class="col-sm-4 pull-right wow fadeInRightBig">
           <img class="img-responsive " src="../img/ipad.png" alt="">
         </div>
-				<?php } ?>
+				
 				<div class="col-sm-6 wow fadeInLeftBig"  data-animation-delay="200">   
           <h3 class="section-heading"><?php echo $perfil["nombres"] ." ". $perfil['apellidos']; ?></h3>
         	<div class="sub-title lead3"><?php echo $perfil['lugarnacimiento'] . " ". $perfil['nacionalidad']; ?><br>  </div>
