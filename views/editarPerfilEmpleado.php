@@ -7,6 +7,10 @@
     header('location:../404.php');
     die();
   }
+
+  require_once('../controlador/empleadoController.php');
+  $empleadoController = new empleadoController
+  ();
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,59 +67,7 @@
 
 
 
- <!-- NavBar-->
- <nav class="navbar-default" role="navigation">
-   <div class="container">
-     <div class="navbar-header">
-       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-         <span class="sr-only">Toggle navigation</span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-       </button>
-       <a class="navbar-brand" href="panel_administrativo.php">S. Princes</a>
-     </div>
-
-     <div id="menu" class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-       <ul class="nav navbar-nav">
-
-         <li class="menuItem"><a href="#whatis">Registros</a>
-           <ul id="menuRegistro" style="display:none;">
-             <li id="regClientelink"><a href="">Registro Cliente</a> </li>
-             <li id="regEmpleadolink"><a href="">Registro empleado</a> </li>
-             <li id="regProveedorlink"><a href="">Registro proveedor</a> </li>
-             <li id="regProductolink"><a href="">Registro producto</a> </li>
-           </ul>
-         </li>
-
-         <li class="menuItem"><a href="#useit">Clientes</a>
-           <ul id="menuRegistro" style="display:none;">
-             <li id="tablaClienteLink"><a href="">Listar clientes</a> </li>
-             <li id="regEmpleadolink"><a href="">Registrar clientes</a> </li>
-           </ul>
-         </li>
-
-         <li class="menuItem"><a href="#useit">Empleados</a>
-           <ul id="menuRegistro" style="display:none;">
-             <li id="tablaEmpleadoLink"><a href="">Listar empleados</a> </li>
-             <li id="regEmpleadolink"><a href="">Registrar empleados</a> </li>
-           </ul>
-         </li>
-
-         <li class="menuItem"><a href="#screen">Producto</a>
-           <ul id="menuRegistro" style="display:none;">
-             <li id="tablaProductolink"><a href="">Listar productos</a> </li>
-             <li id="regEmpleadolink"><a href="">Registrar productos</a> </li>
-           </ul>
-         </li>
-
-         <li class="menuItem"><a href="#contact">Usuario!</a>
-         </li>
-       </ul>
-     </div>
-
-   </div>
- </nav>
+ <?php $menu = $empleadoController->getMenu($_SESSION['id'],$_SESSION['rol']);  ?>
 
  <!-- What is -->
  <div id="whatis" class="content-section-b" >

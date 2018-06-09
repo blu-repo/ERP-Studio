@@ -45,6 +45,41 @@ if(isset($_POST) && $_POST['editar']==10){
 if(isset($_POST) && $_POST['editar']==11){
   echo uploadImagenPerfil();
 }
+if(isset($_POST) && $_POST['editar']==12){
+  logOutEmpleado();
+}
+if(isset($_POST) && $_POST['editar']==13){
+  logOutAdmin();
+}
+
+  function logOutAdmin()
+  {
+    session_start();
+
+    $var = $_POST['id'];
+
+    if(empty($var) || $var==null){
+      header('location:../404.php');
+      die();
+    }
+    session_destroy();
+    echo 'index';
+  }
+
+  function logOutEmpleado()
+  {
+    session_start();
+    $var =  $_POST['id'];
+    
+    $sessio = $_SESSION['id'];
+    if(empty($var) || $var==null){
+      header('location:../404.php');
+      die();
+    }
+
+    session_destroy();
+    echo "index";
+  }
 
   function uploadImagenPerfil()
   {

@@ -1113,7 +1113,7 @@ $(document).ready(function(){
         },
         messages:{
             referenciaProductoCompra:'Digite la referencia del producto',
-            documentoEmpleadoVenta:'Digite el empleado del Cliente',
+            documentoEmpleadoVenta:'Digite el documento del Cliente',
             modopago:'Seleccione un modo de pago'
         },
         submitHandler:function(form){
@@ -1181,6 +1181,44 @@ $(document).ready(function(){
        })
     })
     
-    
+    $('#salirEmpleado').on('click',function(event){
+        event.preventDefault();
+         
+        var id = document.getElementById('IDempleadoSalir').value;
+        
+        $.ajax({
+            url:'../archivos/AjaxController.php',
+            method:'post',
+            data:{id:id,editar:12},
+            success:function(data){
+                if(data=='index'){
+                    window.location.href="../index.php"
+                }
+                else{
+
+                }
+            }
+        })
+    })
+
+    $('#salirAdmin').on('click',function(event){
+        event.preventDefault();
+         
+        var id = document.getElementById('IDadminSalir').value;
+        
+        $.ajax({
+            url:'../archivos/AjaxController.php',
+            method:'post',
+            data:{id:id,editar:13},
+            success:function(data){
+                if(data=='index'){
+                    window.location.href="../index.php"
+                }
+                else{
+
+                }
+            }
+        })
+    })
     
 })

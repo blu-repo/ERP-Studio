@@ -7,6 +7,9 @@
 				 header('location:../404.php');
 				 die();
 			 }
+			 require_once('../controlador/empleadoController.php');
+			 $empleadoController = new empleadoController
+			 ();
 ?>
  <!DOCTYPE html>
  <html> 
@@ -41,16 +44,6 @@
 	<link rel="stylesheet" href="../css/magnific-popup.css"> 
 	
 	<script src="../js/modernizr-2.8.3.min.js"></script>  <!-- Modernizr /-->
-	<!--[if IE 9]>
-		<script src="js/PIE_IE9.js"></script>
-	<![endif]-->
-	<!--[if lt IE 9]>
-		<script src="js/PIE_IE678.js"></script>
-	<![endif]-->
-
-	<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-	<![endif]-->
 
 </head>
 
@@ -62,68 +55,8 @@
 	</div>
 	
 	
-	
-	<!-- NavBar-->
-	<nav class="navbar-default" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="panel_administrativo.php">S. Princes</a>
-			</div>
 
-			<div id="menu" class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					
-					<li class="menuItem"><a href="#whatis">Registros</a>
- 						<ul id="menuRegistro" style="display:none;">
- 							<li id="regClientelink"><a href="">Registro Cliente</a> </li>
-							<li id="regEmpleadolink"><a href="">Registro empleado</a> </li>
-							<li id="regProveedorlink"><a href="">Registro proveedor</a> </li>
- 							<li id="regProductolink"><a href="">Registro producto</a> </li>	
-						</ul>	
-					</li>
-
-					<li class="menuItem"><a href="#useit">Clientes</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaClienteLink"><a href="">Listar clientes</a> </li>
-							<li id="regEmpleadolink"><a href="">Registrar clientes</a> </li>	
-						</ul>
-					</li>
-
-					<li class="menuItem"><a href="#useit">Empleados</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaEmpleadoLink"><a href="">Listar empleados</a> </li>
-							<li id="regEmpleadolink"><a href="">Registrar empleados</a> </li>	
-						</ul>
-					</li>
-
-					<li class="menuItem"><a href="#screen">Producto</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaProductolink"><a href="">Listar productos</a> </li>
-							<li id="regEmpleadolink"><a href="">Registrar productos</a> </li>	
-						</ul>	
-					</li>
-					
-					<li class="menuItem"><a href="#contact">Usuario!</a>
-						<ul id="menuUsuario" style="display:none;">
-              <li id="email"><?php echo $_SESSION['email'];  ?></li>
-              <form action="" method="post">
-                <input type="hidden" id="" name="" value="<?php echo $ID; ?>">
-                <li id="perfil"><a href="miperfil.php">Mi perfil</a></li>
-              </form>
-              <li id="">Salir</li>
-            </ul>
-					</li>
-				</ul>
-			</div>
-		   
-		</div>
-	</nav> 
+	<?php $empleadoController->getMenu($_SESSION['id'],$_SESSION['rol']); ?>
 
 	<!-- What is -->
 	<div id="whatis" class="content-section-b" >
@@ -174,177 +107,9 @@
 				
 			<div class="row tworow">
 			
-				<!-- <div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/map.svg" alt="Generic placeholder image">
-				   <h3>Ubicacion</h3>
-				   <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
-				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p>
-				</div> col-lg-4 -->
-				
-				<!-- <div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/browser.svg" alt="Generic placeholder image">
-				   <h3>Bootstrap</h3>
-				 <p class="lead">Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. </p>
-				  <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p>
-				</div> -->
-				<!-- /.col-lg-4 -->
-				
 			</div><!-- /.row -->
 		</div>
 	</div>
-	
-	<!-- Use it -->
-    <!-- <div id ="useit" class="content-section-a" style="display:none;">
-
-        <div class="container">
-			
-            <div class="row">
-			
-				<div class="col-sm-6 pull-right wow fadeInRightBig">
-                    <img class="img-responsive " src="img/ipad.png" alt="">
-                </div>
-				
-                <div class="col-sm-6 wow fadeInLeftBig"  data-animation-delay="200">   
-                    <h3 class="section-heading">Full Responsive</h3>
-					<div class="sub-title lead3">Lorem ipsum dolor sit atmet sit dolor greand fdanrh<br> sdfs sit atmet sit dolor greand fdanrh sdfs</div>
-                    <p class="lead">
-						In his igitur partibus duabus nihil erat, quod Zeno commuta rest gestiret. 
-						Sed virtutem ipsam inchoavit, nihil ampliusuma. Scien tiam pollicentur, 
-						uam non erat mirum sapientiae lorem cupido
-						patria esse cariorem. Quae qui non vident, nihilamane umquam magnum ac cognitione.
-					</p>
-
-					 <p><a class="btn btn-embossed btn-primary" href="#" role="button">View Details</a> 
-					 <a class="btn btn-embossed btn-info" href="#" role="button">Visit Website</a></p>
-				</div>   
-            </div>
-        </div>
-        <!-- /.container 
-    </div> 
-
-    <div class="content-section-b" style="display:none;"> 
-		
-		<div class="container">
-            <div class="row">
-                <div class="col-sm-6 wow fadeInLeftBig">
-                     <div id="owl-demo-1" class="owl-carousel">
-						<a href="img/iphone.png" class="image-link">
-							<div class="item">
-								<img  class="img-responsive img-rounded" src="img/iphone.png" alt="">
-							</div>
-						</a>
-						<a href="img/iphone.png" class="image-link">
-							<div class="item">
-								<img  class="img-responsive img-rounded" src="img/iphone.png" alt="">
-							</div>
-						</a>
-						<a href="img/iphone.png" class="image-link">
-							<div class="item">
-								<img  class="img-responsive img-rounded" src="img/iphone.png" alt="">
-							</div>
-						</a>
-					</div>       
-                </div>
-				
-                <div class="col-sm-6 wow fadeInRightBig"  data-animation-delay="200">   
-                    <h3 class="section-heading">Drag Gallery</h3>
-					<div class="sub-title lead3">Lorem ipsum dolor sit atmet sit dolor greand fdanrh<br> sdfs sit atmet sit dolor greand fdanrh sdfs</div>
-                    <p class="lead">
-						In his igitur partibus duabus nihil erat, quod Zeno commuta rest gestiret. 
-						Sed virtutem ipsam inchoavit, nihil ampliusuma. Scien tiam pollicentur, 
-						uam non erat mirum sapientiae lorem cupido
-						patria esse cariorem. Quae qui non vident, nihilamane umquam magnum ac cognitione.
-					</p>
-
-					 <p><a class="btn btn-embossed btn-primary" href="#" role="button">View Details</a> 
-					 <a class="btn btn-embossed btn-info" href="#" role="button">Visit Website</a></p>
-				</div>  			
-			</div>
-        </div>
-    </div>
-
-    <div class="content-section-a" style="display:none;">
-
-        <div class="container">
-
-             <div class="row">
-			 
-				<div class="col-sm-6 pull-right wow fadeInRightBig">
-                    <img class="img-responsive " src="img/doge.png" alt="">
-                </div>
-			 
-                <div class="col-sm-6 wow fadeInLeftBig"  data-animation-delay="200">   
-                    <h3 class="section-heading">Font Awesome & Glyphicon</h3>
-                    <p class="lead">A special thanks to Death to the Stock Photo for 
-					providing the photographs that you see in this template. 
-					</p>
-					
-					<ul class="descp lead2">
-						<li><i class="glyphicon glyphicon-signal"></i> Reliable and Secure Platform</li>
-						<li><i class="glyphicon glyphicon-refresh"></i> Everything is perfectly orgainized for future</li>
-						<li><i class="glyphicon glyphicon-headphones"></i> Attach large file easily</li>
-					</ul>
-				</div>           
-            </div>
-        </div>
-
-    </div>
-
-	<!-- Screenshot -->
-	<!-- <div id="screen" class="content-section-b" style="display:none;">
-        <div class="container">
-          <div class="row" >
-			 <div class="col-md-6 col-md-offset-3 text-center wrap_title ">
-				<h2>Screen App</h2>
-				<p class="lead" style="margin-top:0">A special thanks to Death.</p>
-			 </div>
-		  </div>
-		    <div class="row wow bounceInUp" >
-              <div id="owl-demo" class="owl-carousel">
-				
-				<a href="img/slide/1.png" class="image-link">
-					<div class="item">
-						<img  class="img-responsive img-rounded" src="img/slide/1.png" alt="Owl Image">
-					</div>
-				</a>
-				
-               <a href="img/slide/2.png" class="image-link">
-					<div class="item">
-						<img  class="img-responsive img-rounded" src="img/slide/2.png" alt="Owl Image">
-					</div>
-				</a>
-				
-				<a href="img/slide/3.png" class="image-link">
-					<div class="item">
-						<img  class="img-responsive img-rounded" src="img/slide/3.png" alt="Owl Image">
-					</div>
-				</a>
-				
-				<a href="img/slide/1.png" class="image-link">
-					<div class="item">
-						<img  class="img-responsive img-rounded" src="img/slide/1.png" alt="Owl Image">
-					</div>
-				</a>
-				
-               <a href="img/slide/2.png" class="image-link">
-					<div class="item">
-						<img  class="img-responsive img-rounded" src="img/slide/2.png" alt="Owl Image">
-					</div>
-				</a>
-				
-				<a href="img/slide/3.png" class="image-link">
-					<div class="item">
-						<img  class="img-responsive img-rounded" src="img/slide/3.png" alt="Owl Image">
-					</div>
-				</a>
-              </div>       
-          </div>
-        </div>
-
-
-	</div> -->
-
-	
 	
 	<div  class="content-section-c " style="display:none;">
 		<div class="container">

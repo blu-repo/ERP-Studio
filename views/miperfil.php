@@ -6,7 +6,11 @@
 	if($ID==null || $ID=''){	
 		header('location:../404.php');
 		die();
-	}			 
+	}
+	
+	require_once('../controlador/empleadoController.php');
+	$con = new empleadoController();
+	
 ?>
  <!DOCTYPE html>
  <html> 
@@ -16,7 +20,7 @@
     <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
     <meta name="author" content="">
 
-	<title>Studio Princess		</title>
+	<title>Studio Princess</title>
 	
 
     <!-- Bootstrap core CSS -->
@@ -52,65 +56,19 @@
 	</div>
 	
 	
+<?php require_once('formularios/formularios.php'); ?>
+<?php require_once('tablas/tablaProducto.php'); ?>
+<?php require_once('modal/validarCC.php'); ?>
+<?php require_once('modal/modal_success.php'); ?>
+<?php require_once('modal/modal_error.php'); ?>
+<?php $controller = new empleadoController(); ?>
+<?php $perfil = $controller->getEmpleadoByIdController($_SESSION['id']); ?>
+<?php $img = $controller->getImagenEmpleadoController($_SESSION['id']); ?>
 	
+<?php $con->getMenu($ID,$_SESSION['rol']); ?>
 	<!-- NavBar-->
-	<nav class="navbar-default" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="panel_empleado.php">S. Princes</a>
-			</div>
 
-			<div id="menu" class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					
-					<li class="menuItem"><a href="#whatis">Ventas</a>
- 						<ul id="menuRegistro" style="display:none;">
- 							<li id="regClientelink"><a href="">Registro Cliente</a> </li>
-							<li id=""><a href="panel_ventas.php">Registro Venta</a> </li>
-							<li id=""><a href="mis_ventas.php">Mis ventas</a> </li>
-							<li><a href="" data-toggle="modal" data-target="#modal_validarCC">Validar Cedula</a> </li>
-						</ul>	
-					</li>
 
-					<li class="menuItem"><a href="#screen">Producto</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaProductolink"><a href="">Reportar Producto</a> </li>
-							<li id="regEmpleadolink"><a href="">Listar productos</a> </li>	
-						</ul>	
-					</li>
-					
-					<li class="menuItem"><a href="#contact">Usuario!</a>
-            <ul id="menuUsuario" style="display:none;">
-              <li id="email"><?php echo $_SESSION['email'];  ?></li>
-              <form action="" method="post">
-                <input type="hidden" id="idEmpleadoLogin" name="idEmpleadoLogin" value="<?php echo $_SESSION['id']; ?>">
-                <li id="perfil"><a href="miperfil.php">Mi perfil</a></li>
-              </form>
-              <li id="">Salir</li>
-            </ul>
-					</li>
-				</ul>
-			</div>
-		   
-		</div>
-	</nav> 
-
-      
-    <?php require_once('formularios/formularios.php'); ?>
-    <?php require_once('tablas/tablaProducto.php'); ?>
-    <?php require_once('modal/validarCC.php'); ?>
-    <?php require_once('modal/modal_success.php'); ?>
-    <?php require_once('modal/modal_error.php'); ?>
-    <?php require_once('../controlador/empleadoController.php'); ?>
-    <?php $controller = new empleadoController(); ?>
-    <?php $perfil = $controller->getEmpleadoByIdController($_SESSION['id']); ?>
-    <?php $img = $controller->getImagenEmpleadoController($_SESSION['id']); ?>
 	<!-- What is -->
 	<div id="whatis" class="content-section-b">
 			<div id="admin" class="container">
@@ -189,12 +147,6 @@
 		</div>
 	</div>	
 	
-
-	
-	
-	
-		
-	
 	<footer>
       <div class="container">
         <div class="row">
@@ -220,7 +172,7 @@
           </div>
         </div>
       </div>
-    </footer>
+  </footer>
 
 	
 

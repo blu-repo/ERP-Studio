@@ -8,6 +8,11 @@
 		header('location:../404.php');
 		die();
 	}
+
+	require_once('../controlador/empleadoController.php');
+	$empleadoController = new empleadoController
+	();
+
 ?>
  <!DOCTYPE html>
  <html> 
@@ -61,70 +66,7 @@
 	<div id="preloader">
 		<div id="status"></div>
 	</div>
-	
-	
-	
-	<!-- NavBar-->
-	<nav class="navbar-default" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="panel_empleado.php">S. Princes</a>
-			</div>
-
-			<div id="menu" class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					
-					<li class="menuItem"><a href="#whatis">Ventas</a>
- 						<ul id="menuRegistro" style="display:none;">
- 							<li id="regClientelink"><a href="">Registro Cliente</a> </li>
-							<li id=""><a href="panel_ventas.php">Registro Venta</a> </li>
-							<li id=""><a href="mis_ventas.php">Mis ventas</a> </li>
-							<li><a href="" data-toggle="modal" data-target="#modal_validarCC">Validar Cedula</a> </li>
-						</ul>	
-					</li>
-
-					<!-- <li class="menuItem"><a href="#useit">Clientes</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaClienteLink"><a href="">Listar clientes</a> </li>
-							<li id="regEmpleadolink"><a href="">Registrar clientes</a> </li>	
-						</ul>
-					</li> -->
-
-					<!-- <li class="menuItem"><a href="#useit">Empleados</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaEmpleadoLink"><a href="">Listar empleados</a> </li>
-							<li id="regEmpleadolink"><a href="">Registrar empleados</a> </li>	
-						</ul>
-					</li> -->
-
-					<li class="menuItem"><a href="#screen">Producto</a>
-						<ul id="menuRegistro" style="display:none;">
- 							<li id="tablaProductolink"><a href="">Reportar Producto</a> </li>
-							<li id="regEmpleadolink"><a href="">Listar productos</a> </li>	
-						</ul>	
-					</li>
-					
-					<li class="menuItem"><a href="#contact">Usuario!</a>
-            <ul id="menuUsuario" style="display:none;">
-              <li id="email"><?php echo $_SESSION['email'];  ?></li>
-              <form action="" method="post">
-                <input type="hidden" id="idEmpleadoLogin" name="idEmpleadoLogin" value="<?php echo $_SESSION['id']; ?>">
-                <li id=""><a href="miperfil.php">Mi perfil</a></li>
-              </form>
-              <li id="">Salir</li>
-            </ul>
-					</li>
-				</ul>
-			</div>
-		   
-		</div>
-	</nav> 
+	<?php $menu = $empleadoController->getMenu($_SESSION['id'],$_SESSION['rol']);  ?>
 
 	<!-- What is -->
 	<div id="whatis" class="content-section-b" >

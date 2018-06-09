@@ -159,6 +159,15 @@ class empleadoController {
     }
 
 
+    public function getMenu($ID , $ROL)
+    {
+        $empleado = new Empleado();
+        echo $empleado->getMenuRol($ID,$ROL);
+    }
+
+   
+
+
 }
 
 $controller = new empleadoController();

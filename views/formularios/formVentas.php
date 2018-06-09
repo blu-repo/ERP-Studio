@@ -9,7 +9,7 @@
     <?php
     if($ventaID!=null && is_numeric($ventaID)){
       $ventaID = (int)$ventaID + 1;
-      echo "<h4> Es la venta # " . $ventaID . "</h4>";
+      echo "<h4> Es la venta # " . $ventaID . "</h4><h5>Para la realizacion correcta de la venta verifica bien que el codigo de referencia este registrado</h5>";
     }else if(empty($ventaID) || $ventaID=='nohayventas' || strcasecmp($ventaID,'nohayventas')==0){
       echo "<h4> No hay ventas registradas </h4>"; 
     } 
