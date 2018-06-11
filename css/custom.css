@@ -421,8 +421,21 @@ NO MORE TABLES!! ;)
 	}
 }
 
+/* menu */
+.submenu {
+	position: absolute;
+	background-color: #ecf0f1;
+	padding: 20px;
+}
 
+.submenu li:hover a {
+	color: #1abc9c;
+}
 
+.submenu a {
+	white-space: nowrap;
+	transition: all .3s;
+}
 
 
 

@@ -531,7 +531,7 @@ if($query==true){
 							<ul class="nav navbar-nav">
 								
 								<li class="menuItem"><a href="#whatis">Registros</a>
-									 <ul id="menuRegistro" style="display:none;">
+									 <ul id="menuRegistro" class="submenu" style="display:none;">
 										 	<li id="regClientelink"><a href="">Registro Cliente</a> </li>
 											<li id="regEmpleadolink"><a href="">Registro empleado</a> </li>
 											<li id="regProveedorlink"><a href="">Registro proveedor</a> </li>
@@ -540,34 +540,34 @@ if($query==true){
 								</li>
 			
 								<li class="menuItem"><a href="#useit">Clientes</a>
-									<ul id="menuRegistro" style="display:none;">
+									<ul id="menuRegistro" class="submenu" style="display:none;">
 										 <li id="tablaClienteLink"><a href="">Listar clientes</a> </li>
 										 <li id="regClientelink"><a href="">Registrar clientes</a> </li>	
 									</ul>
 								</li>
 			
 								<li class="menuItem"><a href="#useit">Empleados</a>
-									<ul id="menuRegistro" style="display:none;">
+									<ul id="menuRegistro" class="submenu" style="display:none;">
 										 <li id="tablaEmpleadoLink"><a href="">Listar empleados</a> </li>
 										 <li id="regEmpleadolink"><a href="">Registrar empleados</a> </li>	
 									</ul>
 								</li>
 			
 								<li class="menuItem"><a href="#screen">Producto</a>
-									<ul id="menuRegistro" style="display:none;">
+									<ul id="menuRegistro" class="submenu" style="display:none;">
 										 <li id="tablaProductolink"><a href="">Listar productos</a> </li>
 										<li id="regProductolink"><a href="">Registrar productos</a> </li>	
 									</ul>	
 								</li>
 
 								<li class="menuItem"><a href="#screen">Proveedores</a>
-									<ul id="menuRegistro" style="display:none;">
+									<ul id="menuRegistro" class="submenu" style="display:none;">
 										 <li id=""><a href="proveedores.php">Listar Proveedores</a> </li>
 									</ul>	
 								</li>
 								
 								<li class="menuItem"><a href="#contact">Usuario!</a>
-									<ul id="menuUsuario" style="display:none;">
+									<ul id="menuUsuario" class="submenu" style="display:none;">
 										<li id="email">'. $_SESSION['email'] .'</li>
 										<form action="" method="post">
 											<input type="hidden" id="" name="" value="<?php echo $ID; ?>">
@@ -600,7 +600,7 @@ if($query==true){
 								<ul class="nav navbar-nav">
 									
 									<li class="menuItem"><a href="#whatis">Ventas</a>
-										 <ul id="menuRegistro" style="display:none;">
+										 <ul id="menuRegistro" class="submenu" style="display:none;">
 											 <li id="regClientelink"><a href="">Registro Cliente</a> </li>
 											<li id=""><a href="panel_ventas.php">Registro Venta</a> </li>
 											<li id=""><a href="mis_ventas.php">Mis ventas</a> </li>
@@ -609,21 +609,21 @@ if($query==true){
 									</li>
 				
 									<!-- <li class="menuItem"><a href="#useit">Clientes</a>
-										<ul id="menuRegistro" style="display:none;">
+										<ul id="menuRegistro" class="submenu" style="display:none;">
 											 <li id="tablaClienteLink"><a href="">Listar clientes</a> </li>
 											<li id="regEmpleadolink"><a href="">Registrar clientes</a> </li>	
 										</ul>
 									</li> -->
 				
 									<!-- <li class="menuItem"><a href="#useit">Empleados</a>
-										<ul id="menuRegistro" style="display:none;">
+										<ul id="menuRegistro" class="submenu" style="display:none;">
 											 <li id="tablaEmpleadoLink"><a href="">Listar empleados</a> </li>
 											<li id="regEmpleadolink"><a href="">Registrar empleados</a> </li>	
 										</ul>
 									</li> -->
 				
 									<li class="menuItem"><a href="#screen">Producto</a>
-										<ul id="menuRegistro" style="display:none;">
+										<ul id="menuRegistro" class="submenu" style="display:none;">
 											 <li id="tablaProductolink"><a href="">Listar Producto</a> </li>
 											<li id="regProductolink"><a href="">Registrar productos</a> </li>	
 										</ul>	
