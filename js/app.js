@@ -1221,4 +1221,133 @@ $(document).ready(function(){
         })
     })
     
+    
+    $('#formEditarEmpresa').validate({
+        rules:{
+            nombreEmpresaProveedor:{
+                required:true
+            },
+            nitProveedor:{
+                required:true,
+                number:true
+            },
+            telefonoproveedor:{
+                required:true,
+                number:true
+            },
+            direccionEmpresa:{
+                required:true
+            },
+            emailempresa:{
+                required:true,
+                email:true
+            }
+        },
+        messages:{
+            nombreEmpresaProveedor:'Nombre de empresa vacio',
+            nitProveedor:'NIT de empresa vacio',
+            telefonoproveedor:'Telefono de proveedor vacio',
+            direccionEmpresa:'Direccion de proveedor vacio',
+            emailempresa:'Email de proveedor vacio'
+        },
+        submitHandler : function(form){
+            
+            var idproveedorEditar =  $('#formEditarEmpresa').find('#idproveedorEditar').val()
+            var nombreEmpresaProveedorEditar = document.getElementById('nombreEmpresaProveedorEditar').value
+            var telefonoproveedor = $('#formEditarEmpresa').find('#telefonoproveedorEditar').val()
+            var nitProveedor = $('#formEditarEmpresa').find('#nitProveedorEditar').val()
+            var emailempresa = $('#formEditarEmpresa').find('#emailempresaEditar').val()
+            var direccionEmpresa = $('#formEditarEmpresa').find('#direccionEmpresaEditar').val()
+
+            $.ajax({
+                url:'../archivos/AjaxController.php',
+                method:'post',
+                data:{idproveedorEditar:idproveedorEditar,
+                    nombreEmpresaProveedorEditar:nombreEmpresaProveedorEditar,
+                    telefonoproveedor:telefonoproveedor,
+                    nitProveedor:nitProveedor,
+                    emailempresa:emailempresa,
+                    direccionEmpresa:direccionEmpresa,
+                    editar:14},
+                success:function(data){
+                    if(data=="true"){
+                        successModal('Actualizacion exitosa','Se actualizaron de manera correcta los datos')
+                    }else if(data=="false"){
+                        errorModal('Error','No se actualizaron los datos de manera correcta')
+                    }
+                }
+            })
+        }
+    })
+
+    $('#editarContactoProveedor').validate({
+        rules:{
+            nombreContacto:{
+                required:true
+            },
+            documentoContacto:{
+                required:true,
+                number:true
+            },
+            direccionContacto:{
+                required:true
+            },
+            telefonoContacto:{
+                required:true,
+                number:true
+            },
+            emailContacto:{
+                required:true,
+                email:true
+            }
+        },
+        messages:{
+            nombreContacto:'Digite un nombre de contacto valido',
+            documentoContacto:'Digite el documento valido (Solo numeros)',
+            direccionContacto:'Digite la direccion de manera correcta',
+            telefonoContacto:'Digite un telefono valido',
+            emailContacto:'Digite una direccion de correo valida'
+        },
+        submitHandler:function(form){
+
+             var IDproveedorContacto  = $('#editarContactoProveedor').find('#IDproveedorContacto').val()
+             var nombreContacto  = document.getElementById('nombreContacto').value
+             var documentoContacto  = $('#editarContactoProveedor').find('#documentoContacto').val()
+             var direccionContacto  = $('#editarContactoProveedor').find('#direccionContacto').val()
+             var telefonoContacto  = $('#editarContactoProveedor').find('#telefonoContacto').val()
+             var emailContacto  = $('#editarContactoProveedor').find('#emailContacto').val()
+             var accionContacto  = $('#editarContactoProveedor').find('#accionContacto').val()
+             console.log(nombreContacto);
+                
+
+            $.ajax({
+                url:'../archivos/AjaxController.php',
+                method:'POST',
+                data:{nombreContacto:nombreContacto,
+                    IDproveedorContacto:IDproveedorContacto,
+                    documentoContacto:documentoContacto,
+                    direccionContacto:direccionContacto,
+                    telefonoContacto:telefonoContacto,
+                    emailContacto:emailContacto,
+                    accionContacto:accionContacto,
+                    editar:15},
+                success:function(data){
+                    console.log(data);
+                    
+                    if(data=='insertada'){
+                        successAjaxDiv('#ajax_editarContacto','Se registro correctamente el contacto','#editarContacto','alert alert-info',"true");
+                        window.location.href="../views/proveedores.php";
+                    }else if(data=='actualizada'){
+                        successAjaxDiv('#ajax_editarContacto','Se actualizaron los datos de contacto','#editarContacto','alert alert-info',"true")
+                        window.location.href="../views/proveedores.php";
+                    }else if(data=="noinsertada" || data=='noactualizada'){
+                        successAjaxDiv('#ajax_editarContactoError','No se registro correctamente los datos','#editarContacto','alert alert-warning',"false")
+                    }
+                }
+            })
+        }
+    })
+
+    
+   
 })

@@ -5,6 +5,7 @@ require_once('../controlador/clienteController.php');
 require_once('../controlador/empleadoController.php');
 require_once('../controlador/productoController.php');
 require_once('../controlador/ventasController.php');
+require_once('../controlador/proveedorController.php');
 
 
 if(isset($_POST) && $_POST['editar']==1){
@@ -51,6 +52,37 @@ if(isset($_POST) && $_POST['editar']==12){
 if(isset($_POST) && $_POST['editar']==13){
   logOutAdmin();
 }
+if(isset($_POST) && $_POST['editar']==14){
+  editarProveedor();  
+}
+if(isset($_POST) && $_POST['editar']==15){
+  editarContactoProveedor();  
+}
+
+
+  function editarContactoProveedor()
+  {
+    $proveedor  = new proveedorController();
+    $proveedor->setContactoProveedorController($_POST['IDproveedorContacto'],
+    $_POST['nombreContacto'],
+    $_POST['documentoContacto'],
+    $_POST['direccionContacto'],
+    $_POST['telefonoContacto'],
+    $_POST['emailContacto'],
+    $_POST['accionContacto']);
+  }
+
+  function editarProveedor()
+  {
+    $proveedor = new proveedorController();
+    $proveedor->setProveedorController($_POST['idproveedorEditar'],
+    $_POST['nombreEmpresaProveedorEditar'],
+    $_POST['nitProveedor'],
+    $_POST['telefonoproveedor'],
+    $_POST['emailempresa'],
+    $_POST['direccionEmpresa']);
+  }
+
 
   function logOutAdmin()
   {

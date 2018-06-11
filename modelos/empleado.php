@@ -478,7 +478,7 @@ if($query==true){
 			$tamano = $_FILES['imagen']['size'];
 				
 			//Si existe imagen y tiene un tamaño correcto
-				if (($nombre_img == !NULL) && ($_FILES['imagen']['size'] <= 200000)) 
+				if (($nombre_img == !NULL) && ($_FILES['imagen']['size'] <= 20000000)) 
 				{
 					//indicamos los formatos que permitimos subir a nuestro servidor
 					if (($_FILES["imagen"]["type"] == "image/gif")
@@ -557,6 +557,12 @@ if($query==true){
 									<ul id="menuRegistro" style="display:none;">
 										 <li id="tablaProductolink"><a href="">Listar productos</a> </li>
 										<li id="regProductolink"><a href="">Registrar productos</a> </li>	
+									</ul>	
+								</li>
+
+								<li class="menuItem"><a href="#screen">Proveedores</a>
+									<ul id="menuRegistro" style="display:none;">
+										 <li id=""><a href="proveedores.php">Listar Proveedores</a> </li>
 									</ul>	
 								</li>
 								

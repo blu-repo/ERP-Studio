@@ -9,9 +9,8 @@
 		die();
 	}
 
-	require_once('../controlador/empleadoController.php');
-	$empleadoController = new empleadoController
-	();
+  require_once('../controlador/empleadoController.php');
+  $empleadoController = new empleadoController();
 
 ?>
  <!DOCTYPE html>
@@ -22,7 +21,7 @@
     <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
     <meta name="author" content="">
 
-	<title>Studio Princess</title>
+	<title>Studio Princess		</title>
 	
 
     <!-- Bootstrap core CSS -->
@@ -74,12 +73,21 @@
 		
 	<?php require_once('formularios/formularios.php'); ?>
 	<?php require_once('tablas/tablaProducto.php'); ?>
+	<?php require_once('tablas/tablaCliente.php'); ?>
+	<?php require_once('tablas/tablaEmpleado.php'); ?>
   <?php require_once('modal/validarCC.php'); ?>
+	<?php require_once('modalEditar/modalEditarCliente.php'); ?>
+	<?php require_once('modalEditar/modalEditarEmpleado.php'); ?>
+	<?php require_once('modalEditar/modalEditarProducto.php'); ?>
+	<?php require_once('modalEliminar/modalEliminarCliente.php'); ?>
+	<?php require_once('modal/modal_success.php'); ?>
+	<?php require_once('modal/modal_error.php'); ?>
+	
 			
 			<div id="admin" class="container">
 			
 			<div class="row">
-        <?php require_once('tablas/ventas_empleado.php'); ?>
+        <?php require_once('formularios/edicionProveedores.php'); ?>
 			</div><!-- /.row -->
 				
 			<div class="row tworow">
@@ -263,7 +271,7 @@
         <div class="row">
           <div class="col-md-7">
             <h3 class="footer-title">Boutique</h3>
-            <p>Studio Princes 2018  <br/>
+            <p>Studio Princes <?php echo date('Y'); ?>  <br/>
               Todos los derechos reservados<br/>
             </p>
 			
@@ -283,7 +291,7 @@
           </div>
         </div>
       </div>
-    </footer>
+  </footer>
 
 	
 

@@ -58,6 +58,8 @@
 	
 <?php require_once('formularios/formularios.php'); ?>
 <?php require_once('tablas/tablaProducto.php'); ?>
+<?php require_once('tablas/tablaCliente.php'); ?>
+<?php require_once('tablas/tablaEmpleado.php'); ?>
 <?php require_once('modal/validarCC.php'); ?>
 <?php require_once('modal/modal_success.php'); ?>
 <?php require_once('modal/modal_error.php'); ?>
@@ -74,12 +76,19 @@
 			<div id="admin" class="container">
 			 
 			<div class="row">
+				<?php $src= $img[0]['src']; ?>
+				<?php $split = explode("/",$src); ?>
+				<?php 
+					$ss = '../img/'. $split[count($split)-2].'/'.$split[count($split)-1];
+				?>
+
+
 				<?php if($perfil!=='null'){ 
 					#var_dump($perfil); ?>
 					<?php $rol = $controller->getRolController($perfil['usuario']); ?>
 				
 			 	<div class="col-sm-4 pull-right wow fadeInRightBig">
-          <img class="img-responsive " src="../img/ipad.png" alt="">
+          <img class="img-responsive " src="<?php echo $ss;  ?>" alt="">
         </div>
 				
 				<div class="col-sm-6 wow fadeInLeftBig"  data-animation-delay="200">   
