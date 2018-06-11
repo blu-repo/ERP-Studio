@@ -126,6 +126,22 @@ class producto {
     }
 
 
+    /**
+     * Permite editar un producto con todos sus datos
+     */
+    public function getDatos($ID)
+    {
+        try{
+            $this->conectar = Conectar::conectarBD();
+            
+            $sql = "SELECT * from producto 
+                    inner join proveedor on proveedor.id=producto.proveedor
+                    inner join ";
+        }catch(Exception $e){
+            return "null";
+        }
+    }
+
 
 
 

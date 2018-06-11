@@ -189,7 +189,7 @@
       <label for="inputState"></label><br>
       <a href="" data-toggle="modal" data-target="#agregar_material"  class="btn btn-lg mybutton_cyano wow fadeIn"><span class="network-name">Agregar Material</span></a>
     </div>
-   
+
   </div>
    <?php include('../Studio_modals/AgregarDetalles.php'); ?> 
   <input type="submit" class="btn btn-lg btn-primary" value="Registrar Producto"></input>
@@ -324,7 +324,7 @@
 
 <div class="container" id="regProveedor">
 <h4>Registro de Proveedores</h4>
-<form id="formProveedor">
+<form id="formProveedor" >
 
   <div class="form-group row">
     <div class="form-group col-md-4">

@@ -27,11 +27,10 @@
       <td class="row">
       <!-- Falta programa editar Estado Empleado -->
        <?php if($row[15]==0){  ?>
-        <div class="alert alert-info" role="alert" style="padding:8px;">
-        <?php echo "Activo"; ?>
-        </div>
+        <div class="alert alert-info"  role="alert" style="padding:8px;">
+         <?php echo "Activo"; ?>
        <?php } else{ ?>
-        <div class="alert alert-warning" role="alert" style="padding:8px;">
+        <div class="alert alert-warning"  role="alert" style="padding:8px;">
          <?php echo "Desactivo"; ?>
         <?php } ?>
        </div>
@@ -48,3 +47,6 @@
   </tbody>
 </table>
 </div>
+<script>
+   
+</script>

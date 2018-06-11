@@ -56,6 +56,12 @@ class productoController {
         $this->producto->editarProducto($id,$nombre,$referencia,$precio,$talla);
     }
 
+    public function getDatosProducto($ID)
+    {
+        $this->producto = new Producto();
+        return $this->producto->getDatos($ID);
+    }
+
 
 }
 
