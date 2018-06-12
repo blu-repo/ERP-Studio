@@ -18,7 +18,9 @@ class producto {
     private $categoria;
     private $proveedor;
 
-    
+    /**
+     * Permite insertar un producto dentro de la BD
+     */
     public function insertarProducto($nombre , $codigo , $color, $tela, $proveedor, $tipoproducto, $categoria, $talla, $cantidad, $precio)
     {
         $this->nombre = $nombre;
@@ -134,15 +136,148 @@ class producto {
         try{
             $this->conectar = Conectar::conectarBD();
             
-            $sql = "SELECT * from producto 
+            $sql = "SELECT producto.nombre as nombre, producto.referencia as referencia, tipomaterial.id as idmaterial,
+                    tipoarticulo.id as idarticulo, tipoarticulo.nombre as desarticulo, tipomaterial.nombre as desmaterial, 
+                    proveedor.empresa as empresa, proveedor.id as idproveedor, categoria.nombre as descategoria,categoria.id as idcategoria,
+                    detalle.precio as precio,detalle.talla as talla ,detalle.cantidad as cantidad
+                    from producto 
                     inner join proveedor on proveedor.id=producto.proveedor
-                    inner join ";
+                    inner join categoria on producto.categoria=categoria.id
+                    inner join tipoarticulo on tipoarticulo.id=producto.tipoarticulo
+                    inner join tipomaterial on tipomaterial.id=producto.tipomaterial
+                    inner join detalle on detalle.producto_id=producto.id
+                    where producto.id=?";
+
+            $stm = $this->conectar->prepare($sql);
+            $stm->bind_param('s',$ID);
+            $stm->execute();
+            $rta = $stm->get_result();  
+
+            if($rta->num_rows===0)
+                return "null";
+            
+            
+            $datos = $rta->fetch_all(MYSQLI_ASSOC);
+            $stm->close();
+            return $datos;
+
+        }catch(Exception $e){
+            return "null";
+        }
+    }
+
+    /**
+     * Permite actualizar un producto dependiendo de su ID
+     */
+    public function setProducto($ID,$nombre,$referencia,$color,$material,$proveedor,$articulo,$categoria,$talla,$precio)
+    {
+        try{
+            $this->conectar = Conectar::conectarBD();
+            $sql = "UPDATE producto 
+                    set nombre='$nombre',referencia='$referencia',color='$color',tipomaterial='$material',
+                    tipoarticulo='$articulo',categoria='$categoria',proveedor='$proveedor',precio='$precio',
+                    talla='$talla'
+                    where producto.id=?";
+            $stm = $this->conectar->prepare($sql);
+            $stm->bind_param('s',$ID);
+            $dato = $stm->execute();
+            
+            if($dato==true){
+                echo "true";
+            }
+            else{
+                echo "false";
+            }
         }catch(Exception $e){
             return "null";
         }
     }
 
 
+    /**
+     * 
+     */
+    public function cargarImagenProducto($ID)
+    {
+        $this->conectar = Conectar::conectarBD();
+        $valor = $this->superaCantidadImagenes($ID,$this->conectar);
+        if($valor==true) { 
+            return "tope";
+        }
+        else{
+            $valor = $this->uploadImagenServerProducto();
+            $sql = "INSERT INTO meta_producto
+                    (src,producto_id)
+                    values
+                    ('$valor','$ID')";
+            $query = mysqli_query($this->conectar, $sql);
+
+            if($query==true){
+                return "true";
+            }
+            return "false";
+        }    
+    }
+
+
+
+    /**
+     * 
+     */
+    private function superaCantidadImagenes($ID,$conexion)
+    {
+        $sql = "SELECT count(*) from meta_producto where producto_id='$ID'";
+        $query = mysqli_query($conexion,$sql);
+        $vector = mysqli_fetch_array($query);
+        
+        if($query==true){
+            if($vector[0]<6){
+                return false;
+            }
+            return true;
+        }
+        return false;
+    
+    }
+
+
+    /**
+     * Permite subir una imagen dentro de la BD
+     */
+    private function uploadImagenServerProducto()
+	{
+        $nombre_img = $_FILES['imagenProducto']['name'];
+        $tipo = $_FILES['imagenProducto']['type'];
+        $tamano = $_FILES['imagenProducto']['size'];
+            
+        //Si existe imagen y tiene un tamaño correcto
+            if (($nombre_img == !NULL) && ($_FILES['imagenProducto']['size'] <= 20000000)) 
+            {
+                //indicamos los formatos que permitimos subir a nuestro servidor
+                if (($_FILES["imagenProducto"]["type"] == "image/gif")
+                || ($_FILES["imagenProducto"]["type"] == "image/jpeg")
+                || ($_FILES["imagenProducto"]["type"] == "image/jpg")
+                || ($_FILES["imagenProducto"]["type"] == "image/png"))
+                {
+                    // Ruta donde se guardarán las imágenes que subamos
+                    $directorio = $_SERVER['DOCUMENT_ROOT'].'/modelo/ERP-Studio/img/upload_producto/';
+                    // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
+                    move_uploaded_file($_FILES['imagenProducto']['tmp_name'],$directorio.$nombre_img);
+                    return $directorio.$nombre_img;
+                    // header('location:../views/miperfil.php');
+                } 
+                else 
+                {
+                        //si no cumple con el formato
+                        return "null";
+                }
+            } 
+            else 
+            {
+                    //si existe la variable pero se pasa del tamaño permitido
+                    if($nombre_img == !NULL) return "imgegrande"; 
+            }
+		}
 
 
 }

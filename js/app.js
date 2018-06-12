@@ -1042,7 +1042,7 @@ $(document).ready(function(){
                         limpiarLogin()
                     }
                     else if(data=='contador'){
-                        window.location.href ="";
+                        window.location.href ="../ERP-Studio/views/panel_contador.php";
                         limpiarLogin()
                     }
                     else if(data=='noregistrado'){
@@ -1349,5 +1349,134 @@ $(document).ready(function(){
     })
 
     
+    $('#formEditarProductoPage').validate({
+        rules:{
+            nombreproductoEditar : {
+                required:true
+
+            },
+            codigoproductoEditar : {
+                required:true, 
+                number:true
+            },
+            colorIDproductoEditar: {
+                required:true,
+                valueNotEquals:'...'
+            },
+            telaIDproductoEditar:{
+                required:true,
+                valueNotEquals: '...'
+            },
+            proveedorIDProductoEditar:{
+                required: true,
+                valueNotEquals: '...'
+            },
+            productoIDEditar:{
+                required: true,
+                valueNotEquals:'...'
+            },
+            categoriaIDproductoEditar:{
+                required:true,
+                valueNotEquals: '...'
+            },
+            precioproductoEditar:{
+                required: true,
+                number:true
+            },
+            tallaproductoEditar:{
+                required: true
+            }
+        },
+        messages: {
+            nombreproductoEditar: 'Ingrese nombre del producto',
+            codigoproductoEditar: 'Ingrese codigo de referencia del producto',
+            colorIDproductoEditar:  'Seleccione un Color',
+            telaIDproductoEditar : 'Seleccione un tipo de tela',
+            proveedorIDProductoEditar: 'Seleccione un proveedor',
+            productoIDEditar: 'Seleccione un tipo de producto',
+            categoriaIDproductoEditar: 'Seleccione una categoria',
+            precioproductoEditar: 'Digite el precio del producto',
+            tallaproductoEditar: 'Digite la talla del producto'
+        },
+        submitHandler : function(form){
+
+            
+            var ideProductoEditarVal = $('#formEditarProductoPage').find('#ideProductoEditarVal').val()
+            var nombreproductoEditar = document.getElementById('nombreproductoEditar').value
+            var codigoproductoEditar = document.getElementById('codigoproductoEditar').value
+            var colorIDproductoEditar = document.getElementById('colorIDproductoEditar').value
+            var telaIDproductoEditar = document.getElementById('telaIDproductoEditar').value
+            var proveedorIDProductoEditar = document.getElementById('proveedorIDProductoEditar').value
+            var productoIDEditar = document.getElementById('productoIDEditar').value
+            var categoriaIDproductoEditar = document.getElementById('categoriaIDproductoEditar').value
+            var precioproductoEditar = document.getElementById('precioproductoEditar').value
+            var tallaproductoEditar = document.getElementById('tallaproductoEditar').value
+
+            
+
+            $.ajax({
+                url: "../archivos/AjaxController.php",
+                method:'POST',
+                data:{ideProductoEditarVal:ideProductoEditarVal,
+                    nombreproductoEditar:nombreproductoEditar,
+                    codigoproductoEditar:codigoproductoEditar,
+                    colorIDproductoEditar:colorIDproductoEditar,
+                    telaIDproductoEditar:telaIDproductoEditar,
+                    proveedorIDProductoEditar:proveedorIDProductoEditar,
+                    productoIDEditar:productoIDEditar,
+                    categoriaIDproductoEditar:categoriaIDproductoEditar,
+                    precioproductoEditar:precioproductoEditar,
+                    tallaproductoEditar:tallaproductoEditar,
+                    editar:16},
+             success : function(data)
+                 {
+                    if(data=="true"){
+                        successModal('Actualizacion Exitosa','Se actualizo de manera correcta el producto')
+                    }
+                    else if(data=="false"){
+                        errorModal('Error','No se actualizo de manera correcta el producto')
+                    }
+                    else{
+                        errorModal('Error','No se actualizo de manera correcta el producto')
+                    }
+                 }
+            });
+        }
+    });
+    
+
+    $('#formImagenProducto').submit(function(event){
+        
+        event.preventDefault();
+        var fileInput = document.getElementById('imagenProducto'); 
+        var id = document.getElementById('id_pro').value; 
+        var file = fileInput.files[0];
+        var envio = new FormData();
+         envio.append('imagenProducto',file);
+         envio.append('editar',17);
+         envio.append('id',id)
+ 
+        $.ajax({
+            url:'../archivos/AjaxController.php',
+            method:'post',
+            contentType: false,
+            data:envio,
+            processData: false,
+            cache: false,
+            success : function(data){
+                console.log(data);
+                
+             if(data=='true'){
+                 successModal('Registro Exitoso','Se registro la imagen de manera correcta')
+             }else if(data=='tope'){
+                successModal('Cantidad Maxima','Se supero la cantidad maxima de imagenes por producto')
+             }else if(data=='false'){
+                successModal('Registro Errado','No se registro de manera correcta la imagen')
+             }else{
+                 successModal('Error','Ocurrio un error, verifica el formato de la imagen y el tamaño')
+             }
+            }        
+        })
+     })
     
 })

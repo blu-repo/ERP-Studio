@@ -59,6 +59,33 @@ if(isset($_POST) && $_POST['editar']==15){
   editarContactoProveedor();  
 }
 
+if(isset($_POST) && $_POST['editar']==16){
+  editarProductoAdmin();  
+}
+if(isset($_POST) && $_POST['editar']==17){
+  uploadImagenProducto();  
+}
+
+  function uploadImagenProducto()
+  {
+    $producto = new productoController();
+    $producto->cargarImagenProductoController($_POST['id']);
+  }
+
+  function editarProductoAdmin()
+  {
+    $producto = new productoController();
+    $producto->setProductoAdminController($_POST['ideProductoEditarVal'],
+    $_POST['nombreproductoEditar'],
+    $_POST['codigoproductoEditar'],
+    $_POST['colorIDproductoEditar'],
+    $_POST['telaIDproductoEditar'],
+    $_POST['proveedorIDProductoEditar'],
+    $_POST['productoIDEditar'],
+    $_POST['categoriaIDproductoEditar'],
+    $_POST['tallaproductoEditar'],
+    $_POST['precioproductoEditar']);
+  }
 
   function editarContactoProveedor()
   {

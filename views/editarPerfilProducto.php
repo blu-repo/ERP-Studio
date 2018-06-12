@@ -61,7 +61,7 @@
  <?php $menu = $empleadoController->getMenu($_SESSION['id'],$_SESSION['rol']);  ?>
 
  <!-- What is -->
- <div id="whatis" class="content-section-b" >
+ <div id="whatis" class="content-section-b">
 
 
  <?php require_once('formularios/formularios.php'); ?>
@@ -77,7 +77,6 @@
      <div id="admin" class="container">
 
       <div class="row">
-        <?php $empleado = new empleadoController(); ?>
         <?php require_once('formularios/edicionProducto.php'); ?>
       </div><!-- /.row -->
 
