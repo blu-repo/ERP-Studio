@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2018 a las 20:35:53
+-- Tiempo de generación: 15-06-2018 a las 10:05:50
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -40,9 +40,8 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `fecharegistro`) VALUES
-(1, 'blusas', 'Categoria para blusas ', '2018-06-02'),
-(2, 'camisas', 'Camisas para todos ', '2018-06-02'),
-(3, 'categoria nueva', 'Categoria para articulos nuevos', '2018-06-11');
+(1, 'camisas', 'Camisas para caballeros', '2018-06-13'),
+(2, 'zapatos', 'Zapatos unixes', '2018-06-14');
 
 -- --------------------------------------------------------
 
@@ -66,9 +65,8 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `nombres`, `apellidos`, `documento`, `direccion`, `telefono`, `correo`, `tipocliente`) VALUES
-(1, 'Julian  Andres ', 'Medina', '021321658', 'Av 5 # 3-212 ', '31265497878', 'andres@email.com', 2),
-(2, 'Carlos Julio', 'Torres', '333698', 'Calle 6d # 88 - 22', '123546498', 'carlos@email.com', 2),
-(3, 'Julian  Daniel', 'Vera', '3216565465', 'Av 33', '312165464', 'daniel@email.com', 2);
+(1, 'Jhonatan Jose', 'Mede', '109377899', 'Barrio 2a # 3 - 29', '312131321', 'jhon@gmail.com', 2),
+(2, 'Cofee  Daniel', 'Manriqu', '103636498', 'AV 12 ', '3235464', 'cofee@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -78,22 +76,12 @@ INSERT INTO `cliente` (`id`, `nombres`, `apellidos`, `documento`, `direccion`, `
 
 CREATE TABLE `compra` (
   `id` int(11) NOT NULL,
-  `referencia` varchar(45) NOT NULL,
+  `preciototal` int(11) NOT NULL,
   `fecharegistro` date NOT NULL,
   `cliente` int(11) NOT NULL,
   `empleado` int(11) NOT NULL,
-  `modopago` int(11) NOT NULL,
-  `detalle` int(11) NOT NULL
+  `modopago` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `compra`
---
-
-INSERT INTO `compra` (`id`, `referencia`, `fecharegistro`, `cliente`, `empleado`, `modopago`, `detalle`) VALUES
-(1, '123456', '2018-06-02', 2, 1, 1, 1),
-(2, '123456', '2018-06-02', 1, 1, 3, 1),
-(3, '123456', '2018-06-08', 1, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -111,14 +99,6 @@ CREATE TABLE `contactoproveedor` (
   `proveedor_id` int(11) NOT NULL,
   `fecharegistro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `contactoproveedor`
---
-
-INSERT INTO `contactoproveedor` (`id`, `nombre`, `documento`, `direccion`, `telefono`, `correo`, `proveedor_id`, `fecharegistro`) VALUES
-(1, 'Julio IglesiasVargas', '1093445789', 'Av 4  # 55 - 15', '3121554897', 'julio@gmail.com', 1, '2018-06-10'),
-(4, 'Andres Vega', '1093773', 'Cll 212 ', '3121554897', 'andres@gmail.com.co', 2, '2018-06-10');
 
 -- --------------------------------------------------------
 
@@ -146,19 +126,9 @@ CREATE TABLE `detalle` (
   `precio` float NOT NULL,
   `fecharegistro` date NOT NULL,
   `talla` varchar(10) DEFAULT NULL,
-  `producto_id` int(11) NOT NULL
+  `producto_id` int(11) NOT NULL,
+  `compra_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `detalle`
---
-
-INSERT INTO `detalle` (`id`, `cantidad`, `precio`, `fecharegistro`, `talla`, `producto_id`) VALUES
-(1, 37, 12000, '2018-06-02', 'M', 1),
-(2, 45, 40000, '2018-06-11', 'N', 5),
-(3, 58, 200000, '2018-06-11', 'Q', 7),
-(4, 96, 56000, '2018-06-11', 'L', 10),
-(5, 96, 56000, '2018-06-11', 'L', 10);
 
 -- --------------------------------------------------------
 
@@ -190,9 +160,11 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `nombres`, `apellidos`, `lugarnacimiento`, `fechanacimiento`, `tipodocumento`, `documento`, `expediciondocumento`, `nacionalidad`, `direccion`, `correo`, `usuario`, `eps`, `pension`, `fecharegistro`, `estado`) VALUES
-(1, 'Nelson  Andres ', 'Sepulveda Vega', 'Cucuta', '2003-03-06', 1, '1095981919', 'Cucuta', 'colombiana', 'Av 6a # 44 -3r', 'andres@email.com', 1, NULL, NULL, '2018-06-02', 0),
-(2, 'Wilson Alexander', 'Rodriguez', 'Cucuta', '0000-00-00', 1, '1094555111', 'Cucuta', 'colombiana', 'Calle 0 # 12 - 78', 'wilson@email.com', 2, NULL, NULL, '2018-06-08', 0),
-(3, 'Julio Duban', 'Danes', 'Cucuta', '2000-03-08', 1, '1093773094', 'Cucuta', 'colombiana', 'Calle 34 # 44 - 6', 'duban@gmail.com', 3, NULL, NULL, '2018-06-11', 0);
+(4, 'Nelson  Andres ', 'Sepulveda Vega', 'Cucuta', '2003-03-06', 1, '1095981919', 'Cucuta', 'colombiana', 'Av 6a # 44 -3r', 'andres@email.com', 1, NULL, NULL, '2018-06-02', 0),
+(5, 'Wilson Alexander', 'Rodriguez', 'Cucuta', '0000-00-00', 1, '1094555111', 'Cucuta', 'colombiana', 'Calle 0 # 12 - 78', 'wilson@email.com', 2, NULL, NULL, '2018-06-08', 0),
+(6, 'Julio Duban', 'Danes', 'Cucuta', '2000-03-08', 1, '1093773094', 'Cucuta', 'colombiana', 'Calle 34 # 44 - 6', 'duban@gmail.com', 3, NULL, NULL, '2018-06-11', 0),
+(7, 'Jhon Marlon', 'Marlon', 'OcaÃ±a', '2011-02-08', 1, '789544564654', 'Los patios', 'rusa', 'Calle 12 # 4 -3 ', 'marlon@gmail.com', 4, NULL, NULL, '2018-06-15', 0),
+(8, 'Luis Anatano', 'Antnio', 'Cucuta', '2009-03-11', 1, '7984654', 'Cucuta', 'venezolana', 'Av 33 El llano', 'luis@empresa.com', 5, NULL, NULL, '2018-06-15', 0);
 
 -- --------------------------------------------------------
 
@@ -275,8 +247,7 @@ CREATE TABLE `meta_empleado` (
 --
 
 INSERT INTO `meta_empleado` (`id`, `src`, `default`, `empleado_id`) VALUES
-(18, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload/awad.jpg', NULL, 1),
-(19, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload/Calendario.png', NULL, 2);
+(2, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload/awad.jpg', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -296,12 +267,7 @@ CREATE TABLE `meta_producto` (
 --
 
 INSERT INTO `meta_producto` (`id`, `src`, `default`, `producto_id`) VALUES
-(35, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload_producto/contacto.png', NULL, 1),
-(36, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload_producto/grupo.png', NULL, 1),
-(37, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload_producto/iniciosesion.png', NULL, 1),
-(38, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload_producto/recuperasPas.png', NULL, 1),
-(39, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload_producto/index empleado.png', NULL, 1),
-(40, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload_producto/reporteVenta.png', NULL, 1);
+(1, 'C:/xampp/htdocs/modelo/ERP-Studio/img/upload_producto/1353.png', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -357,18 +323,17 @@ CREATE TABLE `producto` (
   `proveedor` int(11) NOT NULL,
   `precio` float NOT NULL,
   `talla` varchar(10) NOT NULL,
-  `stock` int(11) DEFAULT NULL
+  `stock` int(11) DEFAULT NULL,
+  `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id`, `nombre`, `referencia`, `color`, `fecharegistro`, `tipomaterial`, `tipoarticulo`, `categoria`, `proveedor`, `precio`, `talla`, `stock`) VALUES
-(1, 'camisetas jean', '123456', 'Verde', '2018-06-02', 3, 1, 2, 1, 12000, 'M', 1),
-(5, 'Pantalanes', '787546565', 'Verde', '2018-06-11', 1, 1, 1, 1, 40000, 'N', 1),
-(7, 'Faldas', '85858', 'Verde', '2018-06-11', 1, 1, 2, 2, 200000, 'Q', 1),
-(10, 'Manga sencilla', '9696', 'Azul', '2018-06-11', 1, 1, 2, 1, 56000, 'L', 1);
+INSERT INTO `producto` (`id`, `nombre`, `referencia`, `color`, `fecharegistro`, `tipomaterial`, `tipoarticulo`, `categoria`, `proveedor`, `precio`, `talla`, `stock`, `cantidad`) VALUES
+(1, 'Zaptos', '32465', 'Rosa', '2018-06-14', 1, 1, 2, 1, 35000, '33', 1, 49),
+(2, 'Calzado', '875465', 'Rojo', '2018-06-14', 3, 1, 2, 2, 35000, '40', 1, 49);
 
 -- --------------------------------------------------------
 
@@ -392,7 +357,8 @@ CREATE TABLE `proveedor` (
 
 INSERT INTO `proveedor` (`id`, `empresa`, `direccion`, `telefono`, `correoempresa`, `nit`, `fecharegistro`) VALUES
 (1, 'Provee SAS', 'Calle 12 # 11 - 11 ', '121459879', 'empresa@email.com', '987465231', '2018-06-02'),
-(2, 'Empresa S.A.S', 'Av 4 # 22 - 989 ', '32351648498', 'empresa@gmail.com', '123889746', '2018-06-10');
+(2, 'Empresa S.A.S', 'Av 4 # 22 - 989 ', '32351648498', 'empresa@gmail.com', '123889746', '2018-06-10'),
+(3, 'Proveedor 2.0', 'Calle 12 # 11 - 11 ', '321518498', 'provee@rovee.com', '7895621516', '2018-06-15');
 
 -- --------------------------------------------------------
 
@@ -494,7 +460,9 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id`, `rol`, `user`, `pass`, `estado`, `fecharegistro`) VALUES
 (1, 'vendedor', 'andres@email.com', '1095981919', 0, '2018-06-02'),
 (2, 'admin', 'wilson@email.com', '1094555111', 0, '2018-06-08'),
-(3, 'contador', 'duban@gmail.com', '1093773094', 0, '2018-06-11');
+(3, 'contador', 'duban@gmail.com', '1093773094', 0, '2018-06-11'),
+(4, 'contador', 'marlon@gmail.com', '789544564654', 0, '2018-06-15'),
+(5, 'vendedor', 'luis@empresa.com', '7984654', 0, '2018-06-15');
 
 --
 -- Índices para tablas volcadas
@@ -517,11 +485,10 @@ ALTER TABLE `cliente`
 -- Indices de la tabla `compra`
 --
 ALTER TABLE `compra`
-  ADD PRIMARY KEY (`id`,`cliente`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_compra_cliente1_idx` (`cliente`),
   ADD KEY `fk_compra_empleado1_idx` (`empleado`),
-  ADD KEY `fk_compra_modopago1_idx` (`modopago`),
-  ADD KEY `fk_compra_detalle1_idx` (`detalle`);
+  ADD KEY `fk_compra_modopago1_idx` (`modopago`);
 
 --
 -- Indices de la tabla `contactoproveedor`
@@ -543,7 +510,8 @@ ALTER TABLE `contrato`
 --
 ALTER TABLE `detalle`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_detalle_producto1_idx` (`producto_id`);
+  ADD KEY `fk_detalle_producto1_idx` (`producto_id`),
+  ADD KEY `fk_detalle_compra1_idx` (`compra_id`);
 
 --
 -- Indices de la tabla `empleado`
@@ -661,25 +629,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `contactoproveedor`
 --
 ALTER TABLE `contactoproveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `contrato`
@@ -691,13 +659,13 @@ ALTER TABLE `contrato`
 -- AUTO_INCREMENT de la tabla `detalle`
 --
 ALTER TABLE `detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `eps`
@@ -727,13 +695,13 @@ ALTER TABLE `experiencia`
 -- AUTO_INCREMENT de la tabla `meta_empleado`
 --
 ALTER TABLE `meta_empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `meta_producto`
 --
 ALTER TABLE `meta_producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `modopago`
@@ -751,13 +719,13 @@ ALTER TABLE `pension`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipoarticulo`
@@ -787,7 +755,7 @@ ALTER TABLE `tipomaterial`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -804,7 +772,6 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `compra`
   ADD CONSTRAINT `fk_compra_cliente1` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_compra_detalle1` FOREIGN KEY (`detalle`) REFERENCES `detalle` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_compra_empleado1` FOREIGN KEY (`empleado`) REFERENCES `empleado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_compra_modopago1` FOREIGN KEY (`modopago`) REFERENCES `modopago` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -825,6 +792,7 @@ ALTER TABLE `contrato`
 -- Filtros para la tabla `detalle`
 --
 ALTER TABLE `detalle`
+  ADD CONSTRAINT `fk_detalle_compra1` FOREIGN KEY (`compra_id`) REFERENCES `compra` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_detalle_producto1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
