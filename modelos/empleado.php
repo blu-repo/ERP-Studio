@@ -385,7 +385,6 @@ if($query==true){
 				$imagen = $resultado->fetch_all(MYSQLI_ASSOC);	
 
 				
-				// var_dump($imagen);
 				$stam->close();
 			 	return $imagen;
 
@@ -532,10 +531,10 @@ if($query==true){
 								
 								<li class="menuItem"><a href="#whatis">Registros</a>
 									 <ul id="menuRegistro" class="submenu" style="display:none;">
-										 	<li id="regClientelink"><a href="">Registro Cliente</a> </li>
-											<li id="regEmpleadolink"><a href="">Registro empleado</a> </li>
-											<li id="regProveedorlink"><a href="">Registro proveedor</a> </li>
-										 	<li id="regProductolink"><a href="">Registro producto</a> </li>	
+										 	<li id=""><a href="registrarCliente.php">Registro Cliente</a> </li>
+											<li id=""><a href="registrarEmpleado.php">Registro empleado</a> </li>
+											<li id=""><a href="registrarProveedor.php">Registro proveedor</a> </li>
+										 	<li id=""><a href="registrarProducto.php">Registro producto</a> </li>	
 									</ul>	
 								</li>
 			
@@ -630,7 +629,7 @@ if($query==true){
 									</li>
 									
 									<li class="menuItem"><a href="#contact">Usuario!</a>
-										<ul id="menuUsuario" style="display:none;">
+										<ul id="menuUsuario" class="submenu" style="display:none;">
 											<li id="email">'. $_SESSION['email'] . '</li>
 											<form action="" method="post">
 												<input type="hidden" id="idEmpleadoLogin" name="idEmpleadoLogin" value="'. $_SESSION['id'].' ">

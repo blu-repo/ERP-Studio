@@ -19,9 +19,19 @@ class producto {
     private $proveedor;
 
     /**
-     * Permite insertar un producto dentro de la BD
+     * Permite insertar un producto dentro de la BD - Modificar Eliminar Modal de detalle
      */
-    public function insertarProducto($nombre , $codigo , $color, $tela, $proveedor, $tipoproducto, $categoria, $talla, $cantidad, $precio)
+    public function insertarProducto(
+    $nombre , 
+    $codigo , 
+    $color, 
+    $tela, 
+    $proveedor, 
+    $tipoproducto, 
+    $categoria, 
+    $talla, 
+    $precio, 
+    $cantidad)
     {
         $this->nombre = $nombre;
         $this->referencia = $codigo;
@@ -31,7 +41,7 @@ class producto {
         $this->tipoArticulo = $tipoproducto;
         $this->precio = $precio;
         $this->talla = $talla;
-        $this->cantidad = $cantidad;
+        $this->cantidad = (int)$cantidad-1;
         $this->categoria=$categoria;
         $this->proveedor = $proveedor;
 
@@ -39,28 +49,18 @@ class producto {
         
          $sql_producto = "INSERT INTO
           producto 
-          (nombre,referencia,color,fecharegistro,tipomaterial,tipoarticulo,categoria,proveedor,precio,talla,stock)
+          (nombre,referencia,color,fecharegistro,tipomaterial,tipoarticulo,categoria,proveedor,precio,talla,stock,cantidad)
           values
-          ('$this->nombre','$this->referencia','$this->color',NOW(),'$this->tipoMaterial','$this->tipoArticulo','$this->categoria','$this->proveedor','$this->precio','$this->talla',1)";   
+          ('$this->nombre','$this->referencia',
+          '$this->color',NOW(),'$this->tipoMaterial',
+          '$this->tipoArticulo','$this->categoria',
+          '$this->proveedor','$this->precio',
+          '$this->talla',1,'$this->cantidad')";   
 
          $query_producto = mysqli_query($this->conectar,$sql_producto);
 
          if($query_producto==true){
-            $sql2 = "SELECT producto.id from producto where producto.referencia='$this->referencia'";
-            $query_ref = mysqli_query($this->conectar,$sql2);
-            if($query_ref==true){
-                $vector = mysqli_fetch_array($query_ref);
-                $ID = $vector[0];
-
-                $sql_detalles = "INSERT INTO detalle 
-                                (cantidad,precio,fecharegistro,talla,producto_id)
-                                value ('$this->cantidad','$this->precio',NOW(),'$this->talla','$ID')";
-                                
-                $query_detalles = mysqli_query($this->conectar,$sql_detalles);
-                if($query_detalles==true){
-                    echo 'true';
-                }                 
-            }
+            echo "true";
          }   
          else{
             echo mysqli_error($this->conectar);
@@ -139,13 +139,12 @@ class producto {
             $sql = "SELECT producto.nombre as nombre, producto.referencia as referencia, tipomaterial.id as idmaterial,
                     tipoarticulo.id as idarticulo, tipoarticulo.nombre as desarticulo, tipomaterial.nombre as desmaterial, 
                     proveedor.empresa as empresa, proveedor.id as idproveedor, categoria.nombre as descategoria,categoria.id as idcategoria,
-                    detalle.precio as precio,detalle.talla as talla ,detalle.cantidad as cantidad
-                    from producto 
+                    producto.talla as talla, producto.precio as precio
+                    from producto
                     inner join proveedor on proveedor.id=producto.proveedor
                     inner join categoria on producto.categoria=categoria.id
                     inner join tipoarticulo on tipoarticulo.id=producto.tipoarticulo
                     inner join tipomaterial on tipomaterial.id=producto.tipomaterial
-                    inner join detalle on detalle.producto_id=producto.id
                     where producto.id=?";
 
             $stm = $this->conectar->prepare($sql);

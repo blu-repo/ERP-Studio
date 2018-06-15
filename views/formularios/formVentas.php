@@ -28,7 +28,7 @@
    
     <div class="form-group col-md-6">
       <label for="documentoEmp">Documento</label>
-      <input id="documentoEmpleadoVenta" name="documentoEmpleadoVenta" placeholder="Documento del empleado" class="form-control" />
+      <input id="documentoEmpleadoVenta" name="documentoEmpleadoVenta" placeholder="Documento del Cliente" class="form-control" />
     </div>  
 
   </div>

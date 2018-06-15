@@ -15,7 +15,7 @@ class Venta{
 
   /**
    * @$ID
-   * Permite registrar una venta dentro de la BD
+   * Permite registrar una venta dentro de la BD - Modificar
    */
   public function registrarVenta($ID , $referencia , $documento , $modopago)
   {

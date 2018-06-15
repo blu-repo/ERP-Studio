@@ -90,7 +90,8 @@ $(document).ready(function(){
 
             },
             codigoproducto : {
-                required:true , number:true
+                required:true ,
+                 number:true
             },
             colorIDproducto: {
                 required:true,
@@ -118,14 +119,9 @@ $(document).ready(function(){
             tallaproducto:{
                 required:true
             },
-            cantidadProductoM:{
-                required: true
-            },
-            precioProductoM:{
-                required: true
-            },
-            tallaProductoM:{
-                required: true
+            cantidadProducto:{
+                required:true,
+                number:true
             }
         },
         messages: {
@@ -137,9 +133,8 @@ $(document).ready(function(){
             productoID: 'Seleccione un tipo de producto',
             categoriaIDproducto: 'Seleccione una categoria',
             tallaproducto: 'Digite una talla para registrar',
-            cantidadProductoM: 'Digite la cantidad del producto',
-            precioProductoM: 'Digite el precio del producto',
-            tallaProductoM: 'Digite la talla del producto'
+            precioproducto:'Digite el precio del producto',
+            cantidadProducto:'Digite la cantidad del producto'
         },
         submitHandler : function(form){
 
@@ -156,9 +151,6 @@ $(document).ready(function(){
                     if(data=="true"){
                         successModal('Registro Exitoso','El producto se Registro correctamente!');
                         limpiarProducto();
-                    }
-                    else if(data=='nodetalles'){
-                        errorModal('Error','Debes registrar los detalles del producto')
                     }
                     else{
                         errorModal('Error','Se presento un Error al momento de registrar')
@@ -177,9 +169,8 @@ $(document).ready(function(){
 				$('#productoID').val('')
 				$('#categoriaIDproducto').val('')
 				$('#tallaproducto').val('')
-				$('#cantidadProductoM').val('')
-				$('#precioProductoM').val('')
-				$('#tallaProductoM').val('')
+				$('#cantidadProducto').val('')
+				$('#precioproducto').val('')
 		}
 
 

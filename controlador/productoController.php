@@ -22,18 +22,21 @@ class productoController {
         $productoID = $_POST['productoID'];
         $categoriaIDproducto = $_POST['categoriaIDproducto'];
         $tallaproducto = $_POST['tallaproducto'];
-        $cantidadProductoM = $_POST['cantidadProductoM'];
-        $precioProductoM = $_POST['precioProductoM'];
-        $tallaProductoM = $_POST['tallaProductoM'];
+        $precioProductoM = $_POST['precioproducto'];
+        $cantidad = $_POST['cantidadProducto'];
 
-        if(empty($cantidadProductoM) || $cantidadProductoM=='' || empty($tallaProductoM) || $tallaProductoM=='' || empty($precioProductoM) || $precioProductoM==''){
-            echo "nodetalles";
-            return;
-        }else{
             $this->producto = new producto();
-            $this->producto->insertarProducto($nombre,$codigo,$colorIDproducto,$telaIDproducto,$proveedorIDProducto,$telaIDproducto,$categoriaIDproducto,$tallaproducto,$cantidadProductoM,$precioProductoM);
-        }
-        
+            $this->producto->insertarProducto(
+                $nombre,
+                $codigo,
+                $colorIDproducto,
+                $telaIDproducto,
+                $proveedorIDProducto,
+                $productoID,
+                $categoriaIDproducto,
+                $tallaproducto,
+                $precioProductoM,
+                $cantidad);
     }
 
 
@@ -79,7 +82,6 @@ class productoController {
         }else if(strcmp($dato,'false')==0){
             echo "false";
         }
-
     }
 
 

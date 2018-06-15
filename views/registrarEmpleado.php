@@ -1,16 +1,15 @@
 <?php 
-	session_start();
-	error_reporting(0);
+			 session_start();
+			 error_reporting(0);
 
-	$ID = $_SESSION['id'];
-	if($ID==null || $ID=''){	
-		header('location:../404.php');
-		die();
-	}
-	
-	require_once('../controlador/empleadoController.php');
-	$con = new empleadoController();
-	
+			 $ID = $_SESSION['id'];
+			 if($ID==null || $ID=''){
+				 header('location:../404.php');
+				 die();
+			 }
+			 require_once('../controlador/empleadoController.php');
+			 $empleadoController = new empleadoController
+			 ();
 ?>
  <!DOCTYPE html>
  <html> 
@@ -20,7 +19,7 @@
     <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
     <meta name="author" content="">
 
-	<title>Studio Princess</title>
+	<title>Studio Princess		</title>
 	
 
     <!-- Bootstrap core CSS -->
@@ -56,85 +55,35 @@
 	</div>
 	
 	
-<?php require_once('formularios/formularios.php'); ?>
-<?php require_once('tablas/tablaProducto.php'); ?>
-<?php require_once('tablas/tablaCliente.php'); ?>
-<?php require_once('tablas/tablaEmpleado.php'); ?>
-<?php require_once('modal/validarCC.php'); ?>
-<?php require_once('modal/modal_success.php'); ?>
-<?php require_once('modal/modal_error.php'); ?>
-<?php $controller = new empleadoController(); ?>
-<?php $perfil = $controller->getEmpleadoByIdController($_SESSION['id']); ?>
-<?php $img = $controller->getImagenEmpleadoController($_SESSION['id']); ?>
-	
-<?php $con->getMenu($ID,$_SESSION['rol']); ?>
-	<!-- NavBar-->
 
+	<?php $empleadoController->getMenu($_SESSION['id'],$_SESSION['rol']); ?>
 
 	<!-- What is -->
 	<div id="whatis" class="content-section-b">
 
+		
 	
+	<?php require_once('tablas/tablaCliente.php'); ?>
+	<?php require_once('tablas/tablaEmpleado.php'); ?>
+	<?php require_once('tablas/tablaProducto.php'); ?>
+	<?php require_once('modalEditar/modalEditarCliente.php'); ?>
+	<?php require_once('modalEditar/modalEditarEmpleado.php'); ?>
+	<?php require_once('modalEditar/modalEditarProducto.php'); ?>
+	<?php require_once('modalEliminar/modalEliminarCliente.php'); ?>
+
+	<?php require_once('modal/modal_success.php'); ?>
+	<?php require_once('modal/modal_error.php'); ?>
+			
 			<div id="admin" class="container">
-			 
-			<div class="row">
-				<?php $src= $img[0]['src']; ?>
-				<?php $ss; ?>
-				<?php 
-						if(!is_array($img) || empty($img)){
-							$ss = '../img/upload/default.png';
-						}
-						else{
-							$split = explode("/",$src);
-							$ss = '../img/'. $split[count($split)-2].'/'.$split[count($split)-1];
-						}
-				?>
-
-
-				<?php if($perfil!=='null'){ 
-					#var_dump($perfil); ?>
-					<?php $rol = $controller->getRolController($perfil['usuario']); ?>
-				
-			 	<div class="col-sm-4 pull-right wow fadeInRightBig">
-          <img class="img-responsive " src="<?php echo $ss; ?>" alt="">
-        </div>
-				
-				<div class="col-sm-6 wow fadeInLeftBig"  data-animation-delay="200">   
-          <h3 class="section-heading"><?php echo $perfil["nombres"] ." ". $perfil['apellidos']; ?></h3>
-        	<div class="sub-title lead3"><?php echo $perfil['lugarnacimiento'] . " ". $perfil['nacionalidad']; ?><br>  </div>
-          	<p class="lead">
-							Fecha Registro: <?php echo $perfil['fecharegistro']; ?>
-							<br>
-							Tu rol: <?php echo $rol["rol"]; ?><br>
-							Estado: <?php if(strcmp($perfil['estado'],'0')==0) {echo "Activo";}
-								 			else{ echo "Inactivo"; } ?><br>
-							Direccion: <?php echo $perfil['direccion'] ."<br> Email: ".$perfil['correo']; ?><br>
-							Documento: <?php echo $perfil['documento']; ?><br>
-							Fecha de nacimiento: <?php echo $perfil['fechanacimiento']; ?><br>
-          	</p>
-
-						<form enctype="multipart/form-data" method="post" id="formSubir">
-  						<label for="imagen">Imagen:</label>
-  						<input id="imagen" name="imagen" size="30" type="file"/>
-							<input type="hidden" name="id_emp" id="id_emp" value="<?php echo $_SESSION['id'];?>"/>
-  						<input type="submit" class="btn btn-info"value="Cargar imagen de Perfil"/>
-						</form>
-					</div> 
-			</div>
-			<!-- /.row -->
-		<?php }else{
-			echo "<h3 class='section-heading'>No se encontraron Resultados</h3> <br> <h4 class='section-heading'>Contacta con el Administrador</h4> <br>";
-		} ?>
-				
+        <div class="row">
+          <?php require_once('formularios/registroEmpleado.php'); ?>
+        </div><!-- /.row -->
 			<div class="row tworow">
-			
-				
 			</div><!-- /.row -->
-			
-
 		</div>
 	</div>
-
+			
+	
 	<div  class="content-section-c " style="display:none;">
 		<div class="container">
 			<div class="row">
@@ -160,19 +109,23 @@
 						</div>
 				</div>
 			</div>	
-			</div>
+			</div>>
 		</div>
 	</div>	
+	
+	
+	
+	
 	
 	<footer>
       <div class="container">
         <div class="row">
           <div class="col-md-7">
             <h3 class="footer-title">Boutique</h3>
-            <p>Studio Princes <?php echo date('Y');	?>  <br/>
+            <p>Studio Princes 2018  <br/>
               Todos los derechos reservados<br/>
-            </p>
-			
+              <!-- Go to: <a  href="http://andreagalanti.it" target="_blank">andreagalanti.it</a> -->
+            </p>	   
           </div> <!-- /col-xs-7 -->
 
           <div class="col-md-5">
@@ -189,11 +142,10 @@
           </div>
         </div>
       </div>
-  </footer>
+    </footer>
 
 	
 
-  
     <!-- JavaScript -->
     <script src="../js/jquery-1.10.2.js"></script>
     <script src="../js/bootstrap.js"></script>
@@ -222,8 +174,6 @@
 	<script src="../js/jquery.magnific-popup.js"></script> 
 	<script type="text/javascript" src="../js/jquery.validate.js"></script> 
 	<script src="../js/app.js"></script> 
-	<!-- <script type="text/javascript" src="../js/imgSubmit.js"></script>] -->
-
 </body>
 
 </html>
