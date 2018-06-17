@@ -600,19 +600,12 @@ if($query==true){
 									
 									<li class="menuItem"><a href="#whatis">Ventas</a>
 										 <ul id="menuRegistro" class="submenu" style="display:none;">
-											 <li id="regClientelink"><a href="">Registro Cliente</a> </li>
+											 <li id=""><a href="registrarCliente.php">Registro Cliente</a> </li>
 											<li id=""><a href="panel_ventas.php">Registro Venta</a> </li>
 											<li id=""><a href="mis_ventas.php">Mis ventas</a> </li>
 											<li><a href="" data-toggle="modal" data-target="#modal_validarCC">Validar Cedula</a> </li>
 										</ul>	
 									</li>
-				
-									<!-- <li class="menuItem"><a href="#useit">Clientes</a>
-										<ul id="menuRegistro" class="submenu" style="display:none;">
-											 <li id="tablaClienteLink"><a href="">Listar clientes</a> </li>
-											<li id="regEmpleadolink"><a href="">Registrar clientes</a> </li>	
-										</ul>
-									</li> -->
 				
 									<!-- <li class="menuItem"><a href="#useit">Empleados</a>
 										<ul id="menuRegistro" class="submenu" style="display:none;">
@@ -624,7 +617,7 @@ if($query==true){
 									<li class="menuItem"><a href="#screen">Producto</a>
 										<ul id="menuRegistro" class="submenu" style="display:none;">
 											 <li id="tablaProductolink"><a href="">Listar Producto</a> </li>
-											<li id="regProductolink"><a href="">Registrar productos</a> </li>	
+											<li id=""><a href="registrarProducto.php">Registrar productos</a> </li>	
 										</ul>	
 									</li>
 									

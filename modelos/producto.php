@@ -79,8 +79,7 @@ class producto {
         $query = mysqli_query($this->conectar,$sql);
 
         if($query==true){
-                return $query;
-            
+            return $query;
         }
         else{
             return "null";
@@ -276,7 +275,7 @@ class producto {
                     //si existe la variable pero se pasa del tamaño permitido
                     if($nombre_img == !NULL) return "imgegrande"; 
             }
-		}
-
+        }
+    
 
 }

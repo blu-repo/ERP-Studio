@@ -1088,54 +1088,57 @@ $(document).ready(function(){
         }
     })
 
-    $('#formVentaEmpleado').validate({
-        rules:{
-            referenciaProductoCompra:{
-                required:true
-            },
-            documentoEmpleadoVenta:{
-                required:true,
-                number:true
-            },
-            modopago:{
-                required:true,
-                valueNotEquals:'...'
-            }
-        },
-        messages:{
-            referenciaProductoCompra:'Digite la referencia del producto',
-            documentoEmpleadoVenta:'Digite el documento del Cliente',
-            modopago:'Seleccione un modo de pago'
-        },
-        submitHandler:function(form){
+    
+
+
+    // $('#formVentaEmpleado').validate({
+    //     rules:{
+    //         referenciaProductoCompra:{
+    //             required:true
+    //         },
+    //         documentoEmpleadoVenta:{
+    //             required:true,
+    //             number:true
+    //         },
+    //         modopago:{
+    //             required:true,
+    //             valueNotEquals:'...'
+    //         }
+    //     },
+    //     messages:{
+    //         referenciaProductoCompra:'Digite la referencia del producto',
+    //         documentoEmpleadoVenta:'Digite el documento del Cliente',
+    //         modopago:'Seleccione un modo de pago'
+    //     },
+    //     submitHandler:function(form){
              
-             var referenciaProductoCompra  = document.getElementById('referenciaProductoCompra').value;
-             var documentoEmpleadoVenta  = document.getElementById('documentoEmpleadoVenta').value;
-             var modopago  = document.getElementById('modopago').value;
-             var idEmpleadoVenta  = document.getElementById('idEmpleadoVenta').value;
+    //          var referenciaProductoCompra  = document.getElementById('referenciaProductoCompra').value;
+    //          var documentoEmpleadoVenta  = document.getElementById('documentoEmpleadoVenta').value;
+    //          var modopago  = document.getElementById('modopago').value;
+    //          var idEmpleadoVenta  = document.getElementById('idEmpleadoVenta').value;
             
-            $.ajax({
-                url:'../archivos/AjaxController.php',
-                method:'POST',
-                data:{idEmpleadoVenta:idEmpleadoVenta,
-                    referenciaProductoCompra:referenciaProductoCompra,
-                    documentoEmpleadoVenta:documentoEmpleadoVenta,
-                    modopago:modopago,
-                    editar:10},
-                success:function(data){
+    //         $.ajax({
+    //             url:'../archivos/AjaxController.php',
+    //             method:'POST',
+    //             data:{idEmpleadoVenta:idEmpleadoVenta,
+    //                 referenciaProductoCompra:referenciaProductoCompra,
+    //                 documentoEmpleadoVenta:documentoEmpleadoVenta,
+    //                 modopago:modopago,
+    //                 editar:10},
+    //             success:function(data){
                     
-                    if(data=="exitoso"){
-                        successModal('Registro Exitoso','Se registro correctamente la venta')
-                    }else if(data=="empleadonoregistrado"){
-                        errorModal('Error de venta','El cliente no se encuentra registrado')
-                    }
-                    else{
-                        errorModal('Error','No se concreto la venta de manera correcta')
-                    }
-                }
-            })
-        }
-    })
+    //                 if(data=="exitoso"){
+    //                     successModal('Registro Exitoso','Se registro correctamente la venta')
+    //                 }else if(data=="empleadonoregistrado"){
+    //                     errorModal('Error de venta','El cliente no se encuentra registrado')
+    //                 }
+    //                 else{
+    //                     errorModal('Error','No se concreto la venta de manera correcta')
+    //                 }
+    //             }
+    //         })
+    //     }
+    // })
 
     /**
      * Subir imagen de perfil para el usuario
@@ -1469,5 +1472,4 @@ $(document).ready(function(){
             }        
         })
      })
-    
 })

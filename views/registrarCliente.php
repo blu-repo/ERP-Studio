@@ -71,7 +71,7 @@
 	<?php require_once('modalEditar/modalEditarEmpleado.php'); ?>
 	<?php require_once('modalEditar/modalEditarProducto.php'); ?>
 	<?php require_once('modalEliminar/modalEliminarCliente.php'); ?>
-
+	<?php require_once('modal/validarCC.php'); ?>
 	<?php require_once('modal/modal_success.php'); ?>
 	<?php require_once('modal/modal_error.php'); ?>
 			

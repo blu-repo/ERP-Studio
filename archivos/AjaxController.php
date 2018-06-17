@@ -65,6 +65,9 @@ if(isset($_POST) && $_POST['editar']==16){
 if(isset($_POST) && $_POST['editar']==17){
   uploadImagenProducto();  
 }
+if(isset($_POST) && $_POST['editar']==18){
+  echo "true";
+}
 
   function uploadImagenProducto()
   {

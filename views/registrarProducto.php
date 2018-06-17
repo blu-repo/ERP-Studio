@@ -62,7 +62,7 @@
 	<div id="whatis" class="content-section-b">
 
 		
-	
+	<?php require_once('modal/validarCC.php'); ?>	
 	<?php require_once('tablas/tablaCliente.php'); ?>
 	<?php require_once('tablas/tablaEmpleado.php'); ?>
 	<?php require_once('tablas/tablaProducto.php'); ?>

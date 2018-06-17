@@ -28,15 +28,15 @@
 
    <div class="form-group row">
       <div class="form-group col-md-4">
-      <label for="tipoCliente">Tipo de Cliente</label>
-      <select name="tipoCliente" id="tipoCliente" class="form-control">
-      <?php if($tipoCliente!=0){ ?>
-        <?php foreach ($tipoCliente as $ID => $nombre) { ?>
-          <option value="<?php echo $ID; ?>"><?php echo $nombre; ?></option>   
+        <label for="tipoCliente">Tipo de Cliente</label>
+        <select name="tipoCliente" id="tipoCliente" class="form-control">
+        <?php if($tipoCliente!=0){ ?>
+          <?php foreach ($tipoCliente as $ID => $nombre) { ?>
+            <option value="<?php echo $ID; ?>"><?php echo $nombre; ?></option>   
+          <?php } ?>
         <?php } ?>
-      <?php } ?>
-        <option selected>...</option>
-      </select>
+          <option selected>...</option>
+        </select>
       </div>
       <div class="form-group col-md-4">
         <label for="telefono">Telefono</label>
