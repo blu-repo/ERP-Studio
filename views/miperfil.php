@@ -73,7 +73,7 @@
 
 	<!-- What is -->
 	<div id="whatis" class="content-section-b">
-
+		
 	
 			<div id="admin" class="container">
 			 
@@ -93,6 +93,7 @@
 
 				<?php if($perfil!=='null'){ 
 					#var_dump($perfil); ?>
+					<?php echo $_SESSION['id']; ?>
 					<?php $rol = $controller->getRolController($perfil['usuario']); ?>
 				
 			 	<div class="col-sm-4 pull-right wow fadeInRightBig">

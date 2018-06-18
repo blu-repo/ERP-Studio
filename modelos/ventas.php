@@ -7,7 +7,6 @@ class Venta{
 
   private $conectar;  
   
-
   /**
    * 
    */
@@ -21,22 +20,24 @@ class Venta{
   {
     try{
 
-      $this->conectar = Conectar::conectarBD();
       session_start();
-
+      
       if(!empty($_SESSION['cart'])):
+        $this->conectar = Conectar::conectarBD();
         $productos = $_SESSION['cart'];
         $totalVenta = 0;
         $fecha = date("Y-m-d");
         
+        
         $IDCLiente  =  $this->getClienteDocumento($documento,$this->conectar);
-
+        $IDEmpleado = $this->getIDEmpleado($ID,$this->conectar);
         if(strcmp($IDCLiente,'null')==0){
           return "errorCliente";
         }
-        for ($i=0; $i <count($productos) ; $i++) { 
+        for ($i=0; $i <count($productos) ; $i++){ 
           $totalVenta+= (int) $productos[$i]["total"];
         }
+        echo $ID . '-'. $documento. "-".$modopago."-".$totalVenta . "-" . $IDCLiente . "-".$IDEmpleado;
 
         $prepareVenta = "INSERT INTO compra
                         (preciototal,fecharegistro,cliente,empleado,modopago)
@@ -44,15 +45,16 @@ class Venta{
                         (?,?,?,?,?)";
          
         $tablaCompra = $this->conectar->prepare($prepareVenta);
-        $tablaCompra->bind_param("sssss",$totalVenta,$fecha,$IDCLiente,$ID,$modopago); 
+        $tablaCompra->bind_param("sssss",$totalVenta,$fecha,$IDCLiente,$IDEmpleado,$modopago); 
         $tablaCompra->execute();
 
         if($tablaCompra->affected_rows === 0){
           return "noinserto";
-        }
+        }   
         else{
           $IDcompra = $this->conectar->insert_id;
           $tablaDetalles = $this->insertDetalles($IDcompra,$this->conectar,$productos);
+          
           if(strcmp($tablaDetalles,'si')==0){
             unset($_SESSION['cart']);
             return "inserto";
@@ -71,6 +73,10 @@ class Venta{
     }
   
   }
+
+  /**
+   * Permite insertar los detalles de cada venta
+   */
 
   private function insertDetalles($ID,$conexion,$productos)
   {
@@ -112,6 +118,30 @@ class Venta{
     }
   }
 
+
+  /**
+   * Permite obtener el ID de un empleado apartir de su ID de usuario
+   */
+
+   private function getIDEmpleado($ID,$conexion)
+   {
+      $sql = "SELECT id from empleado
+              where empleado.usuario=?";
+      
+      $stm = $conexion->prepare($sql);
+      $stm->bind_param('s',$ID);
+      $stm->execute();
+      $resultado = $stm->get_result();
+      if($resultado->num_rows===0 || $resultado->num_rows>1)
+        return "null";
+      
+      $vector = $resultado->fetch_assoc();
+      $stm->close();
+      return $vector["id"];
+
+        
+   }
+
   /**
    * Permite btener el ID de un cliente atravez de su documento
    */
@@ -139,21 +169,6 @@ class Venta{
     }
   }
 
-  /**
-   * Permite descontar la cantidad de productos vendidos
-   */
-  private function actualizarDetalleProducto($ID,$conexion)
-  {
-    $sql = "UPDATE detalle
-    set cantidad=cantidad-1
-    where detalle.producto_id='$ID'";
-
-    $query = mysqli_query($conexion,$sql);
-
-    if($query==true){
-      return true;
-    }
-  }
 
   /**
    * @$query
@@ -232,20 +247,29 @@ class Venta{
    */
   public function getVentasEmpleado($ID)
   {
-     $this->conectar = Conectar::conectarBD();
-     
-     $sql="SELECT compra.id , detalle.precio, cliente.nombres, compra.fecharegistro 
-          from empleado inner join compra on empleado.id=compra.empleado 
-          inner join cliente on cliente.id=compra.cliente
-          inner join detalle on detalle.id=compra.detalle
-          inner join producto on detalle.producto_id=producto.id
-          where empleado.id='$ID'";
+    $this->conectar = Conectar::conectarBD();
+    $IDEmpleado  = $this->getIDEmpleado($ID,$this->conectar);
 
-      $query = mysqli_query($this->conectar,$sql);
-      
-      if($query==true){
-        return $query;
-      }
+    $sql = "SELECT compra.id as ID,
+          compra.preciototal as total,
+          compra.fecharegistro as fecha,
+          cliente.nombres as nombre
+          from compra inner join cliente
+          on compra.cliente = cliente.id
+          where compra.empleado=?";
+    
+    $stm = $this->conectar->prepare($sql);
+    $stm->bind_param("s",$IDEmpleado);
+    $stm->execute();
+
+    $resultado = $stm->get_result();
+
+    if($resultado->num_rows===0)
+      return "null";
+    
+    $stm->close();
+    return $resultado;
+     
   }
 
 

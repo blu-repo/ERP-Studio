@@ -279,7 +279,7 @@ if($query==true){
 	{
 		$this->conexion = Conectar::conectarBD();
 
-		$sql = "SELECT usuario.rol , empleado.nombres , empleado.correo , empleado.id
+		$sql = "SELECT usuario.rol , empleado.nombres , empleado.correo , usuario.id
 		from usuario inner join empleado on usuario.id=empleado.usuario
 		where usuario.user='$usuario' and usuario.pass='$pass'";
 

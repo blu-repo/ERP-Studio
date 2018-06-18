@@ -1120,19 +1120,12 @@ $(document).ready(function(){
                     editar:10},
                 success:function(data){
                    console.log(data);
-                    if(data=="nocreada"){
-                        errorModal('Error','No hay articulos agregados a la venta')
-                    }else if(data=="null"){
-                        errorModal('Error','Error al conectar con la Base de datos')
-                    }
-                    // if(data=="exitoso"){
-                    //     successModal('Registro Exitoso','Se registro correctamente la venta')
-                    // }else if(data=="empleadonoregistrado"){
-                    //     errorModal('Error de venta','El cliente no se encuentra registrado')
+                    // if(data=="nocreada"){
+                    //     errorModal('Error','No hay articulos agregados a la venta')
+                    // }else if(data=="null"){
+                    //     errorModal('Error','Error al conectar con la Base de datos')
                     // }
-                    // else{
-                    //     errorModal('Error','No se concreto la venta de manera correcta')
-                    // }
+                    
                 }
             })
         }
