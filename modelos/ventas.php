@@ -15,47 +15,128 @@ class Venta{
 
   /**
    * @$ID
-   * Permite registrar una venta dentro de la BD - Modificar
+   * Permite registrar una venta dentro de la BD 
    */
-  public function registrarVenta($ID , $referencia , $documento , $modopago)
+  public function registrarVenta($ID , $documento , $modopago)
   {
-    $this->conectar = Conectar::conectarBD();
-    
+    try{
 
-    if($this->existeCliente($documento , $this->conectar)==true){
-      
-      $ID_cliente = "SELECT id from cliente where documento='$documento'";
-      $ID_producto = "SELECT id from producto where referencia='$referencia'";
-      $detalle = "SELECT detalle.id,detalle.cantidad from producto inner join detalle on producto.id=detalle.producto_id where producto.referencia='$referencia'";
-  
-      $query_cliente = mysqli_query($this->conectar,$ID_cliente);
-      $query_producto = mysqli_query($this->conectar,$ID_producto);
-      $query_detalle = mysqli_query($this->conectar,$detalle);
-        if($query_cliente==true && $query_producto==true && $query_detalle==true){
-          if(mysqli_num_rows($query_cliente)>=1 && mysqli_num_rows($query_detalle)>=1 && mysqli_num_rows($query_producto)>=1){
-            $cliente_ID = $this->getVector($query_cliente);
-            $producto_ID  = $this->getVector($query_producto);
-            $detalle_ID = $this->getVector($query_detalle);
-            
-              if($cliente_ID!=null && $producto_ID!=null && $detalle_ID!=null){
-                $sql = "INSERT INTO compra 
-                        (referencia,fecharegistro,cliente,empleado,modopago,detalle)
-                        values('$referencia',NOW(),'$cliente_ID','$ID','$modopago','$detalle_ID')";
+      $this->conectar = Conectar::conectarBD();
+      session_start();
 
-                $query_compra = mysqli_query($this->conectar,$sql);
-  
-                if($query_compra==true){
-                  $this->actualizarDetalleProducto($producto_ID,$this->conectar);
-                  echo "exitoso";
-                }
-              }
-           }   
+      if(!empty($_SESSION['cart'])):
+        $productos = $_SESSION['cart'];
+        $totalVenta = 0;
+        $fecha = date("Y-m-d");
+        
+        $IDCLiente  =  $this->getClienteDocumento($documento,$this->conectar);
+
+        if(strcmp($IDCLiente,'null')==0){
+          return "errorCliente";
         }
+        for ($i=0; $i <count($productos) ; $i++) { 
+          $totalVenta+= (int) $productos[$i]["total"];
+        }
+
+        $prepareVenta = "INSERT INTO compra
+                        (preciototal,fecharegistro,cliente,empleado,modopago)
+                        values
+                        (?,?,?,?,?)";
+         
+        $tablaCompra = $this->conectar->prepare($prepareVenta);
+        $tablaCompra->bind_param("sssss",$totalVenta,$fecha,$IDCLiente,$ID,$modopago); 
+        $tablaCompra->execute();
+
+        if($tablaCompra->affected_rows === 0){
+          return "noinserto";
+        }
+        else{
+          $IDcompra = $this->conectar->insert_id;
+          $tablaDetalles = $this->insertDetalles($IDcompra,$this->conectar,$productos);
+          if(strcmp($tablaDetalles,'si')==0){
+            unset($_SESSION['cart']);
+            return "inserto";
+          }
+          else if(strcmp($tablaDetalles,'no')==0){
+            return "nope";
+          }
+        }
+      else:
+        return "nocreada";  
+      endif;  
+      
+    }catch(Exception $e)
+    {
+      return "null";
     }
-    else{
-       echo "empleadonoregistrado";
+  
+  }
+
+  private function insertDetalles($ID,$conexion,$productos)
+  {
+    try{
+
+      $precio;
+      $cantidad;
+      $talla;
+      $id;
+      $cont = 0;
+      // echo count($productos);
+
+      for($i=0; $i<count($productos); $i++){
+
+        $precio = $productos[$i]["precio"];
+        $cantidad = $productos[$i]["cantidadCompra"];
+        $talla = $productos[$i]["talla"];
+        $id = $productos[$i]["id"];
+        $fecha = date('Y-m-d');
+        $cont = $cont +1;
+
+        $sql = "INSERT INTO detalle
+                (cantidad,precio,fecharegistro,talla,producto_id,compra_id)
+                values
+                (?,?,?,?,?,?)";
+        $stm = $conexion->prepare($sql);
+        $stm->bind_param('ssssss',$cantidad,$precio,$fecha,$talla,$id,$ID);
+        $stm->execute();
+      }
+      
+      if($cont==count($productos)){
+        return "si";
+      }else{
+        return "no";
+      }
+
+    }catch(Exception $e){
+      
     }
-    
+  }
+
+  /**
+   * Permite btener el ID de un cliente atravez de su documento
+   */
+
+  private function getClienteDocumento($doc,$conexion)
+  {
+    try{
+      $sql ="SELECT id from cliente where cliente.documento=?";
+      $cliente = $conexion->prepare($sql);
+      $cliente->bind_param("s",$doc);
+      $cliente->execute();
+
+      $resultado = $cliente->get_result();
+
+      if($resultado->num_rows===0)
+        return "null";
+
+      $vector = $resultado->fetch_assoc();
+
+      $cliente->close();
+      return $vector["id"];
+
+    }catch(Exception $e){
+      return "null";
+    }
   }
 
   /**

@@ -21,10 +21,10 @@ class ventasController {
     return $this->venta->getModoPago();
   }
 
-  public function registraVentaController($ID , $referencia , $documento , $modopago)
+  public function registraVentaController($ID ,$documento , $modopago)
   {
     $this->venta = new Venta();
-    $this->venta->registrarVenta($ID , $referencia , $documento , $modopago);
+    echo $this->venta->registrarVenta($ID , $documento , $modopago);
   }
 
   public function getVentasEmpleadoController($ID)

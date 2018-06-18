@@ -153,8 +153,7 @@ if(isset($_POST) && $_POST['editar']==18){
   {
      $venta = new ventasController();
      $venta->registraVentaController($_POST['idEmpleadoVenta'],
-     $_POST['referenciaProductoCompra'],
-     $_POST['documentoEmpleadoVenta'],
+     $_POST['documentoClienteVenta'],
      $_POST['modopago']);
   }
 

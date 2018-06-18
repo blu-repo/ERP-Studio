@@ -15,27 +15,41 @@ if(!empty($_POST)){
               </script>";
     }  
     if(empty($_SESSION['cart'])){
-      $_SESSION['cart'] = array(
+      
+      $_SESSION['cart'] = array (array(
         "id"=>$ref[0],
         "referencia"=>$ref[1],
         "precio"=>$ref[2],
-        "cantidadCompra"=>$ref[3],
-        "total"=> ( (int) $ref[2] * (int) $cantidadSeleccionada)
-      );
+        "cantidadCompra"=>$cantidadSeleccionada,
+        "total"=> ( (int) $ref[2] * (int) $cantidadSeleccionada),
+        "talla"=> $ref[4]
+      ));
+      
     }
     else{
       $compra = $_SESSION['cart'];
-      array_push($compra, array(
-        "id"=>$ref[0],
-        "referencia"=>$ref[1],
-        "precio"=>$ref[2],
-        "cantidadCompra"=>$ref[3],
-        "total"=> ( (int) $ref[2] * (int) $cantidadSeleccionada )
-      ));
-      $_SESSION['cart'] = $compra;
+      $repetido = false;
+      if($repetido){
+        print "<script>alert('Error: Producto Repetido!');</script>";
+      }
+      else{
+          array_push($compra, array(
+          "id"=>$ref[0],
+          "referencia"=>$ref[1],
+          "precio"=>$ref[2],
+          "cantidadCompra"=>$cantidadSeleccionada,
+          "total"=> ( (int) $ref[2] * (int) $cantidadSeleccionada ),
+          "talla"=> $ref[4]
+        ));
+        $_SESSION['cart'] = $compra;
+        
+      }
     }
 
-    var_dump($_SESSION['cart']);
+    print " <script>
+            window.location='../panel_ventas.php';
+            </script>";
+    
     
   endif;  
 }

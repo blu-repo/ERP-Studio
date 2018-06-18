@@ -5,7 +5,7 @@
 <?php $ventaID = $controllerVenta->getUltimaVentaController(); ?>
 <?php $modoPago = $controllerVenta->getModoPagoController(); ?>
 <?php $pro = $controllerProducto->getProductosController(); ?>
-
+<?php #unset($_SESSION['cart']); ?>
 <div class="container">
 
 	<?php if(empty($pro) || $pro===null){  ?>
@@ -31,7 +31,7 @@
 					<label for="nombre1_empleado">Referencia de producto</label>
 					<select name="referenciaProductoVenta" id="referenciaProductoVenta" class="form-control" required>
 							<?php while ($row = mysqli_fetch_row($pro)){ ?>
-								<option value="<?php echo $row[0]."-".$row[2]."-".$row[9]."-".$row[12]; ?>"><?php echo $row[2] . " - ". $row[1] ?></option> 
+								<option value="<?php echo $row[0]."-".$row[2]."-".$row[9]."-".$row[12]."-".$row[10]; ?>"><?php echo $row[2] . " - ". $row[1] ?></option> 
 							<?php } ?>
 						<option>...</option>
 					</select>
@@ -54,11 +54,7 @@
 		</div>			
 		
 		<div class="form-group row">
-
-				
-		<form id="formVentaEmpleado">
-			<input type="hidden" id="idEmpleadoVenta" name="idEmpleadoVenta" value="<?php echo $_SESSION['id']; ?>">
-			
+	
 			<?php if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>            
 			
 			<div class="form-group row">
@@ -66,21 +62,26 @@
 					<table class="table table-responsive">
 						<thead>
 							<tr>
-								<th scope="col">#</th>
-								<th scope="col">First</th>
-								<th scope="col">Last</th>
-								<th scope="col">Handle</th>
+								<th scope="col">Referencia</th>
+								<th scope="col">Talla</th>
+								<th scope="col">Cantidad</th>
+								<th scope="col">Precio U.</th>
+								<th scope="col">Total</th>
+								<th scope="col">Accion</th>
 							</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($_SESSION['cart'] as $cart) {  ?>
+						<?php $cart = $_SESSION['cart'];?>
+						<?php for ($i=0; $i<count($cart); $i++){ ?>
 							<tr>
-								<td scope="row"></td>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td><?php echo $cart[$i]["referencia"];?></td>
+								<td><?php echo $cart[$i]["talla"]; ?></td>
+								<td><?php echo $cart[$i]["cantidadCompra"]; ?></td>
+								<td><?php echo $cart[$i]["precio"]; ?></td>
+								<td><?php echo $cart[$i]["total"]; ?></td>
+								<td><a href="ventas/borrarCarro.php?id=<?php echo $cart[$i]["id"];?>" class=""><i class="far fa-trash-alt"></i></a></td>
 							</tr>
-						<?php  } ?>	
+						<?php } ?>	
 						</tbody>  
 					</table>
 				</div>
@@ -93,27 +94,32 @@
 			<?php endif; ?>
 
 			<div class="form-group row">
+				<form id="formVentaEmpleado">
+					<input type="hidden" id="idEmpleadoVenta" name="idEmpleadoVenta" value="<?php echo $_SESSION['id']; ?>">
 					
-				<div class="form-group col-md-4">
-					<label for="apellidosEmpleado">Fecha</label>
-					<input type="text" class="form-control" id="fechaActual" name="fechaActual" value="<?php echo date("Y-m-d"); ?>" placeholder="Fecha Actual">
-				</div>
+					<div class="form-group col-md-4">
+						<label for="apellidosEmpleado">Fecha</label>
+						<input type="text" class="form-control" id="fechaActual" disabled name="fechaActual" value="<?php echo date("Y-m-d"); ?>" placeholder="Fecha Actual">
+					</div>
+						
+					<div class="form-group col-md-4">
+						<label for="apellidosEmpleado">Document Cliente</label>
+						<input type="text" class="form-control" id="documentoClienteVenta" name="documentoClienteVenta"  placeholder="Documento Cliente">
+					</div>
 				
-				<div class="form-group col-md-4">
-					<label for="documento">Modo de pago</label>
-					<select name="modopago" id="modopago" class="form-control">
-						<?php while($row = mysqli_fetch_row($modoPago)){  ?>
-						<option value="<?php echo $row[0]; ?>"> <?php echo $row[1];  ?> </option>
-						<?php } ?>
-						<option selected value="...">...</option>
-					</select>
-				</div>
+					<div class="form-group col-md-4">
+						<label for="documento">Modo de pago</label>
+						<select name="modopago" id="modopago" class="form-control">
+							<?php while($row = mysqli_fetch_row($modoPago)){  ?>
+							<option value="<?php echo $row[0]; ?>"> <?php echo $row[1];  ?> </option>
+							<?php } ?>
+							<option selected value="...">...</option>
+						</select>
+					</div>
 
+					<input type="submit" id="ventaCliente" class="btn btn-primary" value="Registrar Venta"/>
+				</form>
 			</div>
-
-			<input type="submit" id="ventaCliente" class="btn btn-primary" value="Registrar Venta"/>
-		</form>
-
 		</div>						
 
 	<?php  } ?>              
