@@ -685,7 +685,6 @@ public function getEmpleadoById($ID)
 									
 									<li class="menuItem"><a href="#whatis">Ventas</a>
 										 <ul id="menuRegistro" class="submenu" style="display:none;">
-											 <li id=""><a href="">Area de pago</a> </li>
 											<li id=""><a href="ventas_registradas.php">Ventas Registradas</a></li>
 										</ul>	
 									</li>
@@ -696,6 +695,13 @@ public function getEmpleadoById($ID)
 										</ul>	
 									</li>
 									
+									<li class="menuItem"><a href="#screen">Pagos</a>
+										<ul id="menuRegistro" class="submenu" style="display:none;">
+											 <li id=""><a href="pagoEmpleados.php">Pago empleados</a> </li>
+											 <li id=""><a href="pagoProveedores.php">Pago proveedores</a> </li>
+										</ul>	
+									</li>
+
 									<li class="menuItem"><a href="#contact">Usuario!</a>
 										<ul id="menuUsuario" class="submenu" style="display:none;">
 											<li id="email">'. $_SESSION['email'] . '</li>

@@ -76,22 +76,22 @@
 			<div class="row">
 			
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="../img/icon/tweet.svg" alt="Generic placeholder image">
-				  <h3>Sigueme</h3>
-				  <p class="lead">Sigueme en mis redes sociales donde publicamos contenido acerca de nuestros productos. </p>
+				  <a href="pagoEmpleados.php"><img class="rotate" src="../img/icon/bank.svg" alt="Generic placeholder image"></a>
+				  <h3>Pagos</h3>
+				  <p class="lead">Reporta todos los pagos relacionados con los empleados y los provedores de la empresa. </p>
 
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/picture.svg" alt="Generic placeholder image">
-				   <h3>Galeria</h3>
-				   <p class="lead">Dentro de nuestra boutique encontraras todo tipo de prendas </p>
+				  <a href="miperfil.php"> <img  class="rotate" src="../img/icon/picture.svg" alt="Generic placeholder image"></a>
+				   <h3>Mi perfil</h3>
+				   <p class="lead">Entra a tu perfil y veras tu informacion mas relevante, tambien podras actualizar tu imagen del perfil</p>
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/retina.svg" alt="Generic placeholder image">
+				  <a href="ventas_registradas.php"><img  class="rotate" src="../img/icon/retina.svg" alt="Generic placeholder image"></a>
 				   <h3>Ventas</h3>
-					<p class="lead">Contamos con todo tipo de ventas en nuestras sucursales donde podras elegir como llevar tus productos. </p>
+					<p class="lead">Genera un reporte de ventas de manera completa con el total de las ventas y sus detalles</p>
 				</div><!-- /.col-lg-4 -->
 				
 			</div><!-- /.row -->

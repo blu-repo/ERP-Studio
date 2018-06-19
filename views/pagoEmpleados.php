@@ -3,14 +3,14 @@
 			 error_reporting(0);
 
 			 $ID = $_SESSION['id'];
-			 if($ID==null || $ID=''){
+			 if($ID==null || $ID=''){	
 				 header('location:../404.php');
 				 die();
 			 }
 			 require_once('../controlador/empleadoController.php');
 			 $empleadoController = new empleadoController
 			 ();
-?>
+	?>
  <!DOCTYPE html>
  <html> 
 <head>
@@ -19,7 +19,7 @@
     <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
     <meta name="author" content="">
 
-	<title>Studio Princess		</title>
+	<title>Studio Princess</title>
 	
 
     <!-- Bootstrap core CSS -->
@@ -44,6 +44,7 @@
 	<link rel="stylesheet" href="../css/magnific-popup.css"> 
 	
 	<script src="../js/modernizr-2.8.3.min.js"></script>  <!-- Modernizr /-->
+	
 
 </head>
 
@@ -54,57 +55,23 @@
 		<div id="status"></div>
 	</div>
 	
-	
 
-	<?php $empleadoController->getMenu($_SESSION['id'],$_SESSION['rol']); ?>
+	<?php $menu = $empleadoController->getMenu($_SESSION['id'],$_SESSION['rol']);  ?>
 
 	<!-- What is -->
 	<div id="whatis" class="content-section-b" >
 
-		
-	<?php require_once('formularios/formularios.php'); ?>
-	<?php require_once('tablas/tablaCliente.php'); ?>
-	<?php require_once('tablas/tablaEmpleado.php'); ?>
 	<?php require_once('tablas/tablaProducto.php'); ?>
-	<?php require_once('modalEditar/modalEditarCliente.php'); ?>
-	<?php require_once('modalEditar/modalEditarEmpleado.php'); ?>
-	<?php require_once('modalEditar/modalEditarProducto.php'); ?>
-	<?php require_once('modalEliminar/modalEliminarCliente.php'); ?>
+  <?php require_once('modal/validarCC.php'); ?>
+  <?php require_once('modal/reportarPago.php'); ?>
 			
 			<div id="admin" class="container">
-
-			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>Seccion Administrativa</h2>
-				<p class="lead" style="margin-top:0">Studio Princes Boutique</p>
-			</div>
-			
-			<div class="row">
-			
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <a href="registrarEmpleado.php"><img class="rotate" src="../img/icon/pencil.svg" alt="Generic placeholder image"></a>
-				  <h3>Registro</h3>
-				  <p class="lead">Registra Clientes, Proveedores, Empleados, Productos y administra su informacion de manera rapida y eficiente.</p>
-				</div>
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
- 					<a href="proveedores.php"><img class="rotate" src="../img/icon/config.svg" alt="Generic placeholder image"></a>
-				   <h3>Edicion</h3>
-				   <p class="lead">Dentro de nuestra boutique encontraras todo tipo de prendas </p>
-				</div>
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <a href="miperfil.php"><img  class="rotate" src="../img/icon/retina.svg" alt="Generic placeholder image"></a>
-				   <h3>Mi Perfil!</h3>
-					<p class="lead">Entra a tu perfil y veras tu informacion mas relevante, tambien podras actualizar tu imagen del perfil</p>
-				</div>
-				
-			</div>
-				
-			<div class="row tworow">
-			
-			</div>
+        <div class="row">
+          <?php require_once("tablas/pagoEmpleado.php"); ?>
+        </div><!-- /.row -->
 		</div>
 	</div>
+	
 	
 	<div  class="content-section-c " style="display:none;">
 		<div class="container">
@@ -134,72 +101,7 @@
 			</div>>
 		</div>
 	</div>	
-	
-	<!-- Credits -->
-	<div id="credits" class="content-section-a" style="display:none;">
-		<div class="container">
-			<div class="row">
-			
-			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>Credits</h2>
-				<p class="lead" style="margin-top:0">A special thanks to Death.</p>
-			 </div>
-			 
-				<div class="col-sm-6  block wow bounceIn">
-					<div class="row">
-						<div class="col-md-4 box-icon rotate"> 
-							<i class="fa fa-desktop fa-4x "> </i> 
-						</div>
-						<div class="col-md-8 box-ct">
-							<h3> Bootstrap </h3>
-							<p> Lorem ipsum dolor sit ametconsectetur adipiscing elit. Suspendisse orci quam. </p>
-						</div>
-				  </div>
-			  </div>
-			  <div class="col-sm-6 block wow bounceIn">
-					<div class="row">
-					  <div class="col-md-4 box-icon rotate"> 
-						<i class="fa fa-picture-o fa-4x "> </i> 
-					  </div>
-					  <div class="col-md-8 box-ct">
-						<h3> Owl-Carousel </h3>
-						<p> Nullam mo  arcu ac molestie scelerisqu vulputate, molestie ligula gravida, tempus ipsum.</p> 
-					  </div>
-					</div>
-			  </div>
-		  </div>
-		  
-		  <div class="row tworow">
-				<div class="col-sm-6  block wow bounceIn">
-					<div class="row">
-						<div class="col-md-4 box-icon rotate"> 
-							<i class="fa fa-magic fa-4x "> </i> 
-						</div>
-						<div class="col-md-8 box-ct">
-							<h3> Codrops </h3>
-							<p> Lorem ipsum dolor sit ametconsectetur adipiscing elit. Suspendisse orci quam. </p>
-						</div>
-				  </div>
-			  </div>
-			  <div class="col-sm-6 block wow bounceIn">
-					<div class="row">
-					  <div class="col-md-4 box-icon rotate"> 
-						<i class="fa fa-heart fa-4x "> </i> 
-					  </div>
-					  <div class="col-md-8 box-ct">
-						<h3> Lorem Ipsum</h3>
-						<p> Nullam mo  arcu ac molestie scelerisqu vulputate, molestie ligula gravida, tempus ipsum.</p> 
-					  </div>
-					</div>
-			  </div>
-		  </div>
-		</div>
-	</div>
-
-
-	
-	
-	
+		
 	<footer>
       <div class="container">
         <div class="row">
@@ -207,8 +109,8 @@
             <h3 class="footer-title">Boutique</h3>
             <p>Studio Princes 2018  <br/>
               Todos los derechos reservados<br/>
-              <!-- Go to: <a  href="http://andreagalanti.it" target="_blank">andreagalanti.it</a> -->
             </p>
+			
           </div> <!-- /col-xs-7 -->
 
           <div class="col-md-5">
@@ -225,13 +127,13 @@
           </div>
         </div>
       </div>
-  </footer>
+    </footer>
 
 	
 
     <!-- JavaScript -->
-    <script src="../js/jquery-1.10.2.js"></script>
-    <script src="../js/bootstrap.js"></script>
+  <script src="../js/jquery-1.10.2.js"></script>
+  <script src="../js/bootstrap.js"></script>
 	<script src="../js/owl.carousel.js"></script>
 	<script src="../js/script.js"></script>
 	<!-- StikyMenu -->

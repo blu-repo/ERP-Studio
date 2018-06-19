@@ -86,7 +86,10 @@ class PDF extends FPDF{
     $this->ln(50);
     $this->SetFont('Arial','I',11);
     $this->Line(10,193,150,193);
-    $this->Cell(40,5,'Gerente General '. date('Y-m-d'),0,1,"L");
+    $this->Cell(40,5,'Gerente General ',0,1,"L");
+    $this->Cell(40,5,'Dioselina Murillo',0,1,"L");
+    $this->Cell(40,5,'C.C 50.102.153',0,1,"L");
+    $this->Cell(40,5,date("Y-m-d"),0,1,"L");
   }
 
 }

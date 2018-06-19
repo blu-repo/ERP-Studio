@@ -1120,12 +1120,26 @@ $(document).ready(function(){
                     editar:10},
                 success:function(data){
                    console.log(data);
-                    // if(data=="nocreada"){
-                    //     errorModal('Error','No hay articulos agregados a la venta')
-                    // }else if(data=="null"){
-                    //     errorModal('Error','Error al conectar con la Base de datos')
-                    // }
-                    
+                   
+                    if(data=="nocreada"){
+                        errorModal('Error','No hay articulos agregados a la venta')
+                    }
+                    else if(data=="null"){
+                        errorModal('Error','Error al conectar con la Base de datos')
+                    }
+                    else if(data=="nope"){
+                        errorModal('Error','Error al conectar con la Base de datos')
+                    }
+                    else if(data=="inserto"){
+                        alert('Se registro de manera exitosa la venta')
+                        window.location.href="../views/panel_ventas.php";
+                    }
+                    else if(data=="noinserto"){
+                        errorModal('Error','Error al conectar con la Base de datos')
+                    }
+                    else{
+                        errorModal('Error','Error al conectar con la Base de datos')
+                    }
                 }
             })
         }
@@ -1465,4 +1479,58 @@ $(document).ready(function(){
             }        
         })
      })
+
+    $('#modalReportePago').on('show.bs.modal', function (e) {
+        var button = $(e.relatedTarget);
+        
+        var nombre=button.data('nombre')
+        var doc=button.data('doc')
+        var email=button.data('email')
+        var fecha=button.data('fecha')
+        var nacion=button.data('nacion')
+        
+
+        var modal = $('#modalReportePago');
+
+        $('#nombreReporte').html(nombre);
+        $('#docReporte').html(doc);
+        $('#fechaReporte').html(fecha);
+        $('#nacionalidadReporte').html(nacion);
+        $('#emailReporte').html(email);
+        
+    })
+
+    $("#formReporte").submit(function(event){
+        event.preventDefault()
+        successAjaxDiv("#ajax_success_reporte",
+        "Se reporto el pago correctamente",
+        "#modalReportePago",
+        "alert alert-info",
+        "true")
+    })
+
+    $('#modalReportePagoProveedor').on('show.bs.modal', function (e) {
+        var button = $(e.relatedTarget);
+        
+        var empresa=button.data('empresa')
+        var direccion=button.data('direccion')
+        var telefono=button.data('telefono')
+        var email=button.data('email')
+        var fecha=button.data('fecha')
+
+        $('#nombreReporteProveedor').html(empresa);
+        $('#direccionProveedor').html(direccion);
+        $('#emailReporteProveedor').html(email);
+        $('#fechaReporte').html(fecha);
+    })
+
+    $('#formReporteProveedor').submit(function(event){
+        event.preventDefault()
+        successAjaxDiv('#ajax_error_reportProveedor',
+        'Se registro correctamente el pago al proveedor',
+        "#modalReportePagoProveedor",
+        "alert alert-info",
+        "true")
+    })
+
 })

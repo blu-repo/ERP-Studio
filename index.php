@@ -408,18 +408,6 @@
 		</div>
 	</div>
 	
-	<!-- Banner Download -->
-	<!-- <div id="downloadlink" class="banner">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>Download Free</h2>
-				<p class="lead" style="margin-top:0">Pay with a Tweet</p>
-				<p><a class="btn btn-embossed btn-primary view" role="button">Free Download</a></p> 
-			 </div>
-			</div>
-		</div>
-	</div> -->
 	
 	<!-- Contact -->
 	<div id="contact" class="content-section-a">
@@ -465,7 +453,7 @@
 				<div class="col-md-5 col-md-push-1 address">
 					<address>
 					<h3>Localizacion</h3>
-					<p class="lead"><a href="https://www.google.com.co/maps/place/studio+princess,+C%C3%BAcuta,+Norte+de+Santander/@7.9052916,-72.4892246,17z/data=!4m13!1m7!3m6!1s0x8e664517a6671b25:0xf3836c60e472f42e!2sstudio+princess,+C%C3%BAcuta,+Norte+de+Santander!3b1!8m2!3d7.9052916!4d-72.4870359!3m4!1s0x8e664517a6671b25:0xf3836c60e472f42e!8m2!3d7.9052916!4d-72.4870359">Studio Princes<br>
+					<p class="lead"><a href="https://www.google.com.co/maps/place/studio+princess,+C%C3%BAcuta,+Norte+de+Santander/@7.9052916,-72.4892246,17z/data=!4m13!1m7!3m6!1s0x8e664517a6671b25:0xf3836c60e472f42e!2sstudio+princess,+C%C3%BAcuta,+Norte+de+Santander!3b1!8m2!3d7.9052916!4d-72.4870359!3m4!1s0x8e664517a6671b25:0xf3836c60e472f42e!8m2!3d7.9052916!4d-72.4870359" target="_blank">Studio Princes<br>
 					Cucuta - Norte de Santander</a><br>
 					Phone: 301 123-4568<br>
 					<!-- Fax: XXX-XXX-YYYY -->
@@ -493,21 +481,8 @@
             <h3 class="footer-title">Boutique</h3>
             <p>Studio Princes 2018  <br/>
               Todos los derechos reservados<br/>
-              <!-- Go to: <a  href="http://andreagalanti.it" target="_blank">andreagalanti.it</a> -->
             </p>
-			
-			<!-- LICENSE -->
-			<!-- <a rel="cc:attributionURL" href="http://www.andreagalanti.it/flatfy"
-		   property="dc:title">Flatfy Theme </a> by
-		   <a rel="dc:creator" href="http://www.andreagalanti.it"
-		   property="cc:attributionName">Andrea Galanti</a>
-		   is licensed to the public under 
-		   <BR>the <a rel="license"
-		   href="http://creativecommons.org/licenses/by-nc/3.0/it/deed.it">Creative
-		   Commons Attribution 3.0 License - NOT COMMERCIAL</a>.
-		    -->
-	   
-          </div> <!-- /col-xs-7 -->
+          </div> 
 
           <div class="col-md-5">
             <div class="footer-banner">

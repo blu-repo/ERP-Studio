@@ -76,24 +76,24 @@
 			<div class="row">
 			
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="../img/icon/tweet.svg" alt="Generic placeholder image">
-				  <h3>Sigueme</h3>
-				  <p class="lead">Sigueme en mis redes sociales donde publicamos contenido acerca de nuestros productos. </p>
+				  <a href=""><img class="rotate" src="../img/icon/watch.svg" alt="Generic placeholder image"></a>
+				  <h3>Productos</h3>
+				  <p class="lead">Visualiza los productos dentro del panel para obtener informacion mas detallada acerca de ellos</p>
 
 				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/picture.svg" alt="Generic placeholder image">
-				   <h3>Galeria</h3>
-				   <p class="lead">Dentro de nuestra boutique encontraras todo tipo de prendas </p>
+				  <a href="miperfil.php"> <img class="rotate" src="../img/icon/picture.svg" alt="Generic placeholder image"></a>
+				   <h3>Mi perfil!</h3>
+				   <p class="lead">Entra a tu perfil y veras tu informacion mas relevante, tambien podras actualizar tu imagen del perfil</p>
 				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
 				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/retina.svg" alt="Generic placeholder image">
-				   <h3>Ventas</h3>
-					<p class="lead">Contamos con todo tipo de ventas en nuestras sucursales donde podras elegir como llevar tus productos. </p>
+				  <a href="panel_ventas.php"><img class="rotate" src="../img/icon/retina.svg" alt="Generic placeholder image"></a>
+					<h3>Ventas</h3>
+					<p class="lead">Registra una venta de manera rapida, obteniendo </p>
 				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
 				</div><!-- /.col-lg-4 -->
 				
