@@ -64,11 +64,10 @@
 <?php require_once('modal/modal_success.php'); ?>
 <?php require_once('modal/modal_error.php'); ?>
 <?php $controller = new empleadoController(); ?>
-<?php $perfil = $controller->getEmpleadoByIdController($_SESSION['id']); ?>
+<?php $perfil = $con->getEmpleadoByIdController($_SESSION['id']); ?>
 <?php $img = $controller->getImagenEmpleadoController($_SESSION['id']); ?>
 	
 <?php $con->getMenu($ID,$_SESSION['rol']); ?>
-	<!-- NavBar-->
 
 
 	<!-- What is -->
@@ -91,10 +90,8 @@
 				?>
 
 
-				<?php if($perfil!=='null'){ 
-					#var_dump($perfil); ?>
-					<?php echo $_SESSION['id']; ?>
-					<?php $rol = $controller->getRolController($perfil['usuario']); ?>
+				<?php if($perfil!=='null'){ ?>
+					<?php $rol = $controller->getRolController($_SESSION['id']); ?>
 				
 			 	<div class="col-sm-4 pull-right wow fadeInRightBig">
           <img class="img-responsive " src="<?php echo $ss; ?>" alt="">

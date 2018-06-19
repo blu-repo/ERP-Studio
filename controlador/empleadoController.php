@@ -108,7 +108,7 @@ class empleadoController {
                 echo 'vendedor';
            }
            else if($rol=='contador'){
-                // $this->loginSession($ID,$rol,$email);
+                $this->loginSession($ID,$rol,$email);
                 echo 'contador';
            }
            else {

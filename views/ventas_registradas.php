@@ -1,4 +1,4 @@
- <?php 
+<?php 
 			 session_start();
 			 error_reporting(0);
 
@@ -19,7 +19,7 @@
     <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
     <meta name="author" content="">
 
-	<title>Studio Princess		</title>
+	<title>Studio Princess</title>
 	
 
     <!-- Bootstrap core CSS -->
@@ -44,6 +44,7 @@
 	<link rel="stylesheet" href="../css/magnific-popup.css"> 
 	
 	<script src="../js/modernizr-2.8.3.min.js"></script>  <!-- Modernizr /-->
+	
 
 </head>
 
@@ -60,49 +61,13 @@
 	<!-- What is -->
 	<div id="whatis" class="content-section-b" >
 
-		
-	<?php require_once('formularios/formularios.php'); ?>
 	<?php require_once('tablas/tablaProducto.php'); ?>
   <?php require_once('modal/validarCC.php'); ?>
 			
 			<div id="admin" class="container">
-
-			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>Seccion Ventas!</h2>
-				<p class="lead" style="margin-top:0">Studio Princes Boutique</p>
-				
-			</div>
-			
-			<div class="row">
-			
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img class="rotate" src="../img/icon/tweet.svg" alt="Generic placeholder image">
-				  <h3>Sigueme</h3>
-				  <p class="lead">Sigueme en mis redes sociales donde publicamos contenido acerca de nuestros productos. </p>
-
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/picture.svg" alt="Generic placeholder image">
-				   <h3>Galeria</h3>
-				   <p class="lead">Dentro de nuestra boutique encontraras todo tipo de prendas </p>
-				   <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-				<div class="col-sm-4 wow fadeInDown text-center">
-				  <img  class="rotate" src="../img/icon/retina.svg" alt="Generic placeholder image">
-				   <h3>Ventas</h3>
-					<p class="lead">Contamos con todo tipo de ventas en nuestras sucursales donde podras elegir como llevar tus productos. </p>
-				  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
-				</div><!-- /.col-lg-4 -->
-				
-			</div><!-- /.row -->
-				
-			<div class="row tworow">
-			
-				
-			</div><!-- /.row -->
+        <div class="row">
+          <?php require_once("formularios/ventasRegistradas.php"); ?>
+        </div><!-- /.row -->
 		</div>
 	</div>
 	
@@ -305,8 +270,8 @@
 	
 
     <!-- JavaScript -->
-    <script src="../js/jquery-1.10.2.js"></script>
-    <script src="../js/bootstrap.js"></script>
+  <script src="../js/jquery-1.10.2.js"></script>
+  <script src="../js/bootstrap.js"></script>
 	<script src="../js/owl.carousel.js"></script>
 	<script src="../js/script.js"></script>
 	<!-- StikyMenu -->

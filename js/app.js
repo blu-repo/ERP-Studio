@@ -1153,6 +1153,8 @@ $(document).ready(function(){
            processData: false,
            cache: false,
            success : function(data){
+               console.log(data);
+               
             if(data=="insertada"){
                 successModal('Se inserto correctamente la Imagen','Se inserto correctamente la imagen de perfil');
             }

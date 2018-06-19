@@ -74,7 +74,7 @@
 			<div id="admin" class="container">
 
 			<div class="col-md-6 col-md-offset-3 text-center wrap_title">
-				<h2>De que trata?</h2>
+				<h2>Seccion Administrativa</h2>
 				<p class="lead" style="margin-top:0">Studio Princes Boutique</p>
 				
 			</div>

@@ -33,4 +33,10 @@ class ventasController {
     return $this->venta->getVentasEmpleado($ID);
   }
 
+  public function getTodasVentas()
+  {
+    $this->venta = new Venta();
+    return $this->venta->getVentas();
+  }
+
 }

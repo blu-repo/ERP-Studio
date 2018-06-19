@@ -272,5 +272,41 @@ class Venta{
      
   }
 
+  /**
+   * Permite obtener todas las ventas del sistema
+   */
+  public function getVentas()
+  {
+    try{
+      $this->conectar = Conectar::conectarBD();
+
+      $sql = "SELECT compra.id as id,
+              compra.preciototal as total,
+              compra.fecharegistro as fecha,
+              cliente.nombres as nombres,
+              modopago.nombre as modo,
+              empleado.id as empleado,
+              empleado.nombres as nombreempleado
+              from compra 
+              inner join empleado on compra.empleado=empleado.id
+              inner join cliente on cliente.id=compra.cliente
+              inner join modopago on modopago.id=compra.modopago";
+
+      $stm = $this->conectar->prepare($sql);
+      $stm->execute();
+      $res = $stm->get_result();
+
+      if($res->num_rows===0)
+        return "null";
+      
+      $stm->close();
+      return $res;  
+
+    }catch(Exception $e)
+    {
+      return "null";
+    }
+  }
+
 
 }

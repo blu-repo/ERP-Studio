@@ -125,21 +125,21 @@ public function insertarEmpleado($nombres, $apellidos, $lugarNacimiento, $tipoDo
 
 public function getEmpleadoById($ID)
 {
-$this->conexion = Conectar::conectarBD();
-$empleado = array();
+		$this->conexion = Conectar::conectarBD();
+		$empleado = array();
 
-$sql = "SELECT * from empleado where id='$ID'";
+		$sql = "SELECT * from empleado where empleado.usuario='$ID'";
 
-$query = mysqli_query($this->conexion , $sql);
+		$query = mysqli_query($this->conexion , $sql);
 
-if($query==true){
-				if(mysqli_num_rows($query)==1){
-					return mysqli_fetch_array($query);
-				}
+		if($query==true){
+			if(mysqli_num_rows($query)==1){
+				return mysqli_fetch_array($query);
 			}
-			else{
-	return "null";
-}
+		}
+		else{
+			return "null";
+		}
 	}
 
 	/**
@@ -149,7 +149,7 @@ if($query==true){
 	{
 		echo $ID;
 		$this->conexion = Conectar::conectarBD();
-		$sql = "SELECT usuario.rol from usuario inner join empleado on empleado.usuario=usuario.id where empleado.id='$ID'";
+		$sql = "SELECT usuario.rol from usuario inner join empleado on empleado.usuario=usuario.id where empleado.usuario='$ID'";
 
 		$query = mysqli_query($this->conexion,$sql);
 
@@ -274,7 +274,9 @@ if($query==true){
 		}
 	}
 
-	
+	/**
+	 * Permite hacer el login de un usuario valido
+	 */
 	public function loginEmpleado($usuario , $pass)
 	{
 		$this->conexion = Conectar::conectarBD();
@@ -372,10 +374,11 @@ if($query==true){
 	 {
 		 try{
 				$this->conexion = Conectar::conectarBD();
+				$IDEmpleado = $this->getEmpleadoID($ID,$this->conexion);
 				$sql = "SELECT meta_empleado.src from meta_empleado where meta_empleado.empleado_id=?";
 
 				$stam = $this->conexion->prepare($sql);
-				$stam->bind_param('s',$ID);
+				$stam->bind_param('s',$IDEmpleado);
 			 	$stam->execute();
 			 	$resultado = $stam->get_result();
 				 
@@ -391,6 +394,32 @@ if($query==true){
 		 }catch(Exception $e){
 				return "null";
 		 }
+	 }
+
+	 /**
+		* 
+	  */
+	 private function getEmpleadoID($ID,$conexion)
+	 {
+		try{
+      $sql ="SELECT id from empleado where empleado.usuario=?";
+      $emp = $conexion->prepare($sql);
+      $emp->bind_param("s",$ID);
+      $emp->execute();
+
+      $resultado = $emp->get_result();
+
+      if($resultado->num_rows===0)
+        return "null";
+
+      $vector = $resultado->fetch_assoc();
+
+      $emp->close();
+      return $vector["id"];
+
+    }catch(Exception $e){
+      return "null";
+    }
 	 }
 
 	 /**
@@ -433,6 +462,7 @@ if($query==true){
 				$imagen = $this->getImagenEmpleadoExiste($ID);
 				$sql;
 				$src = $this->uploadImagenServer();
+				$IDEmpleado = $this->getEmpleadoID($ID,$this->conexion);
 
 				if($imagen==true){
 					if(strcmp($src,'null')==0 || strcmp($src,'imgegrande')==0){
@@ -443,7 +473,7 @@ if($query==true){
 					values
 					(?,?)";
 					$stm = $this->conexion->prepare($sql);
-					$stm->bind_param('si',$src,$ID);
+					$stm->bind_param('ss',$src,$IDEmpleado);
 					$stm->execute();
 					$stm->close();
 					return "insertada";
@@ -455,7 +485,7 @@ if($query==true){
 					}
 					$sql = "UPDATE meta_empleado set src=? where empleado_id=?";
 					$stm  = $this->conexion->prepare($sql);
-					$stm->bind_param('si',$src,$ID);
+					$stm->bind_param('ss',$src,$IDEmpleado);
 					$stm->execute();
 					$stm->close();
 					return "actualizada";
@@ -639,8 +669,50 @@ if($query==true){
 						</div>
 					</nav> ';
 			}
-			else if(strcpm($ROL,'contador')){
-				echo "null";
+			else if(strcmp($ROL,'contador')==0){
+				echo '<!-- NavBar-->
+					<nav class="navbar-default" role="navigation">
+						<div class="container">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+									<span class="sr-only">Toggle navigation</span>
+								</button>
+								<a class="navbar-brand" href="panel_contador.php">S. Princes</a>
+							</div>
+				
+							<div id="menu" class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+								<ul class="nav navbar-nav">
+									
+									<li class="menuItem"><a href="#whatis">Ventas</a>
+										 <ul id="menuRegistro" class="submenu" style="display:none;">
+											 <li id=""><a href="">Area de pago</a> </li>
+											<li id=""><a href="ventas_registradas.php">Ventas Registradas</a></li>
+										</ul>	
+									</li>
+			
+									<li class="menuItem"><a href="#screen">Proveedores</a>
+										<ul id="menuRegistro" class="submenu" style="display:none;">
+											 <li id=""><a href="proveedores.php">Listar Proveedores</a> </li>
+										</ul>	
+									</li>
+									
+									<li class="menuItem"><a href="#contact">Usuario!</a>
+										<ul id="menuUsuario" class="submenu" style="display:none;">
+											<li id="email">'. $_SESSION['email'] . '</li>
+											<form action="" method="post">
+												<input type="hidden" id="idEmpleadoLogin" name="idEmpleadoLogin" value="'. $_SESSION['id'].' ">
+												<li id="perfil"><a href="miperfil.php">Mi perfil</a></li>
+											</form>
+											<form action="">
+												<li id="salirEmpleado"><a href="">Salir</a></li>
+												<input type="hidden" value="'. $_SESSION['id'].' " id ="IDempleadoSalir" name="IDempleadoSalir">
+											</form>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</nav> ';
 			}
 		}
 		else{
