@@ -62,9 +62,9 @@ class producto {
          if($query_producto==true){
             echo "true";
          }   
-         else{
-            echo mysqli_error($this->conectar);
-         }
+         
+         echo mysqli_error($this->conectar);
+        
     }
 
     /**
