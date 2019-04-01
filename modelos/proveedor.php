@@ -34,9 +34,9 @@ class proveedor {
          if($query==true){
              echo "true";
          }
-         else{
-             echo mysqli_error($this->conectar);
-         }
+         
+        echo mysqli_error($this->conectar);
+         
     }
 
     /**
@@ -124,9 +124,9 @@ class proveedor {
             if($rta==true){
                 echo "true";
             }
-            else{
-                echo "false";
-            }
+            
+            echo "false";
+            
             $stm->close();
 
         }catch(Exception $e){
@@ -154,9 +154,9 @@ class proveedor {
 
                 if($query==true){
                     echo "actualizada";
-                }else{
+                }
                     echo "noactualizada";
-                }        
+                        
 
             }else if(strcmp($accion,'agregar')==0){
 
@@ -174,7 +174,7 @@ class proveedor {
                 }
             }
         }catch(Exception $e){
-
+            echo "Error";
         }
     }
 

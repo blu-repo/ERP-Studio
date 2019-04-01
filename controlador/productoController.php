@@ -46,10 +46,10 @@ class productoController {
         return $this->producto->getProductos();
     }
 
-    public function getCategoriaController($ID)
+    public function getCategoriaController($id)
     {
        $this->producto = new producto();
-       return $this->producto->getCategoria($ID);
+       return $this->producto->getCategoria($id);
     }
 
     
@@ -59,10 +59,10 @@ class productoController {
         $this->producto->editarProducto($id,$nombre,$referencia,$precio,$talla);
     }
 
-    public function getDatosProducto($ID)
+    public function getDatosProducto($id)
     {
         $this->producto = new Producto();
-        return $this->producto->getDatos($ID);
+        return $this->producto->getDatos($id);
     }
 
     public function setProductoAdminController($ID,$nombre,$referencia,$color,$material,$proveedor,$articulo,$categoria,$talla,$precio)
@@ -71,10 +71,10 @@ class productoController {
         $this->producto->setProducto($ID,$nombre,$referencia,$color,$material,$proveedor,$articulo,$categoria,$talla,$precio);
     }
 
-    public function cargarImagenProductoController($ID)
+    public function cargarImagenProductoController($id)
     {
         $this->producto = new producto();
-        $dato = $this->producto->cargarImagenProducto($ID);
+        $dato = $this->producto->cargarImagenProducto($id);
         if(strcmp($dato,'tope')==0){
             echo "tope";
         }else if(strcmp($dato,'true')==0){

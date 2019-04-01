@@ -34,7 +34,8 @@ class Venta{
         if(strcmp($IDCLiente,'null')==0){
           return "errorCliente";
         }
-        for ($i=0; $i <count($productos) ; $i++){ 
+        $cantp = count($productos);
+        for ($i=0; $i <$cantp ; $i++){ 
           $totalVenta+= (int) $productos[$i]["total"];
         }
         echo $ID . '-'. $documento. "-".$modopago."-".$totalVenta . "-" . $IDCLiente . "-".$IDEmpleado;
@@ -87,9 +88,10 @@ class Venta{
       $talla;
       $id;
       $cont = 0;
+      $countdt = count($productos);
       // echo count($productos);
 
-      for($i=0; $i<count($productos); $i++){
+      for($i=0; $i<$countdt; $i++){
 
         $precio = $productos[$i]["precio"];
         $cantidad = $productos[$i]["cantidadCompra"];
@@ -114,7 +116,7 @@ class Venta{
       }
 
     }catch(Exception $e){
-      
+      return null;      
     }
   }
 
@@ -215,10 +217,10 @@ class Venta{
           $ID = $compra[0];
           return $ID;
       }
-      else{
-        return "nohayventas"; 
-      }
-    return 0;
+      
+      return "nohayventas"; 
+      
+    
   }
 
 
@@ -237,9 +239,9 @@ class Venta{
          return $query;
        }
      }
-     else{
+    
       return mysqli_error($this->conectar);
-     }
+     
   }
 
   /**

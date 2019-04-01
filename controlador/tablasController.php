@@ -72,14 +72,11 @@ class tablasController {
 
                while ($row = mysqli_fetch_row($query)) {
                   $material[$row[0]] = $row[1];
-               }     
-            mysqli_close($this->conectar);
+               }                 
             return $material;   
             }
-            else{
-                mysqli_close($this->conectar);
-                return 0;
-            }
+            mysqli_close($this->conectar);
+            return 0;
         }
         mysqli_close($this->conectar);
     }
@@ -99,13 +96,10 @@ class tablasController {
                while ($row = mysqli_fetch_row($query)) {
                   $producto[$row[0]] = $row[1];
                }     
-            mysqli_close($this->conectar);
             return $producto;   
             }
-            else{
-                mysqli_close($this->conectar);
-                return 0;
-            }
+            mysqli_close($this->conectar);
+            return 0;
         }
         mysqli_close($this->conectar);
     }
@@ -124,13 +118,10 @@ class tablasController {
                 while($row = mysqli_fetch_row($query)){
                     $tipoCliente[$row[0]]  = $row[1];
                 }
-                mysqli_close($this->conectar);
                 return $tipoCliente; 
             }
-            else{
-                mysqli_close($this->conectar);
-                return 0;
-            }
+            mysqli_close($this->conectar);
+            return 0;
         }
         else{
             mysqli_close($this->conectar);

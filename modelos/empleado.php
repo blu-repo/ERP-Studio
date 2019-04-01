@@ -115,10 +115,9 @@ public function insertarEmpleado($nombres, $apellidos, $lugarNacimiento, $tipoDo
 					if(mysqli_num_rows($query) > 0){
 						return $query;
 					}
-			}
-			else{
-				return "null";
-			}
+			}	
+			return "null";
+			
 	}
 
 #Metodo que permite obtener un empleado para editarlo segun su identificador
@@ -137,9 +136,8 @@ public function getEmpleadoById($ID)
 				return mysqli_fetch_array($query);
 			}
 		}
-		else{
-			return "null";
-		}
+		return "null";
+		
 	}
 
 	/**
@@ -159,9 +157,9 @@ public function getEmpleadoById($ID)
 				return $var[0];
 			// }
 		}
-		else{	
-			return 'null';
-		}
+			
+		return 'null';
+		
 	}
 	
 	/**
@@ -179,10 +177,10 @@ public function getEmpleadoById($ID)
 		if($query==true){
 			echo "true";
 		}
-		else{
-			echo mysqli_error($this->conexion);
+		
+		echo mysqli_error($this->conexion);
 			// mysqli_close($this->conexion);
-		}
+		
 	}
 
 	/**
@@ -202,9 +200,8 @@ public function getEmpleadoById($ID)
 			if($query==true){
 				echo "true";
 			}
-			else{
-				mysqli_error($this->conexion);
-			}
+			return mysqli_error($this->conexion);
+
 	}
 
 	/**
@@ -221,9 +218,9 @@ public function getEmpleadoById($ID)
 		if($query==true){
 			return $query;
 		}
-		else{
-			return null;
-		}
+		
+		return null;
+		
 	}
 
 	/**
@@ -242,9 +239,9 @@ public function getEmpleadoById($ID)
 		if($query==true){
 			echo "true";
 		}
-		else{
-			echo mysqli_error($this->conexion);
-		}
+		
+		echo mysqli_error($this->conexion);
+		
 	}
 
 

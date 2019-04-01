@@ -2,7 +2,6 @@
 
 $(document).ready(function(){
 
-    var sw;
 
     $.validator.addMethod("valueNotEquals", function(value, element, arg){
         return arg !== value;
@@ -461,8 +460,7 @@ $(document).ready(function(){
                     debugger
                     if(data=="true"){
                         successModal('Registro Exitoso!','Se registro correctamente el empleado!')
-                        limpiarEmpleado()
-                        console.log(data);
+                        limpiarEmpleado();
                     }
                     else{
                         // errorModal('Error','El registro no pudo ser completado')
@@ -499,7 +497,7 @@ $(document).ready(function(){
         }
 
 		 function errorProveedor(data) {
-			 console.log(data);
+			 
 		}
 
         function successMaterial() {
@@ -553,7 +551,6 @@ $(document).ready(function(){
             var pnombres=button.data('pnombre')
             var apellidos=button.data('apellidos')
             var documento=button.data('documento')
-            var direccion=button.data('direccion')
             var telefono=button.data('telefono')
             var email=button.data('email')
 
@@ -599,10 +596,8 @@ $(document).ready(function(){
 				// Falta Terminar eliminar cliente - Modo cascada
         $('#eliminarCliente').on('show.bs.modal', function(event){
             var button = $(event.relatedTarget)
-            var id = button.data('id')
-            console.log(id);
-
-            var modal = $('#eliminarCliente')
+            var id = button.data('id');
+            var modal = $('#eliminarCliente');
             modal.find('#idClienteElimina').val(id);
         })
 
@@ -637,7 +632,7 @@ $(document).ready(function(){
                 documentoClienteED:'Digite el documento del cliente',
                 telefonoClienteED:'Digite el telefono del cliente',
                 emailClienteED:'Digite el email del cliente'
-            },submitHandler: function(form){
+            },submitHandler: function(){
                 var data;
                 var id = document.getElementById("idCliente").value;
                 var primerNombreClienteED = document.getElementById("primerNombreClienteED").value;
@@ -735,7 +730,6 @@ $(document).ready(function(){
           var titulo = document.getElementById("Titulo").value;
           var salid = document.getElementById("aniosalida").value;
           var editar = 3;
-          console.log(salid);
 
           $.ajax({
               url: "../archivos/AjaxController.php",
@@ -1215,9 +1209,6 @@ $(document).ready(function(){
                 if(data=='index'){
                     window.location.href="../index.php"
                 }
-                else{
-
-                }
             }
         })
     })
@@ -1533,4 +1524,4 @@ $(document).ready(function(){
         "true")
     })
 
-})
+});

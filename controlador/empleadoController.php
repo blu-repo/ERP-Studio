@@ -41,11 +41,11 @@ class empleadoController {
     }
 
 
-    public function getEmpleadoByIdController($ID)
+    public function getEmpleadoByIdController($id)
     {
       $this->empleado = new Empleado();
 
-      return $this->empleado->getEmpleadoById($ID);
+      return $this->empleado->getEmpleadoById($id);
     }
 
     public function editarEmpleadoEstudiosController($id,$instituto,$titulo,$fecha)
@@ -54,10 +54,10 @@ class empleadoController {
         $this->empleado->editarEmpleadoEstudios($id,$instituto,$titulo,$fecha);
     }
 
-    public function getRolEmpleadoController($ID)
+    public function getRolEmpleadoController($id)
     {
         $this->empleado = new Empleado();
-        return $this->empleado->getRolEmpleado($ID);
+        return $this->empleado->getRolEmpleado($id);
     }
 
     public function editarEmpleadoExamenes($id,$entidad,$dictamen,$fecha,$telefono,$direccion,$observacionExamen)
@@ -111,9 +111,8 @@ class empleadoController {
                 $this->loginSession($ID,$rol,$email);
                 echo 'contador';
            }
-           else {
-               echo "novalido";
-           }
+           echo "novalido";
+           
        }
 
     }
@@ -134,35 +133,35 @@ class empleadoController {
      * Permite obtener todos los datos de un empleado 
      */
 
-     public function getDatosEmpleadoController($ID)
+     public function getDatosEmpleadoController($id)
      {
         $this->empleado = new Empleado();
-        return $this->empleado->getDatosEmpleado($ID);
+        return $this->empleado->getDatosEmpleado($id);
      }
 
-    public function getRolController($ID)
+    public function getRolController($id)
     {
         $empleado = new Empleado();
-        return $empleado->getRol($ID);
+        return $empleado->getRol($id);
     }
 
-    public function uploadImagenPerfilEmpleadoController($ID)
+    public function uploadImagenPerfilEmpleadoController($id)
     {
         $empleado = new Empleado();
-        return $empleado->uploadImagenEmpleado($ID);
+        return $empleado->uploadImagenEmpleado($id);
     }
 
-    public function getImagenEmpleadoController($ID)
+    public function getImagenEmpleadoController($id)
     {
        $empleado = new Empleado();
-       return $empleado->getImagenEmpleado($ID);
+       return $empleado->getImagenEmpleado($id);
     }
 
 
-    public function getMenu($ID , $ROL)
+    public function getMenu($id , $rol)
     {
         $empleado = new Empleado();
-        echo $empleado->getMenuRol($ID,$ROL);
+        echo $empleado->getMenuRol($id,$rol);
     }
 
    

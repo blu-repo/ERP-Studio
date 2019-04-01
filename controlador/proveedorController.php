@@ -36,28 +36,28 @@ class proveedorController {
 			return $this->proveedor->getProveedores();
 		}
 
-		public function getProveedorController($ID)
+		public function getProveedorController($id)
 		{
 			$this->proveedor = new proveedor();
-			return $this->proveedor->getProveedorDatos($ID);
+			return $this->proveedor->getProveedorDatos($id);
 		}
 
-		public function getContactoProveedorController($ID)
+		public function getContactoProveedorController($id)
 		{
 			$this->proveedor = new proveedor();
-			return $this->proveedor->getContactoProveedor($ID);
+			return $this->proveedor->getContactoProveedor($id);
 		}
 
-		public function setProveedorController($ID,$nombre,$nit,$telefono,$email,$direccion)
+		public function setProveedorController($id,$nombre,$nit,$telefono,$email,$direccion)
 		{
 			$this->proveedor = new proveedor();
-			$this->proveedor->setProveedor($ID,$nombre,$nit,$telefono,$email,$direccion);
+			$this->proveedor->setProveedor($id,$nombre,$nit,$telefono,$email,$direccion);
 		}
 
-		public function setContactoProveedorController($ID,$nombre,$documento,$direccion,$telefono,$email,$accion)
+		public function setContactoProveedorController($id,$nombre,$documento,$direccion,$telefono,$email,$accion)
 		{
 			$this->proveedor = new proveedor();
-			$this->proveedor->setContactoProveedor($ID,$nombre,$documento,$direccion,$telefono,$email,$accion);
+			$this->proveedor->setContactoProveedor($id,$nombre,$documento,$direccion,$telefono,$email,$accion);
 		}
 
 }
