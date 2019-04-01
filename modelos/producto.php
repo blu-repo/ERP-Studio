@@ -62,9 +62,9 @@ class producto {
          if($query_producto==true){
             echo "true";
          }   
-         else{
-            echo mysqli_error($this->conectar);
-         }
+         
+         echo mysqli_error($this->conectar);
+        
     }
 
     /**
@@ -81,9 +81,9 @@ class producto {
         if($query==true){
             return $query;
         }
-        else{
-            return "null";
-        }
+        
+         return "null";
+        
     }
 
     /**
@@ -100,9 +100,9 @@ class producto {
         if($query==true){
             return mysqli_fetch_array($query);
         }
-        else{
-            return "null";
-        }
+       
+          return "null";
+     
     }
 
     /**
@@ -121,9 +121,9 @@ class producto {
        if($query==true){
            echo "true";
        }
-       else{
-           echo mysqli_error($this->conexion);
-       }
+       
+        echo mysqli_error($this->conexion);
+       
     }
 
 
@@ -183,9 +183,9 @@ class producto {
             if($dato==true){
                 echo "true";
             }
-            else{
-                echo "false";
-            }
+           
+             echo "false";
+           
         }catch(Exception $e){
             return "null";
         }
